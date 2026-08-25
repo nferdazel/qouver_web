@@ -13,7 +13,7 @@ class ProjectsPage extends StatelessComponent {
       pageHead(
         title: 'Projects — Qouver',
         description:
-            'The systems under the Qouver umbrella: Skyward, M-DEF, Majadu Tools, and TAUG — simulation, analytics, community systems, and research.',
+            'The systems under the Qouver umbrella: Skyward, M-DEF, and Majadu Tools — simulation, analytics, and community systems.',
         path: '/projects',
       ),
       section(classes: 'page-head container', [

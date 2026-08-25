@@ -54,6 +54,6 @@ void main() {
     expect(res.body, contains('Skyward'));
     expect(res.body, contains('M-DEF'));
     expect(res.body, contains('Majadu Tools'));
-    expect(res.body, contains('TAUG'));
+    expect(res.body, isNot(contains('TAUG')));
   });
 }
