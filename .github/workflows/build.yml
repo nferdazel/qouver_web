@@ -68,11 +68,11 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          script_stop: true
           script: |
             podman pull ghcr.io/${{ github.repository }}:main
-            systemctl --user restart qouver-web
-            echo "Restarted qouver-web (podman quadlet)"
+            # Restart if quadlet sudah terpasang, otherwise info (setup manual di VPS sekali)
+            systemctl --user daemon-reload
+            systemctl --user restart qouver-web || echo "qouver-web.service not found — run manual setup: scp deploy/qouver-web.container → ~/.config/containers/systemd/ && systemctl --user enable --now qouver-web"
             sleep 2
-            systemctl --user --no-pager status qouver-web | head -20
-            podman ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' | grep qouver-web
+            systemctl --user --no-pager status qouver-web | head -20 || true
+            podman ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' | grep qouver-web || podman ps
