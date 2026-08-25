@@ -5,6 +5,10 @@
 :80 {
     root * /srv
     encode zstd gzip
+
+    # Clean URLs: /projects → /projects/index.html tanpa 308 redirect
+    try_files {path} {path}/index.html {path}.html
+
     file_server
 
     # Security headers + HSTS (host juga punya, duplikat aman — container authoritative saat direct :80)
