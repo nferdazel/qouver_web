@@ -121,7 +121,34 @@ class AboutPage extends StatelessComponent {
           ]),
         ]),
         div(classes: 'editorial mt-3', [
-          div(classes: 'editorial__label', [.text('05 / Vision')]),
+          div(classes: 'editorial__label', [.text('05 / Who’s behind')]),
+          div([
+            h2(classes: 'h3', [.text('A solo prospector')]),
+            p(classes: 'body mt-2', [
+              .text(
+                'Qouver is built and maintained by ',
+              ),
+              strong([.text('sachiel')]),
+              .text(' — '),
+              a(
+                href: 'https://github.com/nferdazel',
+                target: Target.blank,
+                attributes: {'rel': 'noopener'},
+                [.text('nferdazel')],
+              ),
+              .text(
+                ' on GitHub — a systems-minded builder iterating in public. No team, no pitch deck — just experiments that are interesting, useful, and worth sharing.',
+              ),
+            ]),
+            p(classes: 'body', [
+              .text(
+                'Photo coming soon — for now the work speaks.',
+              ),
+            ]),
+          ]),
+        ]),
+        div(classes: 'editorial mt-3', [
+          div(classes: 'editorial__label', [.text('06 / Vision')]),
           div([
             h2(classes: 'h3', [
               .text('An enduring home for systems and ideas'),

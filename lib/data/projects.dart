@@ -1,8 +1,7 @@
 /// Project catalogue for the Qouver umbrella.
 ///
 /// Facts verified 2026-08-15: SKYWARD and MDEF are live at their
-/// subdomains; MAJADU's Go API is live at api.qouver.com; TAUG has
-/// no public presence yet.
+/// subdomains; MAJADU's Go API is live at api.qouver.com.
 class Project {
   final String index;
   final String name;
@@ -48,7 +47,7 @@ const projects = <Project>[
     category: 'Analytics',
     tagline: 'Badminton analytics platform.',
     description:
-        'A leaderboard and analytics platform for a badminton community, built on the MAJADU Dynamic-Elo Framework — a custom rating engine with margin-of-victory weighting and inactivity decay.',
+        'A leaderboard and analytics platform for a badminton community, built on the MAJADU Dynamic-Elo Framework — a custom rating engine with margin-of-victory weighting and inactivity decay. In production use — live rankings, match logs, and seasonal standings for a real community.',
     focus: ['Statistics', 'Ranking systems', 'Community insights'],
     status: 'Live',
     stack: 'Flutter · Supabase / Postgres',
@@ -66,16 +65,5 @@ const projects = <Project>[
     stack: 'Go · Postgres · OpenAPI',
     url: 'https://api.qouver.com/majadu',
     urlLabel: 'API',
-  ),
-  Project(
-    index: '04',
-    name: 'TAUG',
-    category: 'Research',
-    tagline: 'Research workspace.',
-    description:
-        'A research workspace for knowledge work: AI-assisted workflows, market intelligence, and exploration — born from the observation that research tooling is missing a knowledge layer.',
-    focus: ['Research', 'Knowledge management', 'Market intelligence'],
-    status: 'In exploration',
-    stack: 'TBD',
   ),
 ];

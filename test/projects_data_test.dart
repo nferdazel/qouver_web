@@ -4,7 +4,7 @@ import 'package:qouver_web/data/projects.dart';
 
 void main() {
   test('project indexes are unique and sequential', () {
-    expect(projects.map((p) => p.index).toList(), ['01', '02', '03', '04']);
+    expect(projects.map((p) => p.index).toList(), ['01', '02', '03']);
   });
 
   test('project names are unique', () {

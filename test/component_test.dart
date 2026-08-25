@@ -21,9 +21,19 @@ void main() {
   testServer('ProjectCard renders a static card for projects without a URL', (
     tester,
   ) async {
-    final taug = projects.firstWhere((p) => p.url == null);
+    // Synthetic project without URL (TAUG archived 2026-08-25, no longer in catalogue).
+    const taug = Project(
+      index: '04',
+      name: 'TAUG',
+      category: 'Research',
+      tagline: 'Research workspace.',
+      description: 'Archived.',
+      focus: ['Research'],
+      status: 'Archived',
+      stack: 'TBD',
+    );
 
-    tester.pumpComponent(ProjectCard(project: taug));
+    tester.pumpComponent(const ProjectCard(project: taug));
 
     final res = await tester.request('/');
 
