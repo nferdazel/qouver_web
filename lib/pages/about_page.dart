@@ -125,9 +125,7 @@ class AboutPage extends StatelessComponent {
           div([
             h2(classes: 'h3', [.text('A solo prospector')]),
             p(classes: 'body mt-2', [
-              .text(
-                'Qouver is built and maintained by ',
-              ),
+              .text('Qouver is built and maintained by '),
               strong([.text('sachiel')]),
               .text(' — '),
               a(
@@ -141,9 +139,7 @@ class AboutPage extends StatelessComponent {
               ),
             ]),
             p(classes: 'body', [
-              .text(
-                'Photo coming soon — for now the work speaks.',
-              ),
+              .text('Photo coming soon — for now the work speaks.'),
             ]),
           ]),
         ]),
