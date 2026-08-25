@@ -1,0 +1,9 @@
+.build/
+.dart_tool/
+.packages
+build/
+.DS_Store
+*.log
+
+# local deploy checklist (gitignored, generated dari analisis kesiapan)
+DEPLOY_CHECKLIST.md

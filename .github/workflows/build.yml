@@ -1,0 +1,77 @@
+name: Build & Publish
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: 3.13.0
+      - name: Format check
+        run: dart format --output=none --set-exit-if-changed lib test web
+      - name: Analyze
+        run: dart analyze
+      - name: Test
+        run: dart test
+
+  build-push:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Image metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=raw,value=main
+            type=sha,prefix=
+
+      - name: Build & push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  # Deploy otomatis ke VPS via podman (seragam majadu-api).
+  # Aktif setelah secrets di-set di GitHub: VPS_HOST, VPS_USER, VPS_SSH_KEY
+  # Jika belum di-set, job ini skip (jangan fail). Hapus `if:` setelah secrets ada.
+  deploy:
+    needs: build-push
+    runs-on: ubuntu-latest
+    if: ${{ secrets.VPS_HOST != '' && secrets.VPS_USER != '' && secrets.VPS_SSH_KEY != '' }}
+    steps:
+      - name: Deploy to VPS (podman quadlet)
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script_stop: true
+          script: |
+            podman pull ghcr.io/${{ github.repository }}:main
+            systemctl --user restart qouver-web
+            echo "Restarted qouver-web (podman quadlet)"
+            sleep 2
+            systemctl --user --no-pager status qouver-web | head -20
+            podman ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' | grep qouver-web

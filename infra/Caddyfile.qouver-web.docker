@@ -1,0 +1,29 @@
+# Caddyfile untuk di DALAM container qouver-web (podman)
+# Host Caddy (VPS) akan reverse_proxy 127.0.0.1:3002 → container :80
+# Jadi container cuma file_server plain di :80, tanpa TLS, tanpa ACME
+
+:80 {
+    root * /srv
+    encode zstd gzip
+    file_server
+
+    # Security headers + HSTS (host juga punya, duplikat aman — container authoritative saat direct :80)
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        Permissions-Policy "camera=(), microphone=(), geolocation=()"
+        Content-Security-Policy "default-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; base-uri 'self'; frame-ancestors 'none'; form-action 'self'"
+    }
+
+    @static path /assets/* /fonts/* /fonts.css /styles.css /favicon.*
+    header @static Cache-Control "public, max-age=31536000, immutable"
+    header / Cache-Control "no-cache"
+
+    handle_errors {
+        @404 expression {http.error.status_code} == 404
+        rewrite @404 /404.html
+        file_server
+    }
+}

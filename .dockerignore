@@ -1,0 +1,11 @@
+.git
+.gitignore
+.dart_tool
+.build
+build
+.packages
+*.log
+.DS_Store
+DEPLOY_CHECKLIST.md
+infra/Caddyfile.qouver.com
+infra/Caddyfile.analytics.qouver.com
