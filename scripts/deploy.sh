@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# NOTE (2026-09-03): DEPRECATED — script ini model lama dan TIDAK dipakai.
+# qouver.com kini dilayani container qouver-web (Caddy proxy ke 127.0.0.1:3002).
+# Deploy otomatis via GitHub Actions (.github/workflows/build.yml): GHCR -> podman pull + restart.
+# Target lama (/srv/qouver/web + caddy reload as root) sudah tidak ada di arsitektur sekarang.
+# JANGAN dijalankan.
+#
 # Deploy qouver_web to the VPS.
 #
 # 1. Builds the static site locally (scripts/build.sh).

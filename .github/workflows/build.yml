@@ -56,8 +56,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
   # Deploy otomatis ke VPS via podman (seragam majadu-api).
-  # Aktif setelah secrets di-set di GitHub: VPS_HOST, VPS_USER, VPS_SSH_KEY
-  # Jika belum di-set, job ini skip (jangan fail). Hapus `if:` setelah secrets ada.
+  # Secrets sudah di-set di GitHub: VPS_HOST, VPS_USER, VPS_SSH_KEY — job jalan tanpa guard.
   deploy:
     needs: build-push
     runs-on: ubuntu-latest
