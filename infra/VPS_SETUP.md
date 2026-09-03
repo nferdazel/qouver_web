@@ -11,7 +11,7 @@
 >
 > Komponen pendukung di repo:
 > - `scripts/deploy.sh` — build + rsync + reload Caddy
-> - `infra/Caddyfile.qouver.com` + `infra/Caddyfile.analytics.qouver.com`
+> - `deploy/Caddyfile.qouver.com` + `deploy/Caddyfile.analytics.qouver.com`
 >   — blok site yang harus digabung ke Caddyfile VPS
 > - `infra/UMAMI_DEPLOY.md` — deploy container Umami
 > - `infra/UPTIME_MONITORING.md` — uptime check (UptimeRobot)
@@ -119,7 +119,7 @@ ssh qouver.com "sudo systemctl reload caddy"
 ```
 
 > **Sinkronisasi repo ↔ VPS:** blok site hidup di repo
-> (`infra/Caddyfile.*.qouver.com`) dan di Caddyfile VPS. Kalau diubah di
+> (`deploy/Caddyfile.*.qouver.com`) dan di Caddyfile VPS. Kalau diubah di
 > repo, update juga di VPS — dan sebaliknya. Jangan sampai divergen.
 
 ## 4. Deploy pertama situs

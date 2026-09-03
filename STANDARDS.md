@@ -19,7 +19,7 @@
 | Code quality | ✅ | Analyzer bersih + format rapi + `.editorconfig`; CI menegakkan |
 | Testing | ✅ | 12 test: smoke route, komponen, invariant data |
 | Build & release | ✅ | Reproducible (`pubspec.lock`), 64K zero-JS, terverifikasi |
-| Deployment & infra | 🟡 | `infra/Caddyfile.qouver.com` (headers+cache+404) + `scripts/deploy.sh`; belum dijalankan/terverifikasi di VPS |
+| Deployment & infra | 🟡 | `deploy/Caddyfile.qouver.com` (headers+cache+404) + `scripts/deploy.sh`; belum dijalankan/terverifikasi di VPS |
 | Performance | ✅ | 64K, zero JS, font self-hosted + preload, og-image.webp — di atas rata-rata |
 | Accessibility | ✅ | Skip-link + `id="main"` ditambahkan; semantik + focus + reduced-motion sudah |
 | SEO & analytics | ✅ | SEO lengkap; Umami self-host terintegrasi (env-gated, VPS deploy pending) |
@@ -126,7 +126,7 @@ policy, halaman 404, backup.
 **Aksi:** `web/404.html` + rute 404 di router (fallback statis), snippet
 Caddy lengkap (headers + cache) di README/HANDOFF, `scripts/deploy.sh`
 (dry-run aman, tidak dijalankan tanpa izin), versi Caddyfile disimpan di repo
-(`infra/Caddyfile.qouver.com`).
+(`deploy/Caddyfile.qouver.com`).
 
 ## 7. Performance (✅)
 
@@ -170,7 +170,7 @@ headers, CSP, HTTPS-only.
 
 - ✅ Tidak ada secret; HTTPS via Caddy; dependency ter-pin
 - ✅ `dart pub outdated`: tidak ada direct dep tertinggal
-- ✅ Security headers + CSP ada di `infra/Caddyfile.qouver.com`
+- ✅ Security headers + CSP ada di `deploy/Caddyfile.qouver.com`
   (HSTS, nosniff, X-Frame-Options, Referrer-Policy, Permissions-Policy, CSP `'self'`)
 - ✅ CSP kini `'self'` penuh — font self-hosted, tidak perlu whitelist Google
 - **Aksi:** verifikasi header di VPS saat deploy (curl -I). Upgrade policy:
@@ -212,7 +212,7 @@ headers, CSP, HTTPS-only.
 | P0 | Tidak ada CI | `.github/workflows/ci.yml` (format→analyze→test→build) | ✅ |
 | P1 | Tidak ada 404 | `NotFoundPage` + route `/404.html` (exclude dari sitemap) | ✅ |
 | P1 | A11y skip-link | skip-link + `id="main"` | ✅ |
-| P1 | Security headers & cache | `infra/Caddyfile.qouver.com` (HSTS/nosniff/CSP/cache/404) | ✅ (belum terverifikasi di VPS) |
+| P1 | Security headers & cache | `deploy/Caddyfile.qouver.com` (HSTS/nosniff/CSP/cache/404) | ✅ (belum terverifikasi di VPS) |
 | P1 | Deploy script | `scripts/deploy.sh` (rsync + reload Caddy, `--dry-run`) | ✅ (belum dijalankan) |
 | P1 | Test coverage | 12 test: komponen + invariant data + smoke | ✅ |
 | P1 | Analytics | Umami self-host (env-gated script, runbook `infra/UMAMI_DEPLOY.md`); VPS deploy pending | ✅ |

@@ -44,7 +44,7 @@ test/                    # server-render smoke + component + data invariant test
 test/smoke_test.dart     # all routes, SEO titles, nav state
 scripts/build.sh         # release + static generation
 scripts/deploy.sh        # rsync to VPS + reload Caddy (--dry-run available)
-infra/Caddyfile.qouver.com  # production Caddy config (TLS, headers, cache, 404)
+deploy/Caddyfile.qouver.com  # production Caddy config (TLS, headers, cache, 404)
 .github/workflows/ci.yml # CI: format → analyze → test → build
 ```
 
@@ -115,7 +115,7 @@ GitHub Actions (`.github/workflows/ci.yml`) runs format check, `dart analyze`,
 ./scripts/deploy.sh --dry-run  # lihat apa yang akan disinkronkan
 ```
 
-Produksi memakai `infra/Caddyfile.qouver.com` (TLS, security headers, cache
+Produksi memakai `deploy/Caddyfile.qouver.com` (TLS, security headers, cache
 policy, halaman 404). Serve `build/jaspr/` dari `/srv/qouver/web` — setiap
 route adalah direktori sungguhan (`/projects/index.html`), tidak perlu SPA
 rewrites.

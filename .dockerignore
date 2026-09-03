@@ -7,5 +7,5 @@ build
 *.log
 .DS_Store
 DEPLOY_CHECKLIST.md
-infra/Caddyfile.qouver.com
-infra/Caddyfile.analytics.qouver.com
+deploy/Caddyfile.qouver.com
+deploy/Caddyfile.analytics.qouver.com

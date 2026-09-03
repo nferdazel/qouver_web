@@ -27,7 +27,7 @@ FROM caddy:2.11-alpine
 COPY --from=build /app/build/jaspr /srv
 
 # Caddyfile untuk di DALAM container (listen :80, no TLS — TLS di host Caddy reverse_proxy)
-COPY infra/Caddyfile.qouver-web.docker /etc/caddy/Caddyfile
+COPY deploy/Caddyfile.qouver-web.docker /etc/caddy/Caddyfile
 
 # Caddy butuh expose 80 (host quadlet PublishPort=127.0.0.1:3002:80)
 EXPOSE 80

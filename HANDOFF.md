@@ -371,7 +371,7 @@ Yang sudah ditutup:
 | CI | `.github/workflows/ci.yml` — format check → analyze → test → build; upload artifact `build/jaspr/` |
 | 404 | `lib/pages/not_found_page.dart` + route `/404.html` (di-exclude dari sitemap via `--sitemap-exclude '404'`) |
 | A11y | skip-link + `id="main"` (+ CSS `.skip-link`) |
-| Security headers & cache | `infra/Caddyfile.qouver.com` — HSTS, nosniff, frame-ancestors, CSP, cache policy aset, `handle_errors` 404 |
+| Security headers & cache | `deploy/Caddyfile.qouver.com` — HSTS, nosniff, frame-ancestors, CSP, cache policy aset, `handle_errors` 404 |
 | Deploy | `scripts/deploy.sh` (rsync → `/srv/qouver/web` + `caddy reload`; `--dry-run` aman; env `QOUVER_VPS_HOST/USER/WEB_DIR`) |
 | Testing | 12 test: smoke route + komponen (ProjectCard, QMark) + invariant data proyek |
 | Konvensi | `.editorconfig`; `.gitignore` + `.DS_Store`; `prerender.yaml` sisa AngularDart dihapus |
@@ -422,7 +422,7 @@ Perubahan:
   (bukan `web/index.html`) — gotcha lama yang baru terlihat di sesi ini.**
 - `web/index.html` — sinkron (preload + fonts.css), meski file ini tidak
   dipakai di mode static (hanya template client).
-- `infra/Caddyfile.qouver.com` — CSP kini `'self'` penuh
+- `deploy/Caddyfile.qouver.com` — CSP kini `'self'` penuh
   (`style-src 'self'; font-src 'self'`), whitelist Google Fonts **dihapus**;
   `@static` cache path ditambah `/fonts/*` + `/fonts.css` (long cache,
   immutable).
@@ -484,7 +484,7 @@ infra/UPTIME_MONITORING.md       runbook UptimeRobot
 
 File diubah: `lib/main.server.dart` (head fonts), `lib/seo.dart`
 (og:image webp), `scripts/build.sh` (copy llms.txt + VERSION),
-`infra/Caddyfile.qouver.com` (CSP 'self' + cache fonts), `web/index.html`,
+`deploy/Caddyfile.qouver.com` (CSP 'self' + cache fonts), `web/index.html`,
 `README.md`, `STANDARDS.md`.
 
 ### 15.8 Verifikasi sesi 3
@@ -503,7 +503,7 @@ File diubah: `lib/main.server.dart` (head fonts), `lib/seo.dart`
 1. **git init + commit awal** (P0) — sekarang satu-satunya bloker enterprise
    grade. Setelah push: CI aktif + tag `v1.0.0` (semver kelar).
 2. **VPS deploy** — jalankan `scripts/deploy.sh` (rsync `build/jaspr/` →
-   `/srv/qouver/web`), pasang `infra/Caddyfile.qouver.com`, verifikasi header
+   `/srv/qouver/web`), pasang `deploy/Caddyfile.qouver.com`, verifikasi header
    via `curl -I`, daftarkan UptimeRobot, deploy Umami (`infra/UMAMI_DEPLOY.md`).
 3. **Opsional lanjutan (P2 berikutnya):** Lighthouse CI + budget performance,
    `og-image.avif`, halaman `blog/` atau `writing/`, favicon apple-touch-icon.

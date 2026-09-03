@@ -34,7 +34,7 @@ curl -s http://127.0.0.1:3000/api/telemetry/rum-event -o /dev/null -w '%{http_co
 
 ## 2. Caddy subdomain
 
-- Pasang `infra/Caddyfile.analytics.qouver.com` sebagai site terpisah
+- Pasang `deploy/Caddyfile.analytics.qouver.com` sebagai site terpisah
   (atau gabung ke Caddyfile utama). DNS `analytics.qouver.com` → IP VPS
   (Cloudflare proxy boleh; pastikan SSL mode sesuai).
 - Reload: `sudo caddy reload --config /etc/caddy/Caddyfile`
