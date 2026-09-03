@@ -52,8 +52,9 @@ void main() {
     final res = await tester.request('/projects');
 
     expect(res.body, contains('Skyward'));
-    expect(res.body, contains('M-DEF'));
     expect(res.body, contains('Majadu Tools'));
+    expect(res.body, contains('SDS Management'));
+    expect(res.body, contains('M-DEF'));
     expect(res.body, isNot(contains('TAUG')));
   });
 }

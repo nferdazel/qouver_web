@@ -13,7 +13,7 @@ class ProjectsPage extends StatelessComponent {
       pageHead(
         title: 'Projects — Qouver',
         description:
-            'The systems under the Qouver umbrella: Skyward, M-DEF, and Majadu Tools — simulation, analytics, and community systems.',
+            'The systems under the Qouver umbrella: Skyward, Majadu Tools, and SDS Management — simulation, community systems, and compliance tools.',
         path: '/projects',
       ),
       section(classes: 'page-head container', [
@@ -23,7 +23,7 @@ class ProjectsPage extends StatelessComponent {
         h1(classes: 'page-title', [.text('Projects.')]),
         p(classes: 'lead mt-2', [
           .text(
-            'The systems under the umbrella — some live, some in the ground. Each one started as something others overlooked.',
+            'The systems under the umbrella — some live and in production, some archived. Each one started as something others overlooked.',
           ),
         ]),
       ]),
@@ -52,7 +52,13 @@ class ProjectsPage extends StatelessComponent {
                   [.text('${project.urlLabel} →')],
                 )
               else
-                span(classes: 'label', [.text('No public link yet')]),
+                span(classes: 'label', [
+                  .text(
+                    project.status == 'Archived'
+                        ? 'Archived — no public link'
+                        : 'No public link',
+                  ),
+                ]),
             ]),
           ]),
       ]),

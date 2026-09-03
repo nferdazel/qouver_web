@@ -2,7 +2,8 @@
 
 > **Dibuat:** 2026-08-15 (sesi 1 — dari nol sampai siap deploy)
 > **Diperbarui:** 2026-08-18 (sesi 2 — migrasi AngularDart → Jaspr, lihat §13)
-> **Git:** BELUM ada repo (folder `qouver_web/` belum `git init`)
+> **Diperbarui:** 2026-09-03 (sesi 4 — konten: de-jargon + proof of work + katalog SDS, lihat §16)
+> **Git:** aktif — repo `qouver_web` di GitHub (`nferdazel/qouver_web`), branch `main`
 > **Tujuan dokumen:** resume penuh — apa yang dibangun, keputusan, versi yang
 > fragile, cara build/deploy, dan apa yang belum — biar sesi berikutnya lanjut
 > tanpa kehilangan konteks.
@@ -14,7 +15,7 @@
 - **Situs utama qouver.com SELESAI dibangun** di `qouver_web/` — **SEKARANG Jaspr** (static mode, 2026-08-18). AngularDart lama diarsipkan di `legacy/`.
 - **Output sekarang:** `build/jaspr/` — **64K, zero JavaScript**, SEO (title/meta/canonical/OG/JSON-LD) di-render server-side. Build ~15 dtk tanpa headless Chrome.
 - **4 halaman:** Home, Projects, About, Contact — bahasa **English**, positioning **umbrella produk**.
-- **Portfolio:** Skyward & M-DEF (live, link diverifikasi), Majadu Tools (framed sebagai **Go backend/API** — frontend badminton-match bukan punya user), TAUG (in exploration, tanpa link).
+- **Portfolio (per 2026-09-03):** Skyward (live), Majadu Tools (live — Go backend/API, frontend community-maintained), SDS Management (live). **M-DEF archived** (mdef.qouver.com mati, superseded oleh rating Majadu); TAUG archived 2026-08-25 (di luar katalog).
 - **Identitas baru:** logo monogram Q (SVG, sekaligus favicon), palet kertas/ink/bronze, IBM Plex Sans + Mono — Swiss editorial, bukan tema Majadu.
 - **🔴 PENTING (versi fragile):** revival AngularDart harus **`angulardart >= 9.4.1` + `angulardart_router >= 5.4.0`** — versi yang di-scaffold CLI (9.3.6/5.3.3) **crash di runtime** di bawah dart2js (2 bug diverifikasi, detail di §3). `pubspec.lock` WAJIB di-commit.
 - **Output siap deploy:** `build/web/` (356K) — static HTML prerender per route + sitemap.xml + robots.txt + SPA hydrate. Belum di-deploy.
@@ -528,3 +529,46 @@ fokus ke DNS → `/srv/qouver/web` → tambah 2 blok site ke Caddyfile existing
 podman existing (DB di Postgres yang ada, container bind 127.0.0.1:3000) →
 UptimeRobot → email. Checklist 11 poin. Catatan penting: blok site hidup di
 repo DAN di Caddyfile VPS — jaga sinkron (jangan divergen).
+
+---
+
+## 16. SESI 4 (2026-09-03) — Konten: de-jargon + proof of work + katalog SDS
+
+> Analisis konten (diminta user): positioning kuat ("home for systems and
+> ideas"), gap = identitas manusia (bio/foto), proof of work tipis, dan jargon
+> tech terkonsentrasi di deskripsi proyek. Sesi ini menutup jargon + proof.
+
+### 16.1 Katalog proyek (`lib/data/projects.dart`) — diverifikasi ulang dari fakta
+
+Fakta diverifikasi 2026-09-03 dari `~/Projects/*` (README repo + `SERVER_STATE.md`)
+dan endpoint live. **Data lama basi** (verifikasi 2026-08-15):
+
+| Proyek | Sebelum | Sesudah (fakta) |
+|---|---|---|
+| Skyward | stack `Flutter · Supabase / Postgres` | `Flutter · Go · Postgres` — `skyward-api` (Go) live di VPS (SERVER_STATE §4); skyward.qouver.com 200 |
+| Majadu Tools | deskripsi "REST + optimistic concurrency + OpenAPI" | value-first: scheduling, live scoring, tournament, rating lintas season (fitur produksi nyata); framing backend-by-Qouver / community-frontend **dipertahankan** |
+| M-DEF | status `Live`, url mdef.qouver.com | **`Archived`**, url dihapus — mdef.qouver.com **000 (mati)**; narasi: rating engine-nya dilanjutkan di Majadu |
+| SDS Management | tidak ada | **baru (03, Live)** — sds.qouver.com 200; client (Bayer) sengaja TIDAK disebut di situs |
+
+### 16.2 Copy & docs
+
+- 3 deskripsi proyek ditulis ulang value-first (≤1 jargon/kalimat; stack label
+  menampung detail teknis).
+- `/projects` lead: "some live, some in the ground" → "some live and in
+  production, some archived"; fallback link proyek archived = "Archived — no
+  public link" (bukan "No public link yet").
+- `README.md`: TAUG dihapus dari katalog; baris `/projects` diperbarui (4 proyek).
+- **Repo `nferdazel` (terpisah):** link `github.com/nferdazel/mdef` (404) dihapus
+  dari profile README — commit terpisah di repo itu.
+
+### 16.3 Test & verifikasi
+
+- `test/projects_data_test.dart`: indexes 01–04 (4 proyek).
+- `test/smoke_test.dart`: + assert `SDS Management` di /projects.
+- Verifikasi: `dart analyze` 0 issue · `dart test` 12/12 · `./scripts/build.sh` OK.
+
+### 16.4 Masih terbuka
+
+- Bio/foto About ("Photo coming soon") — user belum kasih konten.
+- `seather` (CI/CD lab, open source) belum masuk katalog — keputusan user.
+- Deploy `build/jaspr/` ke VPS belum dijalankan sesi ini (butuh SSH).

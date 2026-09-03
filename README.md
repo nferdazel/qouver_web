@@ -17,7 +17,7 @@ into the static HTML server-side.
 | Route      | Content                                                              |
 |------------|----------------------------------------------------------------------|
 | `/`        | Hero, philosophy strip, project index, manifesto                     |
-| `/projects`| Full catalogue — Skyward, M-DEF, Majadu Tools, TAUG                  |
+| `/projects`| Full catalogue — Skyward, Majadu Tools, SDS Management, M-DEF (archived) |
 | `/about`   | Origin story (Quousever → Qouver), Systems Prospector, philosophy    |
 | `/contact` | Email + GitHub links                                                 |
 
