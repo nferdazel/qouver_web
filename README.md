@@ -110,15 +110,21 @@ GitHub Actions (`.github/workflows/ci.yml`) runs format check, `dart analyze`,
 
 ## Deployment
 
+> **Arsitektur saat ini (2026-09):** qouver.com dilayani **container `qouver-web`**
+> (Caddy proxy host → `127.0.0.1:3002`). Deploy otomatis via GitHub Actions
+> (`.github/workflows/build.yml`) → GHCR → `podman pull` + restart unit quadlet
+> (`deploy/qouver-web.container`). Konfig host ada di `deploy/Caddyfile.qouver.com`.
+
 ```bash
+# CARA LAMA (deprecated — model rsync statis, TIDAK dipakai):
 ./scripts/deploy.sh            # build + rsync ke VPS + reload Caddy
 ./scripts/deploy.sh --dry-run  # lihat apa yang akan disinkronkan
 ```
 
 Produksi memakai `deploy/Caddyfile.qouver.com` (TLS, security headers, cache
-policy, halaman 404). Serve `build/jaspr/` dari `/srv/qouver/web` — setiap
-route adalah direktori sungguhan (`/projects/index.html`), tidak perlu SPA
-rewrites.
+policy, halaman 404) sebagai blok di `/etc/caddy/Caddyfile` host, me-reverse-proxy
+ke container di `127.0.0.1:3002`. (Blok `root * /srv/qouver/web` di bawah ini
+adalah riwayat arsitektur statis lama — sudah tidak dipakai.)
 
 > 🚀 **Setup VPS dari nol (install Caddy, DNS, firewall, deploy pertama,
 > Umami, uptime):** baca [`infra/VPS_SETUP.md`](infra/VPS_SETUP.md) — runbook

@@ -1,5 +1,11 @@
 # VPS SETUP — qouver.com (runbook untuk VPS yang SUDAH ADA)
 
+> ⚠️ **Arsitektur berubah 2026-09:** qouver.com sekarang **container `qouver-web`**
+> (host Caddy reverse_proxy → `127.0.0.1:3002`), deploy via GH Actions
+> (`.github/workflows/build.yml`). Bagian-bagian runbook di bawah yang memakai
+> `root * /srv/qouver/web` + rsync adalah **model statis lama — jangan dipakai
+> untuk setup baru**; referensi terkini ada di `deploy/` + README §Deployment.
+>
 > Status VPS (dikonfirmasi user 2026-08-18): **Caddy sudah terinstall & jalan**,
 > semua site di **satu Caddyfile besar** (`/etc/caddy/Caddyfile`), **Postgres
 > sudah jalan di podman** (dipakai majadu-api dll). Situs qouver.com statis

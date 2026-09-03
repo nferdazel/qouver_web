@@ -1,5 +1,9 @@
 # HANDOFF — qouver_web (situs utama qouver.com)
 
+> **Arsitektur deploy saat ini (2026-09):** container `qouver-web` (:3002) via
+> GH Actions → GHCR. Bagian-bagian yang menyebut rsync `/srv/qouver/web` di
+> dokumen ini adalah riwayat arsitektur statis lama (tidak dipakai lagi).
+>
 > **Dibuat:** 2026-08-15 (sesi 1 — dari nol sampai siap deploy)
 > **Diperbarui:** 2026-08-18 (sesi 2 — migrasi AngularDart → Jaspr, lihat §13)
 > **Diperbarui:** 2026-09-03 (sesi 4 — konten: de-jargon + proof of work + katalog SDS, lihat §16)
