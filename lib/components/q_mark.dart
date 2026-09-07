@@ -42,7 +42,12 @@ class QMark extends StatelessComponent {
         ),
         circle(
           [],
-          attributes: {'cx': '31', 'cy': '31', 'r': '5', 'fill': 'currentColor'},
+          attributes: {
+            'cx': '31',
+            'cy': '31',
+            'r': '5',
+            'fill': 'currentColor',
+          },
         ),
       ],
     );
