@@ -7,3 +7,4 @@ build/
 
 # local deploy checklist (gitignored, generated dari analisis kesiapan)
 DEPLOY_CHECKLIST.md
+.graphify/
