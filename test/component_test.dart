@@ -54,6 +54,8 @@ void main() {
     expect(res.body, contains('width="42"'));
     expect(res.body, contains('height="42"'));
     expect(res.body, contains('viewBox="0 0 64 64"'));
+    expect(res.body, contains('cx="31"'));
+    expect(res.body, contains('cy="31"'));
     expect(res.body, contains('class="hero__mark"'));
     expect(res.body, contains('aria-hidden="true"'));
   });

@@ -1,8 +1,8 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
-/// The Qouver Q monogram — a ring with a tail ending in a dot:
-/// the find at the end of the prospector's sweep.
+/// The Qouver Q monogram — a ring holding a single dot (the find, brought
+/// home), its tail still tracing the prospector's sweep that led there.
 class QMark extends StatelessComponent {
   const QMark({super.key, this.size = '32', this.classes});
 
@@ -42,12 +42,7 @@ class QMark extends StatelessComponent {
         ),
         circle(
           [],
-          attributes: {
-            'cx': '54',
-            'cy': '54',
-            'r': '5',
-            'fill': 'currentColor',
-          },
+          attributes: {'cx': '31', 'cy': '31', 'r': '5', 'fill': 'currentColor'},
         ),
       ],
     );

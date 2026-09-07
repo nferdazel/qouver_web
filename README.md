@@ -143,6 +143,8 @@ Tag rilis + changelog menyusul setelah repo di-`git init` (lihat STANDARDS.md §
 
 ## Identity
 
-Logo: geometric Q monogram — a ring whose tail ends in a dot: the find at the
-end of the prospector's sweep. Palette: warm paper `#F4F1E9`, ink `#1C1913`,
-bronze `#A07030`. Type: IBM Plex Sans (UI) + IBM Plex Mono (labels).
+Logo: geometric Q monogram — a ring holding a single dot: the find, brought
+home; its tail still traces the prospector's sweep that led there. Monochrome
+(`currentColor`) standalone; in color contexts the dot is bronze `#A07030`.
+Palette: warm paper `#F4F1E9`, ink `#1C1913`, bronze `#A07030`. Type: IBM Plex
+Sans (UI) + IBM Plex Mono (labels).

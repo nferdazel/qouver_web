@@ -144,9 +144,13 @@ qouver_web/
 | `--line` | `#D8D0BD` | Hairlines |
 
 - **Font:** IBM Plex Sans (headline/body) + IBM Plex Mono (label, index, meta) — Google Fonts.
-- **Logo:** monogram Q — ring + ekor melengkung berujung **titik** ("the find di
-  ujung sapuan prospector"). `currentColor` → adaptif light/dark. File:
-  `web/assets/q-mark.svg` (standalone, bisa dipakai ulang).
+- **Logo:** monogram Q — ring menahan **satu titik** di dalam bowl ("the find,
+  brought home"; ekor tetap melacak sapuan prospector yang mengarah ke sana).
+  Titik bronze `#A07030` di konteks berwarna (tile icon, og-image); standalone
+  SVG tetap monokrom (`currentColor` → adaptif light/dark). File:
+  `web/assets/q-mark.svg` (standalone) + `web/assets/q-mark-solid.svg`
+  (ink-on-paper) + `web/assets/icons/` (apple-touch 180, PWA 192/512,
+  maskable 512) + `web/site.webmanifest`.
 - **Layout language:** mono label uppercase (`01 / INDEX`), hairlines, grid kartu
   border-1px, section gelap (strip filosofi, manifesto) untuk ritme kontras,
   whitespace lebar. Hero punya watermark Q mark besar.

@@ -42,6 +42,11 @@ void main() {
       head: [
         link(rel: 'icon', type: 'image/svg+xml', href: 'assets/q-mark.svg'),
         link(
+          rel: 'apple-touch-icon',
+          href: 'assets/icons/apple-touch-icon.png',
+        ),
+        link(rel: 'manifest', href: 'site.webmanifest'),
+        link(
           rel: 'preload',
           href: 'fonts/ibm-plex-sans-var.woff2',
           as: 'font',
