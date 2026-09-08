@@ -100,7 +100,7 @@ class HomePage extends StatelessComponent {
           span(classes: 'section-head__index', [.text('01 / INDEX')]),
           h2(classes: 'h2', [.text('Projects')]),
         ]),
-        div(classes: 'projects-list', [
+        div(classes: 'projects-grid', [
           for (final p in data.projects) ProjectCard(project: p),
         ]),
         div(classes: 'mt-3', [

@@ -4,8 +4,7 @@ import 'package:jaspr_router/jaspr_router.dart';
 
 import '../data/projects.dart';
 
-/// Card for a [Project] — displayed as a full-width list row on the homepage.
-/// Links to the internal case study for the project.
+/// Card for a [Project] — displayed in a 2-column grid on the homepage.
 class ProjectCard extends StatelessComponent {
   const ProjectCard({super.key, required this.project});
 
@@ -19,25 +18,37 @@ class ProjectCard extends StatelessComponent {
       _ => 'project-card__status',
     };
 
-    final card = <Component>[
-      div(classes: 'project-card__body', [
-        div(classes: 'project-card__meta label', [
+    return article(classes: 'project-card', [
+      div(classes: 'project-card__head', [
+        span(classes: 'project-card__meta label', [
           .text('${project.index} — ${project.category}'),
         ]),
-        h3(classes: 'project-card__name', [.text(project.name)]),
-        p(classes: 'project-card__desc', [.text(project.tagline)]),
-        span(classes: 'project-card__stack label', [.text(project.stack)]),
-      ]),
-      div(classes: 'project-card__side', [
         span(classes: statusClass, [.text(project.status)]),
-        span(classes: 'project-card__visit', [.text('Case Study →')]),
       ]),
-    ];
-
-    return Link(
-      to: '/projects/${project.slug}',
-      classes: 'project-card',
-      children: card,
-    );
+      div(classes: 'project-card__body', [
+        h3(classes: 'project-card__name', [
+          Link(to: '/projects/${project.slug}', child: .text(project.name)),
+        ]),
+        p(classes: 'project-card__desc', [.text(project.description)]),
+      ]),
+      div(classes: 'project-card__foot', [
+        span(classes: 'project-card__stack label', [.text(project.stack)]),
+        div(classes: 'project-card__actions', [
+          Link(
+            to: '/projects/${project.slug}',
+            classes: 'link',
+            child: .text('Case Study →'),
+          ),
+          if (project.url != null)
+            a(
+              href: project.url!,
+              target: Target.blank,
+              attributes: {'rel': 'noopener'},
+              classes: 'link link--dim',
+              [.text('${project.urlLabel} ↗')],
+            ),
+        ]),
+      ]),
+    ]);
   }
 }
