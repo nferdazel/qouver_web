@@ -198,17 +198,6 @@ p.body + p.body { margin-top: 1rem; }
   position: relative;
   padding-top: clamp(4rem, 9vw, 7rem);
   padding-bottom: clamp(3.5rem, 8vw, 6rem);
-  overflow: hidden;
-}
-.hero__mark {
-  position: absolute;
-  top: 50%;
-  right: clamp(-40px, -2vw, 0px);
-  width: clamp(240px, 38vw, 520px);
-  height: auto;
-  transform: translateY(-50%);
-  color: color-mix(in srgb, var(--bronze) 14%, transparent);
-  pointer-events: none;
 }
 .hero__meta { display: flex; align-items: center; gap: 0.9rem; margin-bottom: 1.6rem; }
 .hero__meta::before {
