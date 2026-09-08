@@ -23,7 +23,7 @@ class ProjectsPage extends StatelessComponent {
         h1(classes: 'page-title', [.text('Projects.')]),
         p(classes: 'lead mt-2', [
           .text(
-            'The systems under the umbrella — some live and in production, some archived. Each one started as something others overlooked.',
+            'Live, in production, or archived — each one earned its place. Built to solve real problems, not to demonstrate capability.',
           ),
         ]),
       ]),

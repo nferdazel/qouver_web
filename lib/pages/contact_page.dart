@@ -22,7 +22,7 @@ class ContactPage extends StatelessComponent {
         h1(classes: 'page-title', [.text('Get in touch.')]),
         p(classes: 'lead mt-2', [
           .text(
-            'Questions, ideas, or something worth building together — the inbox is open.',
+            'Questions, a project idea, or just something worth talking about — direct is fine.',
           ),
         ]),
       ]),

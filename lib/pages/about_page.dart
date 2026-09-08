@@ -27,7 +27,7 @@ class AboutPage extends StatelessComponent {
         ]),
         p(classes: 'lead mt-2', [
           .text(
-            'Qouver is not a startup, not an AI company, not a software house. It is a home for systems and ideas.',
+            'Qouver is not a startup, not a consultancy, not an AI company. It is a home for systems and ideas — built and maintained by one person.',
           ),
         ]),
       ]),
@@ -135,11 +135,8 @@ class AboutPage extends StatelessComponent {
                 [.text('nferdazel')],
               ),
               .text(
-                ' on GitHub — a systems-minded builder iterating in public. No team, no pitch deck — just experiments that are interesting, useful, and worth sharing.',
+                ' on GitHub — a systems-minded builder who works in public. No team, no pitch deck — just experiments worth doing.',
               ),
-            ]),
-            p(classes: 'body', [
-              .text('Photo coming soon — for now the work speaks.'),
             ]),
           ]),
         ]),
@@ -163,10 +160,10 @@ class AboutPage extends StatelessComponent {
       section(classes: 'manifesto section', [
         div(classes: 'container', [
           p(classes: 'manifesto__quote', [
-            .text('If something contains hidden value that others overlook — '),
+            .text('Something has value that others miss. '),
             em([
               .text(
-                'find it, understand it, improve it, turn it into a system, and share what you learn.',
+                'Find it, understand it, build something from it, and write down what you learned.',
               ),
             ]),
           ]),
