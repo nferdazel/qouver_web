@@ -8,3 +8,8 @@ build/
 # local deploy checklist (gitignored, generated dari analisis kesiapan)
 DEPLOY_CHECKLIST.md
 .graphify/
+
+# internal session notes — SSH targets, VPS paths, migration context
+# not appropriate for a public repo; keep locally
+HANDOFF.md
+MIGRATION.md
