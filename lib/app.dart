@@ -62,12 +62,14 @@ class App extends StatelessComponent {
             Route(
               path: '/projects/skyward',
               title: 'Skyward — Case Study — Qouver',
-              builder: (context, state) => const ProjectDetailPage(slug: 'skyward'),
+              builder: (context, state) =>
+                  const ProjectDetailPage(slug: 'skyward'),
             ),
             Route(
               path: '/projects/majadu',
               title: 'Majadu Tools — Case Study — Qouver',
-              builder: (context, state) => const ProjectDetailPage(slug: 'majadu'),
+              builder: (context, state) =>
+                  const ProjectDetailPage(slug: 'majadu'),
             ),
             Route(
               path: '/projects/sds',
@@ -77,7 +79,8 @@ class App extends StatelessComponent {
             Route(
               path: '/projects/mdef',
               title: 'M-DEF — Case Study — Qouver',
-              builder: (context, state) => const ProjectDetailPage(slug: 'mdef'),
+              builder: (context, state) =>
+                  const ProjectDetailPage(slug: 'mdef'),
             ),
             Route(
               path: '/about',
@@ -148,7 +151,9 @@ class _SiteFooter extends StatelessComponent {
               h4([.text('Contact')]),
               ul([
                 li([
-                  a(href: 'mailto:hello@qouver.com', [.text('hello@qouver.com')]),
+                  a(href: 'mailto:hello@qouver.com', [
+                    .text('hello@qouver.com'),
+                  ]),
                 ]),
                 li([
                   a(

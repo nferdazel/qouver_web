@@ -5,9 +5,7 @@ import 'package:qouver_web/components/q_mark.dart';
 import 'package:qouver_web/data/projects.dart';
 
 void main() {
-  testServer('ProjectCard renders an internal case study link', (
-    tester,
-  ) async {
+  testServer('ProjectCard renders an internal case study link', (tester) async {
     tester.pumpComponent(ProjectCard(project: projects.first));
 
     final res = await tester.request('/');
@@ -18,29 +16,30 @@ void main() {
     expect(res.body, contains('project-card__status'));
   });
 
-  testServer('ProjectCard renders static metadata cleanly for synthetic project', (
-    tester,
-  ) async {
-    // Synthetic project without URL (TAUG archived 2026-08-25, no longer in catalogue).
-    const taug = Project(
-      index: '04',
-      slug: 'taug',
-      name: 'TAUG',
-      category: 'Research',
-      tagline: 'Research workspace.',
-      description: 'Archived.',
-      focus: ['Research'],
-      status: 'Archived',
-      stack: 'TBD',
-    );
+  testServer(
+    'ProjectCard renders static metadata cleanly for synthetic project',
+    (tester) async {
+      // Synthetic project without URL (TAUG archived 2026-08-25, no longer in catalogue).
+      const taug = Project(
+        index: '04',
+        slug: 'taug',
+        name: 'TAUG',
+        category: 'Research',
+        tagline: 'Research workspace.',
+        description: 'Archived.',
+        focus: ['Research'],
+        status: 'Archived',
+        stack: 'TBD',
+      );
 
-    tester.pumpComponent(const ProjectCard(project: taug));
+      tester.pumpComponent(const ProjectCard(project: taug));
 
-    final res = await tester.request('/');
+      final res = await tester.request('/');
 
-    expect(res.body, contains('href="/projects/taug"'));
-    expect(res.body, contains('Case Study →'));
-  });
+      expect(res.body, contains('href="/projects/taug"'));
+      expect(res.body, contains('Case Study →'));
+    },
+  );
 
   testServer('QMark renders the monogram svg with the requested size', (
     tester,

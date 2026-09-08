@@ -13,13 +13,19 @@ class ProjectDetailPage extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
-    final project = data.projects.where((proj) => proj.slug == slug).firstOrNull;
+    final project = data.projects
+        .where((proj) => proj.slug == slug)
+        .firstOrNull;
 
     if (project == null || project.caseStudy == null) {
       return section(classes: 'page-head container', [
         h1(classes: 'page-title', [.text('Case study not found.')]),
         div(classes: 'mt-3', [
-          Link(to: '/projects', classes: 'link', child: .text('← All projects')),
+          Link(
+            to: '/projects',
+            classes: 'link',
+            child: .text('← All projects'),
+          ),
         ]),
       ]);
     }
@@ -39,11 +45,7 @@ class ProjectDetailPage extends StatelessComponent {
       ),
       section(classes: 'page-head container', [
         div(classes: 'page-head__meta', [
-          Link(
-            to: '/projects',
-            classes: 'link',
-            child: .text('← Projects'),
-          ),
+          Link(to: '/projects', classes: 'link', child: .text('← Projects')),
           span(classes: 'label', [.text('Case Study')]),
         ]),
         h1(classes: 'page-title', [.text(project.name)]),
@@ -51,7 +53,9 @@ class ProjectDetailPage extends StatelessComponent {
         div(classes: 'project-detail__meta-bar mt-3', [
           div(classes: 'project-detail__meta-item', [
             span(classes: 'label', [.text('Category')]),
-            span(classes: 'project-detail__meta-val', [.text(project.category)]),
+            span(classes: 'project-detail__meta-val', [
+              .text(project.category),
+            ]),
           ]),
           div(classes: 'project-detail__meta-item', [
             span(classes: 'label', [.text('Status')]),

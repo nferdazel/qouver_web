@@ -80,15 +80,15 @@ const projects = <Project>[
       decisions: [
         (
           'Zero client simulation logic',
-          'The Flutter client contains no financial or flight trajectory formulas. All flight paths, fuel consumption, and market yields are calculated strictly on the backend.'
+          'The Flutter client contains no financial or flight trajectory formulas. All flight paths, fuel consumption, and market yields are calculated strictly on the backend.',
         ),
         (
           'Deterministic world tick loop',
-          'World ticks execute at fixed server intervals. When a player logs in after days away, the backend processes past tick windows deterministically without melting client memory.'
+          'World ticks execute at fixed server intervals. When a player logs in after days away, the backend processes past tick windows deterministically without melting client memory.',
         ),
         (
           'ACID transaction isolation',
-          'All airline financial operations use strict PostgreSQL database transactions to prevent double-spending or route duplication under concurrent player actions.'
+          'All airline financial operations use strict PostgreSQL database transactions to prevent double-spending or route duplication under concurrent player actions.',
         ),
       ],
       takeaways:
@@ -119,15 +119,15 @@ const projects = <Project>[
       decisions: [
         (
           'Frameworkless Go backend',
-          'Built using Go standard library net/http and pgx/v5. Sub-millisecond response times and instant cold starts inside rootless Podman containers.'
+          'Built using Go standard library net/http and pgx/v5. Sub-millisecond response times and instant cold starts inside rootless Podman containers.',
         ),
         (
           'Glicko-1 rating with confidence decay',
-          'Replaced raw win/loss tallies with a custom Glicko-1 rating engine (Glicko-1-lite) that factors in victory margin and increases rating deviation when players skip seasons.'
+          'Replaced raw win/loss tallies with a custom Glicko-1 rating engine (Glicko-1-lite) that factors in victory margin and increases rating deviation when players skip seasons.',
         ),
         (
           'Schema-isolated multi-tenancy',
-          'Community databases use PostgreSQL search paths per seasonal domain rather than row-level tenant IDs, simplifying backup and data isolation.'
+          'Community databases use PostgreSQL search paths per seasonal domain rather than row-level tenant IDs, simplifying backup and data isolation.',
         ),
       ],
       takeaways:
@@ -157,15 +157,15 @@ const projects = <Project>[
       decisions: [
         (
           'Headless Chromium PDF export',
-          'Server-side Chromium rendering guarantees 100% pixel-identical PDF exports across all browsers and devices for safety inspection audits.'
+          'Server-side Chromium rendering guarantees 100% pixel-identical PDF exports across all browsers and devices for safety inspection audits.',
         ),
         (
           'Immutable document versioning',
-          'Updates to safety data sheets never overwrite existing records. Every safety revision increments an immutable version index with complete audit trails.'
+          'Updates to safety data sheets never overwrite existing records. Every safety revision increments an immutable version index with complete audit trails.',
         ),
         (
           'GHS Pictogram Matrix',
-          'Chemical hazards map directly to GHS pictograms rendered as inline SVGs for instant visual identification during emergency chemical lookups.'
+          'Chemical hazards map directly to GHS pictograms rendered as inline SVGs for instant visual identification during emergency chemical lookups.',
         ),
       ],
       takeaways:
@@ -194,11 +194,11 @@ const projects = <Project>[
       decisions: [
         (
           'Inactivity decay penalty',
-          'Rankings automatically decayed when players stopped competing, preventing inactive players from occupying top leaderboard positions indefinitely.'
+          'Rankings automatically decayed when players stopped competing, preventing inactive players from occupying top leaderboard positions indefinitely.',
         ),
         (
           'Retirement & algorithm migration',
-          'When Majadu was established, M-DEF was retired and its core rating algorithms were extracted and rewritten in Go for Majadu API.'
+          'When Majadu was established, M-DEF was retired and its core rating algorithms were extracted and rewritten in Go for Majadu API.',
         ),
       ],
       takeaways:
@@ -206,4 +206,3 @@ const projects = <Project>[
     ),
   ),
 ];
-

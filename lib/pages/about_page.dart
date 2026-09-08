@@ -41,7 +41,9 @@ class AboutPage extends StatelessComponent {
               strong([.text('Quousever')]),
               .text('. Rather than discard it, it was refined into '),
               strong([.text('Qouver')]),
-              .text('. That process — finding latent value and shaping it into something worth keeping — is the whole philosophy.'),
+              .text(
+                '. That process — finding latent value and shaping it into something worth keeping — is the whole philosophy.',
+              ),
             ]),
             p(classes: 'body', [
               .text(
