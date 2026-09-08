@@ -5,7 +5,6 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
 import '../components/project_card.dart';
-import '../components/q_mark.dart';
 import '../data/projects.dart' as data;
 import '../seo.dart';
 
@@ -49,27 +48,23 @@ class HomePage extends StatelessComponent {
         ]),
       ),
       section(classes: 'hero container', [
-        QMark(size: '520', classes: 'hero__mark'),
         div(classes: 'hero__meta', [
-          span(classes: 'label', [
-            .text('Qouver — a home for systems and ideas'),
-          ]),
+          span(classes: 'label', [.text('qouver.com')]),
         ]),
         h1(classes: 'display', [
-          .text('Turning '),
-          em([.text('overlooked')]),
-          .text(' ideas into useful systems.'),
+          .text('Built from what others '),
+          em([.text('leave behind.')]),
         ]),
         p(classes: 'lead hero__lead', [
           .text(
-            'Qouver finds value where others don\'t look — in software, communities, data, and process — builds it into systems, and shares what it learns along the way.',
+            'Qouver builds systems from what others miss — software, communities, data, process. Each one tested, each one real.',
           ),
         ]),
         div(classes: 'hero__actions', [
           Link(
             to: '/projects',
             classes: 'link',
-            child: .text('Explore the systems →'),
+            child: .text('See the work →'),
           ),
           Link(to: '/about', classes: 'link', child: .text('The philosophy →')),
         ]),
@@ -80,17 +75,17 @@ class HomePage extends StatelessComponent {
             (
               '01',
               'Find value.',
-              'Valuable opportunities often hide in places others skip — software, communities, data, process, knowledge.',
+              'Valuable things often sit in plain sight — the gap in a community, the pattern in a dataset, the tool nobody bothered to build.',
             ),
             (
               '02',
               'Build systems.',
-              'Discovery is only the start. The point is to turn what is found into something useful, tested, and durable.',
+              'Not prototypes. Not demos. Things that run in production, handle real users, and earn their place.',
             ),
             (
               '03',
-              'Share knowledge.',
-              'What is learned gets documented and shared — so the next system starts further along.',
+              'Document everything.',
+              'What is built gets documented — so the next problem starts with more than a blank page.',
             ),
           ])
             div(classes: 'strip__item', [
@@ -103,27 +98,25 @@ class HomePage extends StatelessComponent {
       section(classes: 'section container', [
         div(classes: 'section-head', [
           span(classes: 'section-head__index', [.text('01 / INDEX')]),
-          h2(classes: 'h2', [.text('Projects under the umbrella')]),
+          h2(classes: 'h2', [.text('Projects')]),
         ]),
-        div(classes: 'projects-grid', [
+        div(classes: 'projects-list', [
           for (final p in data.projects) ProjectCard(project: p),
         ]),
         div(classes: 'mt-3', [
           Link(
             to: '/projects',
             classes: 'link',
-            child: .text('View all projects →'),
+            child: .text('All projects →'),
           ),
         ]),
       ]),
       section(classes: 'manifesto section', [
         div(classes: 'container', [
           p(classes: 'manifesto__quote', [
-            .text('Qouver exists to discover '),
-            em([.text('overlooked opportunities')]),
-            .text(
-              ', transform them into useful systems, and preserve the knowledge gained along the way.',
-            ),
+            .text('Find what others walk past. '),
+            em([.text('Build something from it.')]),
+            .text(' Leave notes for whoever comes next.'),
           ]),
           div(classes: 'manifesto__row', [
             span(classes: 'label label--dark', [.text('Working manifesto')]),
