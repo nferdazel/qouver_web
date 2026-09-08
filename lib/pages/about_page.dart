@@ -37,61 +37,39 @@ class AboutPage extends StatelessComponent {
           div([
             h2(classes: 'h3', [.text('Quousever → Qouver')]),
             p(classes: 'body mt-2', [
-              .text(
-                'The name began as the output of a random username generator: ',
-              ),
+              .text('The name started as random generator output: '),
               strong([.text('Quousever')]),
-              .text(
-                '. Rather than discarding it, it was refined, simplified, and evolved into ',
-              ),
+              .text('. Rather than discard it, it was refined into '),
               strong([.text('Qouver')]),
-              .text('.'),
+              .text('. That process — finding latent value and shaping it into something worth keeping — is the whole philosophy.'),
             ]),
             p(classes: 'body', [
               .text(
-                'That process is the philosophy itself — finding value where others might not look, and shaping it into something worth keeping.',
+                'The archetype behind it is not "founder". It\'s closer to a prospector: someone who finds what others miss, sees the pattern, identifies the gap, builds the solution, and documents what was learned.',
               ),
             ]),
           ]),
         ]),
         div(classes: 'editorial mt-3', [
-          div(classes: 'editorial__label', [.text('02 / Archetype')]),
-          div([
-            h2(classes: 'h3', [.text('The Systems Prospector')]),
-            p(classes: 'body mt-2', [
-              .text(
-                'The archetype behind Qouver is not "founder". It is closer to a prospector — one who:',
-              ),
-            ]),
-            ul(classes: 'project-row__focus', [
-              li([.text('Finds hidden opportunities')]),
-              li([.text('Sees patterns others ignore')]),
-              li([.text('Identifies gaps in existing systems')]),
-              li([.text('Builds solutions around those gaps')]),
-              li([.text('Documents and shares what is learned')]),
-            ]),
-          ]),
-        ]),
-        div(classes: 'editorial mt-3', [
-          div(classes: 'editorial__label', [.text('03 / Philosophy')]),
+          div(classes: 'editorial__label', [.text('02 / Philosophy')]),
           div([
             h2(classes: 'h3', [
-              .text('Find value. Build systems. Share knowledge.'),
+              .text('Find value. Build systems. Document everything.'),
             ]),
             p(classes: 'body mt-2', [
               .text(
-                'Valuable opportunities hide in software, communities, data, processes, and knowledge. The goal is not merely to discover them — it is to transform them into useful systems.',
+                'Valuable things hide in software, communities, data, and process. The goal is not to discover them — it is to turn them into systems that work in production and stand up over time.',
               ),
             ]),
             p(classes: 'body', [
               .text(
-                'Systems are built not because they are profitable, but because they are interesting, useful, and worth exploring.',
+                'Systems are built because they are worth building. That\'s the only bar.',
               ),
             ]),
           ]),
         ]),
         div(classes: 'editorial mt-3', [
-          div(classes: 'editorial__label', [.text('04 / Boundaries')]),
+          div(classes: 'editorial__label', [.text('03 / Boundaries')]),
           div([
             div(classes: 'compare', [
               div(classes: 'compare__col compare__col--is', [
@@ -121,9 +99,9 @@ class AboutPage extends StatelessComponent {
           ]),
         ]),
         div(classes: 'editorial mt-3', [
-          div(classes: 'editorial__label', [.text('05 / Who’s behind')]),
+          div(classes: 'editorial__label', [.text('04 / Who’s behind')]),
           div([
-            h2(classes: 'h3', [.text('A solo prospector')]),
+            h2(classes: 'h3', [.text('One person.')]),
             p(classes: 'body mt-2', [
               .text('Qouver is built and maintained by '),
               strong([.text('sachiel')]),
@@ -141,7 +119,7 @@ class AboutPage extends StatelessComponent {
           ]),
         ]),
         div(classes: 'editorial mt-3', [
-          div(classes: 'editorial__label', [.text('06 / Vision')]),
+          div(classes: 'editorial__label', [.text('05 / Vision')]),
           div([
             h2(classes: 'h3', [
               .text('An enduring home for systems and ideas'),
