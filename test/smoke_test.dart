@@ -9,8 +9,8 @@ void main() {
     final res = await tester.request('/');
 
     expect(res.statusCode, 200);
-    expect(res.body, contains('Turning'));
-    expect(res.body, contains('A home for systems and ideas'));
+    expect(res.body, contains('Built from what others'));
+    expect(res.body, contains('qouver.com'));
   });
 
   testServer('renders every route with its SEO title', (tester) async {
@@ -19,6 +19,9 @@ void main() {
     final routes = {
       '/': 'Qouver — A home for systems and ideas',
       '/projects': 'Projects — Qouver',
+      '/projects/skyward': 'Skyward — Technical Case Study — Qouver',
+      '/projects/majadu': 'Majadu Tools — Technical Case Study — Qouver',
+      '/projects/sds': 'SDS Management — Technical Case Study — Qouver',
       '/about': 'About — Qouver',
       '/contact': 'Contact — Qouver',
     };

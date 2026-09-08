@@ -7,6 +7,7 @@ import 'pages/about_page.dart';
 import 'pages/contact_page.dart';
 import 'pages/home_page.dart';
 import 'pages/not_found_page.dart';
+import 'pages/project_detail_page.dart';
 import 'pages/projects_page.dart';
 
 /// The main component of the application.
@@ -57,6 +58,26 @@ class App extends StatelessComponent {
               path: '/projects',
               title: 'Projects',
               builder: (context, state) => const ProjectsPage(),
+            ),
+            Route(
+              path: '/projects/skyward',
+              title: 'Skyward — Case Study — Qouver',
+              builder: (context, state) => const ProjectDetailPage(slug: 'skyward'),
+            ),
+            Route(
+              path: '/projects/majadu',
+              title: 'Majadu Tools — Case Study — Qouver',
+              builder: (context, state) => const ProjectDetailPage(slug: 'majadu'),
+            ),
+            Route(
+              path: '/projects/sds',
+              title: 'SDS Management — Case Study — Qouver',
+              builder: (context, state) => const ProjectDetailPage(slug: 'sds'),
+            ),
+            Route(
+              path: '/projects/mdef',
+              title: 'M-DEF — Case Study — Qouver',
+              builder: (context, state) => const ProjectDetailPage(slug: 'mdef'),
             ),
             Route(
               path: '/about',

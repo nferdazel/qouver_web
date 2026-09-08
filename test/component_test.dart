@@ -5,7 +5,7 @@ import 'package:qouver_web/components/q_mark.dart';
 import 'package:qouver_web/data/projects.dart';
 
 void main() {
-  testServer('ProjectCard renders a link for projects with a URL', (
+  testServer('ProjectCard renders an internal case study link', (
     tester,
   ) async {
     tester.pumpComponent(ProjectCard(project: projects.first));
@@ -13,17 +13,18 @@ void main() {
     final res = await tester.request('/');
 
     expect(res.body, contains('<a'));
-    expect(res.body, contains('href="https://skyward.qouver.com"'));
-    expect(res.body, contains('VISIT →'));
+    expect(res.body, contains('href="/projects/skyward"'));
+    expect(res.body, contains('Case Study →'));
     expect(res.body, contains('project-card__status'));
   });
 
-  testServer('ProjectCard renders a static card for projects without a URL', (
+  testServer('ProjectCard renders static metadata cleanly for synthetic project', (
     tester,
   ) async {
     // Synthetic project without URL (TAUG archived 2026-08-25, no longer in catalogue).
     const taug = Project(
       index: '04',
+      slug: 'taug',
       name: 'TAUG',
       category: 'Research',
       tagline: 'Research workspace.',
@@ -37,10 +38,8 @@ void main() {
 
     final res = await tester.request('/');
 
-    expect(res.body, contains('<article'));
-    expect(res.body, contains('project-card--static'));
-    expect(res.body, isNot(contains('VISIT')));
-    expect(res.body, isNot(contains('href=')));
+    expect(res.body, contains('href="/projects/taug"'));
+    expect(res.body, contains('Case Study →'));
   });
 
   testServer('QMark renders the monogram svg with the requested size', (

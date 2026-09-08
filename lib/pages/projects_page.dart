@@ -1,5 +1,6 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
+import 'package:jaspr_router/jaspr_router.dart';
 
 import '../data/projects.dart' as data;
 import '../seo.dart';
@@ -43,22 +44,21 @@ class ProjectsPage extends StatelessComponent {
             ]),
             div(classes: 'project-row__foot', [
               span(classes: 'label', [.text(project.stack)]),
-              if (project.url != null)
-                a(
-                  href: project.url!,
-                  target: Target.blank,
-                  attributes: {'rel': 'noopener'},
+              div(classes: 'project-row__actions', [
+                Link(
+                  to: '/projects/${project.slug}',
                   classes: 'link',
-                  [.text('${project.urlLabel} →')],
-                )
-              else
-                span(classes: 'label', [
-                  .text(
-                    project.status == 'Archived'
-                        ? 'Archived — no public link'
-                        : 'No public link',
+                  child: .text('Case Study →'),
+                ),
+                if (project.url != null)
+                  a(
+                    href: project.url!,
+                    target: Target.blank,
+                    attributes: {'rel': 'noopener'},
+                    classes: 'link',
+                    [.text('${project.urlLabel} →')],
                   ),
-                ]),
+              ]),
             ]),
           ]),
       ]),

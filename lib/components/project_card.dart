@@ -1,10 +1,11 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
+import 'package:jaspr_router/jaspr_router.dart';
 
 import '../data/projects.dart';
 
 /// Card for a [Project] — displayed as a full-width list row on the homepage.
-/// A link when the project has a public URL, a static card otherwise.
+/// Links to the internal case study for the project.
 class ProjectCard extends StatelessComponent {
   const ProjectCard({super.key, required this.project});
 
@@ -12,7 +13,6 @@ class ProjectCard extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
-    final url = project.url;
     final statusClass = switch (project.status) {
       'Live' => 'project-card__status project-card__status--live',
       'Archived' => 'project-card__status project-card__status--archived',
@@ -30,19 +30,14 @@ class ProjectCard extends StatelessComponent {
       ]),
       div(classes: 'project-card__side', [
         span(classes: statusClass, [.text(project.status)]),
-        if (url != null)
-          span(classes: 'project-card__visit', [.text('${project.urlLabel} →')]),
+        span(classes: 'project-card__visit', [.text('Case Study →')]),
       ]),
     ];
 
-    return url != null
-        ? a(
-            href: url,
-            target: Target.blank,
-            attributes: {'rel': 'noopener'},
-            classes: 'project-card',
-            card,
-          )
-        : article(classes: 'project-card project-card--static', card);
+    return Link(
+      to: '/projects/${project.slug}',
+      classes: 'project-card',
+      children: card,
+    );
   }
 }
