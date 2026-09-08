@@ -84,10 +84,10 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
 
 /* ---------- Headings ---------- */
 .display {
-  font-size: clamp(2.6rem, 6.5vw, 5.25rem);
+  font-size: clamp(2.8rem, 6.5vw, 5.5rem);
   font-weight: 600;
-  line-height: 1.04;
-  letter-spacing: -0.02em;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
   text-wrap: balance;
 }
 .display em { font-style: normal; color: var(--bronze-2); }
@@ -105,13 +105,13 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
   letter-spacing: -0.01em;
 }
 .lead {
-  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  font-size: clamp(1.05rem, 1.6vw, 1.22rem);
   line-height: 1.6;
   color: var(--ink-2);
-  max-width: 60ch;
+  max-width: 58ch;
 }
 .lead--dark { color: var(--bone-2); }
-p.body { color: var(--ink-2); max-width: 62ch; }
+p.body { color: var(--ink-2); max-width: 62ch; line-height: 1.65; }
 p.body + p.body { margin-top: 1rem; }
 .body--dark { color: var(--bone-2); }
 
@@ -185,13 +185,12 @@ p.body + p.body { margin-top: 1rem; }
   letter-spacing: 0.14em;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--ink-2);
+  color: var(--ink-3);
   padding: 0.4rem 0;
-  border-bottom: 1px solid transparent;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color 0.15s ease;
 }
-.nav__link:hover { color: var(--ink); border-color: var(--bronze); }
-.nav__link--active { color: var(--ink); border-color: var(--bronze); }
+.nav__link:hover { color: var(--ink); }
+.nav__link--active { color: var(--ink); font-weight: 600; }
 
 /* ---------- Hero ---------- */
 .hero {
