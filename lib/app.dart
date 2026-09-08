@@ -110,39 +110,41 @@ class _SiteFooter extends StatelessComponent {
             ),
             p(classes: 'footer__tagline', [
               .text(
-                'A home for systems and ideas. Find value. Build systems. Share knowledge.',
+                'Built from what others leave behind. A home for systems and ideas.',
               ),
             ]),
           ]),
-          div(classes: 'footer__col', [
-            h4([.text('Index')]),
-            ul([
-              li([Link(to: '/projects', child: .text('Projects'))]),
-              li([Link(to: '/about', child: .text('About'))]),
-              li([Link(to: '/contact', child: .text('Contact'))]),
+          div(classes: 'site-footer__nav', [
+            div(classes: 'footer__col', [
+              h4([.text('Index')]),
+              ul([
+                li([Link(to: '/projects', child: .text('Projects'))]),
+                li([Link(to: '/about', child: .text('About'))]),
+                li([Link(to: '/contact', child: .text('Contact'))]),
+              ]),
             ]),
-          ]),
-          div(classes: 'footer__col', [
-            h4([.text('Contact')]),
-            ul([
-              li([
-                a(href: 'mailto:hello@qouver.com', [.text('hello@qouver.com')]),
-              ]),
-              li([
-                a(
-                  href: 'https://github.com/qouver',
-                  target: Target.blank,
-                  attributes: {'rel': 'noopener'},
-                  [.text('github.com/qouver')],
-                ),
-              ]),
-              li([
-                a(
-                  href: 'https://github.com/nferdazel',
-                  target: Target.blank,
-                  attributes: {'rel': 'noopener'},
-                  [.text('github.com/nferdazel')],
-                ),
+            div(classes: 'footer__col', [
+              h4([.text('Contact')]),
+              ul([
+                li([
+                  a(href: 'mailto:hello@qouver.com', [.text('hello@qouver.com')]),
+                ]),
+                li([
+                  a(
+                    href: 'https://github.com/qouver',
+                    target: Target.blank,
+                    attributes: {'rel': 'noopener'},
+                    [.text('github.com/qouver')],
+                  ),
+                ]),
+                li([
+                  a(
+                    href: 'https://github.com/nferdazel',
+                    target: Target.blank,
+                    attributes: {'rel': 'noopener'},
+                    [.text('github.com/nferdazel')],
+                  ),
+                ]),
               ]),
             ]),
           ]),
