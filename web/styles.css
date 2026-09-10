@@ -1,32 +1,33 @@
 /* ============================================================
-   Qouver — design system
-   Editorial, warm, timeless. IBM Plex Sans + IBM Plex Mono.
+   Qouver — IBM / Vignelli Swiss Engineering Design System
+   Precision, architectural grid, bold sans + mono, timeless.
    ============================================================ */
 
 :root {
-  /* Palette — Elevated Swiss Editorial */
-  --paper: #F6F4EE;        /* ultra-clean warm alabaster paper */
-  --paper-2: #EFECE3;      /* subtle raised paper surface */
-  --ink: #131210;          /* deep obsidian charcoal ink */
-  --ink-2: #4A4437;        /* warm dark grey body copy */
-  --ink-3: #7A7463;        /* tertiary / meta text */
-  --bronze: #A06428;       /* rich warm prospector bronze */
-  --bronze-2: #7F4C1B;     /* contrast bronze text */
-  --bronze-bright: #D98E43;/* accent on dark */
-  --line: #DCD6C8;         /* crisp hairline borders */
-  --night: #11100E;        /* obsidian dark section background */
-  --night-2: #191815;      /* dark raised surface */
-  --bone: #EFE8DA;         /* text on dark */
-  --bone-2: #A69E8C;       /* secondary text on dark */
+  /* Palette — Swiss Architectural Paper & Industrial Graphite */
+  --paper: #F4F3EE;        /* Swiss neutral alabaster paper */
+  --paper-2: #ECEAE3;      /* raised engineering grid surface */
+  --ink: #161616;          /* heavy graphite charcoal ink */
+  --ink-2: #3E3D3A;        /* dark body copy */
+  --ink-3: #6E6C64;        /* metadata & rule labels */
+  --bronze: #B86B1D;       /* safety ochre / prospector bronze */
+  --bronze-2: #8E4F10;     /* dark contrast bronze text */
+  --bronze-bright: #E68A2E;/* accent on dark surface */
+  --line: #D4D2C7;         /* 1px architectural grid line */
+  --line-strong: #161616;  /* heavy structural border */
+  --night: #141414;        /* heavy technical night section */
+  --night-2: #1E1E1E;      /* dark raised surface */
+  --bone: #F2F0E8;         /* text on dark */
+  --bone-2: #A3A094;       /* secondary text on dark */
 
   /* Type */
-  --sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Layout */
-  --maxw: 1180px;
+  --maxw: 1200px;
   --pad: clamp(20px, 4vw, 48px);
-  --space-section: clamp(4rem, 9vw, 7.5rem);
+  --space-section: clamp(4rem, 8vw, 7rem);
 }
 
 /* ---------- Reset ---------- */
@@ -36,7 +37,7 @@ body {
   margin: 0;
   font-family: var(--sans);
   font-size: 16px;
-  line-height: 1.7;
+  line-height: 1.65;
   color: var(--ink);
   background: var(--paper);
   -webkit-font-smoothing: antialiased;
@@ -48,7 +49,7 @@ h1, h2, h3, h4, p, ul, ol, figure { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
 
-::selection { background: var(--bronze); color: var(--paper); }
+::selection { background: var(--ink); color: var(--paper); }
 
 :focus-visible {
   outline: 2px solid var(--bronze);
@@ -68,9 +69,9 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
 }
 
 .section { padding-top: var(--space-section); padding-bottom: var(--space-section); }
-.section--tight { padding-top: calc(var(--space-section) * 0.6); padding-bottom: calc(var(--space-section) * 0.6); }
+.section--tight { padding-top: calc(var(--space-section) * 0.55); padding-bottom: calc(var(--space-section) * 0.55); }
 
-/* ---------- Mono meta label ---------- */
+/* ---------- Mono meta label & Swiss badges ---------- */
 .label {
   font-family: var(--mono);
   font-size: 0.72rem;
@@ -82,33 +83,51 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
 .label--bronze { color: var(--bronze-2); }
 .label--dark { color: var(--bone-2); }
 
+.swiss-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--line-strong);
+  background: var(--paper);
+  color: var(--ink);
+}
+
 /* ---------- Headings ---------- */
 .display {
-  font-size: clamp(2.8rem, 6.5vw, 5.5rem);
-  font-weight: 600;
+  font-size: clamp(2.8rem, 6.2vw, 5.2rem);
+  font-weight: 700;
   line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.display em {
+  font-style: normal;
+  color: var(--bronze);
+}
+.h2 {
+  font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.1;
   letter-spacing: -0.025em;
   text-wrap: balance;
 }
-.display em { font-style: normal; color: var(--bronze-2); }
-.h2 {
-  font-size: clamp(1.7rem, 3.5vw, 2.6rem);
-  font-weight: 600;
-  line-height: 1.12;
-  letter-spacing: -0.015em;
-  text-wrap: balance;
-}
 .h3 {
-  font-size: 1.22rem;
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
 }
 .lead {
   font-size: clamp(1.05rem, 1.6vw, 1.22rem);
   line-height: 1.6;
   color: var(--ink-2);
-  max-width: 58ch;
+  max-width: 56ch;
 }
 .lead--dark { color: var(--bone-2); }
 p.body { color: var(--ink-2); max-width: 62ch; line-height: 1.65; }
@@ -119,16 +138,18 @@ p.body + p.body { margin-top: 1rem; }
 .link {
   font-family: var(--mono);
   font-size: 0.78rem;
-  letter-spacing: 0.06em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--bronze-2);
-  border-bottom: 1px solid transparent;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  color: var(--ink);
+  border-bottom: 2px solid var(--bronze);
+  padding-bottom: 2px;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
 }
-.link:hover { color: var(--ink); border-color: var(--bronze); }
-.link--dark { color: var(--bronze-bright); }
-.link--dark:hover { color: var(--bone); }
+.link:hover { color: var(--bronze-2); border-color: var(--ink); }
+.link--dark { color: var(--bone); border-color: var(--bronze-bright); }
+.link--dark:hover { color: var(--bronze-bright); border-color: var(--bone); }
 
 /* ---------- Skip link (a11y) ---------- */
 .skip-link {
@@ -360,26 +381,27 @@ p.body + p.body { margin-top: 1rem; }
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  gap: 1.8rem;
 }
 
 .project-card {
   position: relative;
   background: var(--paper);
   border: 1px solid var(--line);
-  border-left: 3px solid var(--line);
-  padding: clamp(1.4rem, 2.5vw, 1.8rem);
+  border-top: 3px solid var(--ink);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  padding: clamp(1.5rem, 2.5vw, 2rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 1.2rem;
-  transition: border-color 0.2s ease, border-left-color 0.2s ease, background-color 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  gap: 1.4rem;
+  transition: border-top-color 0.2s ease, background-color 0.2s ease;
 }
 .project-card:hover {
-  border-color: var(--line);
-  border-left-color: var(--bronze);
+  border-top-color: var(--bronze);
   background: var(--paper-2);
-  transform: translateY(-2px);
 }
 
 .project-card__head {
