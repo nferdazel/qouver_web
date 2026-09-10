@@ -4,6 +4,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
+import '../components/project_card.dart';
 import '../data/journal.dart';
 import '../data/projects.dart' as data;
 import '../seo.dart';
@@ -49,7 +50,7 @@ class HomePage extends StatelessComponent {
       ),
       section(classes: 'hero container', [
         div(classes: 'hero__meta', [
-          span(classes: 'label', [.text('01 / QOUVER.COM')]),
+          span(classes: 'label', [.text('SPEC // 01.0 — QOUVER.COM')]),
         ]),
         h1(classes: 'display', [
           .text('Built from what others '),
@@ -74,17 +75,17 @@ class HomePage extends StatelessComponent {
         div(classes: 'container strip__grid', [
           for (final (num, title, body) in [
             (
-              '01 / FIND VALUE',
+              'SPEC 01.0 // FIND VALUE',
               'Find value in plain sight.',
               'Valuable things often sit unindexed or overlooked — the gap in a community, the pattern in a dataset, the tool nobody bothered to build.',
             ),
             (
-              '02 / BUILD SYSTEMS',
+              'SPEC 02.0 // BUILD SYSTEMS',
               'Build real production systems.',
-              'Not prototypes. Not pitch decks. Things that run in production, handle real workload, and earn their place.',
+              'Not prototypes. Not pitch decks. Software running in production, handling real workload, and earning its place.',
             ),
             (
-              '03 / DOCUMENT ALL',
+              'SPEC 03.0 // DOCUMENT ALL',
               'Document every lesson.',
               'What is built gets documented — architecture post-mortems and open technical essays so the next problem starts with context.',
             ),
@@ -97,46 +98,21 @@ class HomePage extends StatelessComponent {
         ]),
       ]),
       section(classes: 'section container', [
-        div(classes: 'section-head--editorial', [
-          div([
-            div(classes: 'section-head__tag', [.text('02 / SYSTEM CATALOGUE')]),
-            h2(classes: 'h2', [.text('Selected Systems')]),
-          ]),
-          Link(
-            to: '/projects',
-            classes: 'link',
-            child: .text('Full Catalogue →'),
-          ),
+        div(classes: 'section-head', [
+          span(classes: 'section-head__index', [.text('SYSTEM INDEX // 01.0')]),
+          h2(classes: 'h2', [.text('Production Systems')]),
         ]),
-        div(classes: 'inventory-table', [
-          div(classes: 'inventory-header', [
-            span([.text('INDEX')]),
-            span([.text('SYSTEM NAME')]),
-            span([.text('CATEGORY')]),
-            span([.text('STACK')]),
-            span(classes: 'inventory-col__action', [.text('ACTION')]),
-          ]),
-          for (final p in data.projects)
-            Link(
-              to: '/projects/${p.slug}',
-              classes: 'inventory-row',
-              children: [
-                span(classes: 'inventory-col__num', [.text(p.index)]),
-                span(classes: 'inventory-col__name', [.text(p.name)]),
-                span(classes: 'inventory-col__category', [.text(p.category)]),
-                span(classes: 'inventory-col__category', [.text(p.stack)]),
-                span(classes: 'inventory-col__action', [.text('Case Study →')]),
-              ],
-            ),
+        div(classes: 'projects-grid', [
+          for (final p in data.projects) ProjectCard(project: p),
+        ]),
+        div(classes: 'mt-3', [
+          Link(to: '/projects', classes: 'link', child: .text('All Systems →')),
         ]),
       ]),
       section(classes: 'section container', [
-        div(classes: 'section-head--editorial', [
-          div([
-            div(classes: 'section-head__tag', [.text('03 / TECHNICAL ESSAYS')]),
-            h2(classes: 'h2', [.text('Recent Writing')]),
-          ]),
-          Link(to: '/journal', classes: 'link', child: .text('All Articles →')),
+        div(classes: 'section-head', [
+          span(classes: 'section-head__index', [.text('DOCS // 02.0')]),
+          h2(classes: 'h2', [.text('Recent Writing')]),
         ]),
         div(classes: 'journal-grid', [
           for (final article in journalArticles.take(2))
@@ -147,7 +123,7 @@ class HomePage extends StatelessComponent {
                 div([
                   div(classes: 'journal-card__meta', [
                     span(classes: 'journal-card__tag', [
-                      .text(article.category),
+                      .text('DOC // ${article.category.toUpperCase()}'),
                     ]),
                   ]),
                   h2(classes: 'journal-card__title mt-2', [
@@ -164,6 +140,9 @@ class HomePage extends StatelessComponent {
               ],
             ),
         ]),
+        div(classes: 'mt-3', [
+          Link(to: '/journal', classes: 'link', child: .text('All Articles →')),
+        ]),
       ]),
       section(classes: 'manifesto section', [
         div(classes: 'container', [
@@ -173,7 +152,9 @@ class HomePage extends StatelessComponent {
             .text(' Leave notes for whoever comes next.'),
           ]),
           div(classes: 'manifesto__row', [
-            span(classes: 'label label--dark', [.text('Working manifesto')]),
+            span(classes: 'label label--dark', [
+              .text('OPERATIONAL MANIFESTO'),
+            ]),
             Link(
               to: '/about',
               classes: 'link link--dark',
