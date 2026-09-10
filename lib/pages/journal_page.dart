@@ -29,24 +29,24 @@ class JournalPage extends StatelessComponent {
         div(classes: 'journal-list', [
           for (final articleItem in journalArticles)
             article(classes: 'journal-item', [
-              h2(classes: 'journal-item__title', [
-                Link(
-                  to: '/journal/${articleItem.slug}',
-                  child: .text('${articleItem.title} →'),
-                ),
-              ]),
-              p(classes: 'journal-item__summary mt-2', [
-                .text(articleItem.summary),
-              ]),
-              div(classes: 'journal-item__meta mt-3', [
-                span([.text(articleItem.date)]),
-                span(classes: 'journal-item__dot', [.text('·')]),
-                span(classes: 'journal-item__category', [
-                  .text(articleItem.category),
+              div(classes: 'journal-item__side', [
+                div(classes: 'journal-item__date', [.text(articleItem.date)]),
+                div(classes: 'journal-item__tag mt-1', [
+                  span(classes: 'journal-item__category', [
+                    .text(articleItem.category),
+                  ]),
+                  span(classes: 'journal-item__dot', [.text('·')]),
+                  span(classes: 'journal-item__time', [
+                    .text(articleItem.readTime),
+                  ]),
                 ]),
-                span(classes: 'journal-item__dot', [.text('·')]),
-                span(classes: 'journal-item__time', [
-                  .text(articleItem.readTime),
+              ]),
+              div(classes: 'journal-item__main', [
+                h2(classes: 'journal-item__title', [
+                  Link(
+                    to: '/journal/${articleItem.slug}',
+                    child: .text('${articleItem.title} →'),
+                  ),
                 ]),
               ]),
             ]),
