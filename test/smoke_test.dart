@@ -22,6 +22,7 @@ void main() {
       '/projects/skyward': 'Skyward — Technical Case Study — Qouver',
       '/projects/majadu': 'Majadu Tools — Technical Case Study — Qouver',
       '/projects/sds': 'SDS Management — Technical Case Study — Qouver',
+      '/journal': 'Journal — Qouver',
       '/about': 'About — Qouver',
       '/contact': 'Contact — Qouver',
     };

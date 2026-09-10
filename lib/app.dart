@@ -6,6 +6,8 @@ import 'components/q_mark.dart';
 import 'pages/about_page.dart';
 import 'pages/contact_page.dart';
 import 'pages/home_page.dart';
+import 'pages/journal_detail_page.dart';
+import 'pages/journal_page.dart';
 import 'pages/not_found_page.dart';
 import 'pages/project_detail_page.dart';
 import 'pages/projects_page.dart';
@@ -30,7 +32,7 @@ class App extends StatelessComponent {
             classes: 'brand',
             attributes: {'aria-label': 'Qouver — home'},
             children: [
-              QMark(size: '30', classes: 'brand__mark'),
+              const QMark(size: '30', classes: 'brand__mark', accentDot: true),
               span(classes: 'brand__word', [.text('Qouver')]),
             ],
           ),
@@ -39,6 +41,7 @@ class App extends StatelessComponent {
             attributes: {'aria-label': 'Primary'},
             [
               _navLink('Projects', '/projects', path),
+              _navLink('Journal', '/journal', path),
               _navLink('About', '/about', path),
               _navLink('Contact', '/contact', path),
             ],
@@ -83,6 +86,32 @@ class App extends StatelessComponent {
                   const ProjectDetailPage(slug: 'mdef'),
             ),
             Route(
+              path: '/journal',
+              title: 'Journal — Qouver',
+              builder: (context, state) => const JournalPage(),
+            ),
+            Route(
+              path: '/journal/authoritative-go-simulations',
+              title:
+                  'Authoritative World Tick Simulation Engines in Go — Journal — Qouver',
+              builder: (context, state) =>
+                  const JournalDetailPage(slug: 'authoritative-go-simulations'),
+            ),
+            Route(
+              path: '/journal/zero-js-static-jaspr',
+              title:
+                  'Zero-JS Static Web: Why We Rebuilt Qouver with Jaspr — Journal — Qouver',
+              builder: (context, state) =>
+                  const JournalDetailPage(slug: 'zero-js-static-jaspr'),
+            ),
+            Route(
+              path: '/journal/systems-prospector-manifesto',
+              title:
+                  'The Systems Prospector: Finding Latent Value in Latent Problems — Journal — Qouver',
+              builder: (context, state) =>
+                  const JournalDetailPage(slug: 'systems-prospector-manifesto'),
+            ),
+            Route(
               path: '/about',
               title: 'About',
               builder: (context, state) => const AboutPage(),
@@ -107,9 +136,10 @@ class App extends StatelessComponent {
 }
 
 Component _navLink(String label, String path, String current) {
+  final isActive = current == path || (path != '/' && current.startsWith(path));
   return Link(
     to: path,
-    classes: 'nav__link${current == path ? ' nav__link--active' : ''}',
+    classes: 'nav__link${isActive ? ' nav__link--active' : ''}',
     child: .text(label),
   );
 }
@@ -128,7 +158,11 @@ class _SiteFooter extends StatelessComponent {
               classes: 'site-footer__brand',
               attributes: {'aria-label': 'Qouver — home'},
               children: [
-                QMark(size: '28', classes: 'brand__mark'),
+                const QMark(
+                  size: '28',
+                  classes: 'brand__mark',
+                  accentDot: true,
+                ),
                 span(classes: 'brand__word', [.text('Qouver')]),
               ],
             ),
@@ -143,6 +177,7 @@ class _SiteFooter extends StatelessComponent {
               h4([.text('Index')]),
               ul([
                 li([Link(to: '/projects', child: .text('Projects'))]),
+                li([Link(to: '/journal', child: .text('Journal'))]),
                 li([Link(to: '/about', child: .text('About'))]),
                 li([Link(to: '/contact', child: .text('Contact'))]),
               ]),

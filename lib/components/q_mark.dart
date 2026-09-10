@@ -1,13 +1,19 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
-/// The Qouver Q monogram — a ring holding a single dot (the find, brought
-/// home), its tail still tracing the prospector's sweep that led there.
+/// The Qouver Q monogram — an optically balanced geometric ring holding a single
+/// focal dot (the find, brought home), its sweeping arc tail tracing the prospector's sweep.
 class QMark extends StatelessComponent {
-  const QMark({super.key, this.size = '32', this.classes});
+  const QMark({
+    super.key,
+    this.size = '32',
+    this.classes,
+    this.accentDot = false,
+  });
 
   final String size;
   final String? classes;
+  final bool accentDot;
 
   @override
   Component build(BuildContext context) {
@@ -20,33 +26,36 @@ class QMark extends StatelessComponent {
         'fill': 'none',
         'aria-hidden': 'true',
       },
-      const [
+      [
         circle(
           [],
+          classes: 'q-mark__ring',
           attributes: {
-            'cx': '26',
-            'cy': '26',
-            'r': '18',
+            'cx': '27',
+            'cy': '27',
+            'r': '17.5',
             'stroke': 'currentColor',
-            'stroke-width': '6.5',
+            'stroke-width': '4.5',
           },
         ),
         path(
           [],
-          d: 'M37 37 C42 42, 47 47, 52 52',
+          d: 'M 37.5 37.5 C 44 44, 49 48, 54 51.5',
+          classes: 'q-mark__tail',
           attributes: {
             'stroke': 'currentColor',
-            'stroke-width': '6.5',
+            'stroke-width': '4.5',
             'stroke-linecap': 'round',
           },
         ),
         circle(
           [],
+          classes: 'q-mark__dot',
           attributes: {
-            'cx': '31',
-            'cy': '31',
-            'r': '5',
-            'fill': 'currentColor',
+            'cx': '27',
+            'cy': '27',
+            'r': '4.2',
+            'fill': accentDot ? 'var(--bronze, #A07030)' : 'currentColor',
           },
         ),
       ],

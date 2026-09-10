@@ -5,6 +5,7 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
 import '../components/project_card.dart';
+import '../data/journal.dart';
 import '../data/projects.dart' as data;
 import '../seo.dart';
 
@@ -66,6 +67,7 @@ class HomePage extends StatelessComponent {
             classes: 'link',
             child: .text('See the work →'),
           ),
+          Link(to: '/journal', classes: 'link', child: .text('Read journal →')),
           Link(to: '/about', classes: 'link', child: .text('The philosophy →')),
         ]),
       ]),
@@ -109,6 +111,41 @@ class HomePage extends StatelessComponent {
             classes: 'link',
             child: .text('All projects →'),
           ),
+        ]),
+      ]),
+      section(classes: 'section container', [
+        div(classes: 'section-head', [
+          span(classes: 'section-head__index', [.text('02 / JOURNAL')]),
+          h2(classes: 'h2', [.text('Recent Writing')]),
+        ]),
+        div(classes: 'journal-grid', [
+          for (final article in journalArticles.take(2))
+            Link(
+              to: '/journal/${article.slug}',
+              classes: 'journal-card',
+              children: [
+                div([
+                  div(classes: 'journal-card__meta', [
+                    span(classes: 'journal-card__tag', [
+                      .text(article.category),
+                    ]),
+                  ]),
+                  h2(classes: 'journal-card__title mt-2', [
+                    .text(article.title),
+                  ]),
+                  p(classes: 'journal-card__summary mt-2', [
+                    .text(article.summary),
+                  ]),
+                ]),
+                div(classes: 'journal-card__foot', [
+                  span([.text(article.date)]),
+                  span([.text(article.readTime)]),
+                ]),
+              ],
+            ),
+        ]),
+        div(classes: 'mt-3', [
+          Link(to: '/journal', classes: 'link', child: .text('All articles →')),
         ]),
       ]),
       section(classes: 'manifesto section', [
