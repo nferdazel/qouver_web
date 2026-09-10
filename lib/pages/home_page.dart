@@ -4,7 +4,6 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
-import '../components/project_card.dart';
 import '../data/journal.dart';
 import '../data/projects.dart' as data;
 import '../seo.dart';
@@ -50,7 +49,7 @@ class HomePage extends StatelessComponent {
       ),
       section(classes: 'hero container', [
         div(classes: 'hero__meta', [
-          span(classes: 'label', [.text('qouver.com')]),
+          span(classes: 'label', [.text('01 / QOUVER.COM')]),
         ]),
         h1(classes: 'display', [
           .text('Built from what others '),
@@ -75,19 +74,19 @@ class HomePage extends StatelessComponent {
         div(classes: 'container strip__grid', [
           for (final (num, title, body) in [
             (
-              '01',
-              'Find value.',
-              'Valuable things often sit in plain sight — the gap in a community, the pattern in a dataset, the tool nobody bothered to build.',
+              '01 / FIND VALUE',
+              'Find value in plain sight.',
+              'Valuable things often sit unindexed or overlooked — the gap in a community, the pattern in a dataset, the tool nobody bothered to build.',
             ),
             (
-              '02',
-              'Build systems.',
-              'Not prototypes. Not demos. Things that run in production, handle real users, and earn their place.',
+              '02 / BUILD SYSTEMS',
+              'Build real production systems.',
+              'Not prototypes. Not pitch decks. Things that run in production, handle real workload, and earn their place.',
             ),
             (
-              '03',
-              'Document everything.',
-              'What is built gets documented — so the next problem starts with more than a blank page.',
+              '03 / DOCUMENT ALL',
+              'Document every lesson.',
+              'What is built gets documented — architecture post-mortems and open technical essays so the next problem starts with context.',
             ),
           ])
             div(classes: 'strip__item', [
@@ -98,25 +97,46 @@ class HomePage extends StatelessComponent {
         ]),
       ]),
       section(classes: 'section container', [
-        div(classes: 'section-head', [
-          span(classes: 'section-head__index', [.text('01 / INDEX')]),
-          h2(classes: 'h2', [.text('Projects')]),
-        ]),
-        div(classes: 'projects-grid', [
-          for (final p in data.projects) ProjectCard(project: p),
-        ]),
-        div(classes: 'mt-3', [
+        div(classes: 'section-head--editorial', [
+          div([
+            div(classes: 'section-head__tag', [.text('02 / SYSTEM CATALOGUE')]),
+            h2(classes: 'h2', [.text('Selected Systems')]),
+          ]),
           Link(
             to: '/projects',
             classes: 'link',
-            child: .text('All projects →'),
+            child: .text('Full Catalogue →'),
           ),
+        ]),
+        div(classes: 'inventory-table', [
+          div(classes: 'inventory-header', [
+            span([.text('INDEX')]),
+            span([.text('SYSTEM NAME')]),
+            span([.text('CATEGORY')]),
+            span([.text('STACK')]),
+            span(classes: 'inventory-col__action', [.text('ACTION')]),
+          ]),
+          for (final p in data.projects)
+            Link(
+              to: '/projects/${p.slug}',
+              classes: 'inventory-row',
+              children: [
+                span(classes: 'inventory-col__num', [.text(p.index)]),
+                span(classes: 'inventory-col__name', [.text(p.name)]),
+                span(classes: 'inventory-col__category', [.text(p.category)]),
+                span(classes: 'inventory-col__category', [.text(p.stack)]),
+                span(classes: 'inventory-col__action', [.text('Case Study →')]),
+              ],
+            ),
         ]),
       ]),
       section(classes: 'section container', [
-        div(classes: 'section-head', [
-          span(classes: 'section-head__index', [.text('02 / JOURNAL')]),
-          h2(classes: 'h2', [.text('Recent Writing')]),
+        div(classes: 'section-head--editorial', [
+          div([
+            div(classes: 'section-head__tag', [.text('03 / TECHNICAL ESSAYS')]),
+            h2(classes: 'h2', [.text('Recent Writing')]),
+          ]),
+          Link(to: '/journal', classes: 'link', child: .text('All Articles →')),
         ]),
         div(classes: 'journal-grid', [
           for (final article in journalArticles.take(2))
@@ -143,9 +163,6 @@ class HomePage extends StatelessComponent {
                 ]),
               ],
             ),
-        ]),
-        div(classes: 'mt-3', [
-          Link(to: '/journal', classes: 'link', child: .text('All articles →')),
         ]),
       ]),
       section(classes: 'manifesto section', [
