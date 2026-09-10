@@ -5,7 +5,6 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
 import '../components/project_card.dart';
-import '../data/journal.dart';
 import '../data/projects.dart' as data;
 import '../seo.dart';
 
@@ -108,52 +107,6 @@ class HomePage extends StatelessComponent {
             to: '/projects',
             classes: 'btn btn--secondary',
             child: .text('All Systems →'),
-          ),
-        ]),
-      ]),
-
-      // ---------- Technical Journal Section ----------
-      section(classes: 'section container', [
-        div(classes: 'section-head', [
-          h2(classes: 'h2', [.text('Recent Writing')]),
-          p(classes: 'section-head__subtitle', [
-            .text(
-              'Reflections on systems design, software craft, and architecture.',
-            ),
-          ]),
-        ]),
-        div(classes: 'journal-grid', [
-          for (final article in journalArticles.take(2))
-            Link(
-              to: '/journal/${article.slug}',
-              classes: 'journal-card',
-              children: [
-                div([
-                  div(classes: 'journal-card__meta', [
-                    span([.text(article.date)]),
-                    span(classes: 'journal-card__dot', [.text('·')]),
-                    span(classes: 'journal-card__category', [
-                      .text(article.category),
-                    ]),
-                    span(classes: 'journal-card__dot', [.text('·')]),
-                    span(classes: 'journal-card__time', [
-                      .text(article.readTime),
-                    ]),
-                  ]),
-                  h3(classes: 'journal-card__title', [.text(article.title)]),
-                  p(classes: 'journal-card__summary', [.text(article.summary)]),
-                ]),
-                div(classes: 'journal-card__foot', [
-                  span(classes: 'link-action', [.text('Read Article →')]),
-                ]),
-              ],
-            ),
-        ]),
-        div(classes: 'mt-2', [
-          Link(
-            to: '/journal',
-            classes: 'btn btn--secondary',
-            child: .text('All Articles →'),
           ),
         ]),
       ]),

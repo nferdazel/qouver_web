@@ -21,37 +21,35 @@ class JournalPage extends StatelessComponent {
         h1(classes: 'page-title', [.text('Journal')]),
         p(classes: 'lead mt-2', [
           .text(
-            'Notes on software craft, architecture decisions, and building systems.',
+            'Notes on software craft, architecture decisions, and systems design.',
           ),
         ]),
       ]),
       section(classes: 'section container', [
-        div(classes: 'journal-grid', [
-          for (final article in journalArticles)
-            Link(
-              to: '/journal/${article.slug}',
-              classes: 'journal-card',
-              children: [
-                div([
-                  div(classes: 'journal-card__meta', [
-                    span([.text(article.date)]),
-                    span(classes: 'journal-card__dot', [.text('·')]),
-                    span(classes: 'journal-card__category', [
-                      .text(article.category),
-                    ]),
-                    span(classes: 'journal-card__dot', [.text('·')]),
-                    span(classes: 'journal-card__time', [
-                      .text(article.readTime),
-                    ]),
-                  ]),
-                  h3(classes: 'journal-card__title', [.text(article.title)]),
-                  p(classes: 'journal-card__summary', [.text(article.summary)]),
+        div(classes: 'journal-list', [
+          for (final articleItem in journalArticles)
+            article(classes: 'journal-item', [
+              h2(classes: 'journal-item__title', [
+                Link(
+                  to: '/journal/${articleItem.slug}',
+                  child: .text('${articleItem.title} →'),
+                ),
+              ]),
+              p(classes: 'journal-item__summary mt-2', [
+                .text(articleItem.summary),
+              ]),
+              div(classes: 'journal-item__meta mt-3', [
+                span([.text(articleItem.date)]),
+                span(classes: 'journal-item__dot', [.text('·')]),
+                span(classes: 'journal-item__category', [
+                  .text(articleItem.category),
                 ]),
-                div(classes: 'journal-card__foot', [
-                  span(classes: 'link-action', [.text('Read Article →')]),
+                span(classes: 'journal-item__dot', [.text('·')]),
+                span(classes: 'journal-item__time', [
+                  .text(articleItem.readTime),
                 ]),
-              ],
-            ),
+              ]),
+            ]),
         ]),
       ]),
     ]);
