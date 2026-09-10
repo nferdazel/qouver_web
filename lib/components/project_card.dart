@@ -21,7 +21,7 @@ class ProjectCard extends StatelessComponent {
     return article(classes: 'project-card', [
       div(classes: 'project-card__head', [
         span(classes: 'project-card__meta label', [
-          .text('${project.index} / ${project.category.toUpperCase()}'),
+          .text('${project.index} — ${project.category}'),
         ]),
         span(classes: statusClass, [.text(project.status)]),
       ]),
