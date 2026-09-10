@@ -116,9 +116,7 @@ class HomePage extends StatelessComponent {
           ]),
           ol(classes: 'principle-line', [
             li(classes: 'principle-step', [
-              div(classes: 'principle-step__num', [
-                .text('1.0 / FIND VALUE'),
-              ]),
+              div(classes: 'principle-step__num', [.text('1.0 / FIND VALUE')]),
               h3(classes: 'principle-step__title', [
                 .text('Find what others walk past'),
               ]),
@@ -180,7 +178,9 @@ class HomePage extends StatelessComponent {
             ]),
           ]),
           div(classes: 'capability-row', [
-            div(classes: 'capability-row__label', [.text('DATA & INTELLIGENCE')]),
+            div(classes: 'capability-row__label', [
+              .text('DATA & INTELLIGENCE'),
+            ]),
             div(classes: 'capability-row__body', [
               h3([.text('Structured Data & Process Management')]),
               p([
@@ -271,11 +271,7 @@ class HomePage extends StatelessComponent {
             ),
         ]),
         div(classes: 'mt-3', [
-          Link(
-            to: '/journal',
-            classes: 'link',
-            child: .text('All articles →'),
-          ),
+          Link(to: '/journal', classes: 'link', child: .text('All articles →')),
         ]),
       ]),
       section(classes: 'contact-band section', [
