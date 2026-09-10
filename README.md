@@ -1,132 +1,131 @@
-# qouver_web
+<div align="center">
 
-The main website for **qouver.com** — the umbrella home for systems and ideas.
+# Qouver Web
 
-Built with [Jaspr](https://jaspr.site/) (Dart web framework) in **static mode**:
-all routes are prerendered to pure static HTML at build time — no client-side
-JavaScript at all. SEO (title, meta, canonical, OpenGraph, JSON-LD) is baked
-into the static HTML server-side.
+**The official website for [qouver.com](https://qouver.com) — an umbrella home for systems and ideas.**
 
-> 📄 **Handoff lengkap (status, keputusan, versi fragile, build/deploy, known
-> issues):** baca [`HANDOFF.md`](HANDOFF.md).
-> 📄 **Analisis + keputusan migrasi AngularDart → Jaspr:** baca [`MIGRATION.md`](MIGRATION.md).
-> 📄 **Standar enterprise-grade + hasil audit:** baca [`STANDARDS.md`](STANDARDS.md).
+[![CI Pipeline](https://github.com/nferdazel/qouver_web/actions/workflows/ci.yml/badge.svg)](https://github.com/nferdazel/qouver_web/actions/workflows/ci.yml)
+[![Built with Jaspr](https://img.shields.io/badge/Built%20with-Jaspr%20Static-A06428?style=flat&logo=dart)](https://jaspr.site)
+[![Zero-JS](https://img.shields.io/badge/Runtime-Zero--JS%20Static-141413?style=flat)](https://qouver.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-## Pages
+</div>
 
-| Route             | Content                                                                   |
-|-------------------|---------------------------------------------------------------------------|
-| `/`               | Hero, philosophy strip, project index, recent writing, manifesto          |
-| `/projects`       | Full catalogue + case studies (Skyward, Majadu Tools, SDS, M-DEF)         |
-| `/journal`        | Technical essays, architecture post-mortems, and software craft notes     |
-| `/journal/:slug`  | Full-page editorial article reader with code snippets and quotes          |
-| `/about`          | Solo builder craft, engineering principles, production stack & infra      |
-| `/contact`        | Email + GitHub links                                                      |
+---
 
-## Stack
+## Overview
 
-- **Framework:** `jaspr` 0.23.x + `jaspr_router` 0.8.x (multi-page routing)
-- **Rendering:** static mode — `jaspr build` prerenders every route server-side
-- **Design:** IBM Plex Sans + IBM Plex Mono (self-hosted woff2, preloaded), Swiss Alabaster palette (`#F6F4EE`, `#131210`, `#A06428`)
-- **Build:** `jaspr_cli` + `jaspr_builder` (build_runner) + dart2js
-- **Deploy target:** static container (`qouver-web` on VPS behind Caddy proxy)
+`qouver_web` is the static-first web presentation platform for **Qouver**. Built with [Jaspr](https://jaspr.site/) (Dart web framework) in **static pre-rendering mode**, all routes are generated as pure, self-contained HTML at build time — with **zero client-side JavaScript bundle overhead**.
 
-## Structure
+SEO metadata (titles, meta descriptions, canonical URLs, OpenGraph cards, Twitter cards, and JSON-LD schemas) is pre-rendered directly into the static document structure server-side.
 
-```
-web/                     # static assets (styles.css, fonts.css, fonts/, robots.txt, llms.txt, assets/)
+> 📄 **Complete Handoff & Status:** See [`HANDOFF.md`](HANDOFF.md)  
+> 📄 **AngularDart → Jaspr Migration:** See [`MIGRATION.md`](MIGRATION.md)  
+> 📄 **Quality Standards & Audit:** See [`STANDARDS.md`](STANDARDS.md)
+
+---
+
+## 🏛️ Site Architecture & Routes
+
+| Route | Description |
+| :--- | :--- |
+| `/` | Hero section, 3-pillar approach strip, production systems catalogue, and operational manifesto |
+| `/projects` | Complete systems catalogue (Skyward, Majadu Tools, SDS Management, M-DEF) |
+| `/projects/:slug` | Technical case study reader (architecture decisions, trade-offs, takeaways) |
+| `/journal` | Clean editorial index of technical essays, architecture post-mortems, and software notes |
+| `/journal/:slug` | Full-page editorial article reader with code snippets and blockquotes |
+| `/about` | Solo builder craft, engineering principles, production stack & Linux VPS infra |
+| `/contact` | Direct maintainer email & GitHub organization links |
+
+---
+
+## 🛠️ Stack & Infrastructure
+
+- **Framework:** `jaspr` 0.23.x + `jaspr_router` 0.8.x (static multi-page routing)
+- **Rendering:** Pure static mode (`jaspr build` prerenders 13 routes server-side)
+- **Typography:** Self-hosted `IBM Plex Sans` (UI & body) + `IBM Plex Mono` (metadata & code)
+- **Design System:** Warm Alabaster paper (`#FAF9F5`), Obsidian Charcoal (`#141413`), Prospector Bronze accent (`#A06428`)
+- **Deployment:** Containerized (`qouver-web` on Linux VPS behind Caddy TLS reverse proxy)
+- **CI/CD:** GitHub Actions (format → analyze → test → static build → Docker layer cache → GHCR)
+
+---
+
+## 📁 Repository Structure
+
+```text
+web/                     # Static assets (styles.css, fonts.css, fonts/, robots.txt, llms.txt, q-mark.svg)
 lib/
-  main.server.dart       # server entrypoint — renders the full document + routes
-  app.dart               # shell: header, nav, router, footer (+ skip-link, 404)
-  seo.dart               # per-page head helper (title, meta, OG, canonical, twitter)
-  components/            # q_mark, project_card
-  pages/                 # home, projects, journal, journal_detail, about, contact, not_found
+  main.server.dart       # Server entrypoint — static document & route configuration
+  app.dart               # Shell component: header, nav, router, footer (+ skip-link, 404)
+  seo.dart               # Per-page head helper (title, meta, OG, canonical, JSON-LD)
+  components/            # UI components (q_mark, project_card)
+  pages/                 # Page views (home, projects, journal, journal_detail, about, contact, 404)
   data/
-    projects.dart        # project catalogue & case study data
-    journal.dart         # technical essays & article catalogue
-test/                    # server-render smoke + component + data invariant tests
-test/smoke_test.dart     # all 13 static routes, SEO titles, nav state
-scripts/build.sh         # release + static generation
-deploy/Caddyfile.qouver.com  # production Caddy config (TLS, headers, cache, 404)
-.github/workflows/ci.yml # CI: format → analyze → test → build
+    projects.dart        # Production systems & technical case studies data
+    journal.dart         # Technical articles & essay data
+test/                    # Server-render smoke & component invariant tests
+scripts/build.sh         # Release build & static site generation script
+deploy/                  # Caddyfile & Podman container specs
+.github/workflows/       # GitHub Actions CI/CD workflows
 ```
 
-> No `main.client.dart`: the site is 100% static (zero `@client` components),
-> so there is intentionally no client bundle. Adding interactivity later means
-> re-adding a client entrypoint — see `MIGRATION.md` §13.
+---
 
-## Develop
+## 🚀 Development & Build
+
+### Development Server
+
+Run the local dev server with hot reload:
 
 ```bash
 dart pub get
-dart run jaspr_cli:jaspr serve     # dev server with hot reload
+dart run jaspr_cli:jaspr serve
 ```
 
-> **Note:** `jaspr build`/`serve` verify that `which dart` points into a real
-> Dart SDK. `scripts/build.sh` resolves the real SDK (`flutter/bin/cache/dart-sdk/bin/dart`) automatically.
+### Static Production Build
 
-## Build (static output)
+Generate the static output directory:
 
 ```bash
 ./scripts/build.sh
-# → build/jaspr/  (deployable: index.html, /projects/, /journal/, /about/, /contact/,
-#                  sitemap.xml, robots.txt, styles.css, assets/)
+# → Output generated to build/jaspr/ (HTML routes, sitemap.xml, robots.txt, styles.css)
 ```
 
-The build renders all 13 routes in-process (no headless browser), generates
-`sitemap.xml` from the route list, copies `robots.txt`/`llms.txt`/`VERSION`
-into the output, and strips dev residue (`packages/`, `.dart_tool/`).
+The build script compiles all 13 routes in-process (zero headless browser dependency), generates `sitemap.xml`, copies static assets, and cleans dev artifacts.
 
-Fonts are self-hosted (`web/fonts/*.woff2`, latin subset, IBM Plex) — no
-request to Google Fonts at runtime; preloaded in `<head>` for fast first paint.
-
-## Uptime monitoring
-
-Runbook: `infra/UPTIME_MONITORING.md` — UptimeRobot free tier (monitor
-`https://qouver.com` + `https://analytics.qouver.com`, email alerts, SSL
-expiry checks).
-
-## Test
+### Testing & Analysis
 
 ```bash
+# Run static analysis
+dart analyze
+
+# Run unit & component smoke tests
 dart test
 ```
 
-## Analytics
+---
 
-Umami (self-hosted, privacy-friendly) — di-inject saat build lewat env var,
-**default tetap zero-JS**:
+## 📊 Privacy-Friendly Analytics (Optional)
+
+Analytics uses self-hosted [Umami](https://umami.is/). The site ships with **zero JavaScript by default**. Umami tracking is only injected if explicitly enabled during build:
 
 ```bash
 UMAMI_SCRIPT_URL="https://analytics.qouver.com/script.js" \
-UMAMI_WEBSITE_ID="<id>" ./scripts/build.sh
+UMAMI_WEBSITE_ID="<your-website-id>" \
+./scripts/build.sh
 ```
 
-## CI
+---
 
-GitHub Actions (`.github/workflows/ci.yml`) runs format check, `dart analyze`,
-`dart test`, and `./scripts/build.sh` on every push/PR, and uploads
-`build/jaspr/` as an artifact.
+## 🎨 Brand & Identity
 
-## Deployment
+- **Logo:** Optically balanced geometric Q-monogram — a ring holding a central Prospector Bronze focal dot (`accentDot: true`), its continuous arc tail tracing the prospector's sweep.
+- **Color Palette:** Warm Alabaster (`#FAF9F5`), Obsidian Charcoal (`#141413`), Prospector Bronze (`#A06428`).
+- **Typography:** `IBM Plex Sans` + `IBM Plex Mono` (self-hosted `.woff2`, zero external font network requests).
 
-> **Arsitektur saat ini (2026-09):** qouver.com dilayani **container `qouver-web`**
-> (Caddy proxy host → `127.0.0.1:3002`). Deploy otomatis via GitHub Actions
-> (`.github/workflows/build.yml`) → GHCR → `podman pull` + restart unit quadlet
-> (`deploy/qouver-web.container`). Konfig host ada di `deploy/Caddyfile.qouver.com`.
+---
 
-## Versioning
+## 📜 License
 
-`VERSION` (semver, saat ini `1.0.0`) di-stamp ke output build (`build/jaspr/VERSION`).
-
-## License
-
-- **Kode:** MIT — lihat `LICENSE`.
-- **Konten situs** (teks, desain, brand Qouver termasuk q-mark & og-image):
-  All Rights Reserved.
-
-## Identity
-
-- **Logo:** Optically balanced geometric Q-monogram — a ring holding a central bronze focal dot (`accentDot: true`), its continuous arc tail tracing the prospector's sweep.
-- **Palette:** Swiss Alabaster paper `#F6F4EE`, Obsidian Ink `#131210`, Prospector Bronze `#A06428`.
-- **Type:** IBM Plex Sans (UI & body) + IBM Plex Mono (labels & code).
+- **Code:** MIT — see [`LICENSE`](LICENSE).
+- **Content & Brand Assets:** All rights reserved (text, design, Qouver brand, q-mark logo).
