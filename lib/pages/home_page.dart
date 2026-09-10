@@ -61,18 +61,6 @@ class HomePage extends StatelessComponent {
               'Qouver finds overlooked opportunities, turns them into useful systems, and shares what it learns. A home for systems and ideas.',
             ),
           ]),
-          div(classes: 'hero__actions', [
-            Link(
-              to: '/projects',
-              classes: 'btn btn--primary',
-              child: .text('See the work →'),
-            ),
-            Link(
-              to: '/journal',
-              classes: 'btn btn--secondary',
-              child: .text('Read journal →'),
-            ),
-          ]),
         ]),
       ]),
 
@@ -115,7 +103,7 @@ class HomePage extends StatelessComponent {
         div(classes: 'projects-grid', [
           for (final proj in data.projects) ProjectCard(project: proj),
         ]),
-        div(classes: 'mt-4', [
+        div(classes: 'mt-2', [
           Link(
             to: '/projects',
             classes: 'btn btn--secondary',
@@ -142,6 +130,8 @@ class HomePage extends StatelessComponent {
               children: [
                 div([
                   div(classes: 'journal-card__meta', [
+                    span([.text(article.date)]),
+                    span(classes: 'journal-card__dot', [.text('·')]),
                     span(classes: 'journal-card__category', [
                       .text(article.category),
                     ]),
@@ -150,21 +140,16 @@ class HomePage extends StatelessComponent {
                       .text(article.readTime),
                     ]),
                   ]),
-                  h3(classes: 'journal-card__title mt-1', [
-                    .text(article.title),
-                  ]),
-                  p(classes: 'journal-card__summary mt-2', [
-                    .text(article.summary),
-                  ]),
+                  h3(classes: 'journal-card__title', [.text(article.title)]),
+                  p(classes: 'journal-card__summary', [.text(article.summary)]),
                 ]),
                 div(classes: 'journal-card__foot', [
-                  span(classes: 'journal-card__date', [.text(article.date)]),
                   span(classes: 'link-action', [.text('Read Article →')]),
                 ]),
               ],
             ),
         ]),
-        div(classes: 'mt-4', [
+        div(classes: 'mt-2', [
           Link(
             to: '/journal',
             classes: 'btn btn--secondary',

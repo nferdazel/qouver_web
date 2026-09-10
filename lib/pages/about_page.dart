@@ -17,12 +17,7 @@ class AboutPage extends StatelessComponent {
         path: '/about',
       ),
       section(classes: 'page-head container', [
-        div(classes: 'page-head__meta', [
-          span(classes: 'label', [.text('About Qouver')]),
-        ]),
-        h1(classes: 'page-title', [
-          .text('Independent systems, built to run in production and endure.'),
-        ]),
+        h1(classes: 'page-title', [.text('About Qouver')]),
         p(classes: 'lead mt-2', [
           .text(
             'Qouver is an umbrella home for software systems, tools, and technical experiments — designed and maintained with disciplined software craft.',
@@ -105,10 +100,10 @@ class AboutPage extends StatelessComponent {
             ]),
           ]),
           div(classes: 'manifesto__row', [
-            span(classes: 'label label--dark', [.text('Guiding principle')]),
+            span(classes: 'manifesto__lbl', [.text('Guiding principle')]),
             Link(
               to: '/contact',
-              classes: 'link link--dark',
+              classes: 'link-action link-action--light',
               child: .text('Get in touch →'),
             ),
           ]),

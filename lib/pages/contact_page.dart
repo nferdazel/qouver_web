@@ -16,10 +16,7 @@ class ContactPage extends StatelessComponent {
         path: '/contact',
       ),
       section(classes: 'page-head container', [
-        div(classes: 'page-head__meta', [
-          span(classes: 'label', [.text('Contact')]),
-        ]),
-        h1(classes: 'page-title', [.text('Get in touch.')]),
+        h1(classes: 'page-title', [.text('Contact')]),
         p(classes: 'lead mt-2', [
           .text(
             'Questions, a project idea, or just something worth talking about — direct is fine.',

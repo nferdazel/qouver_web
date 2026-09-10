@@ -18,15 +18,10 @@ class JournalPage extends StatelessComponent {
         path: '/journal',
       ),
       section(classes: 'page-head container', [
-        div(classes: 'page-head__meta', [
-          span(classes: 'badge badge--bronze', [.text('JOURNAL')]),
-        ]),
-        h1(classes: 'page-title', [
-          .text('Notes on software craft, architecture, and systems.'),
-        ]),
+        h1(classes: 'page-title', [.text('Journal')]),
         p(classes: 'lead mt-2', [
           .text(
-            'Reflections, post-mortems, and technical decisions from building independent production systems.',
+            'Notes on software craft, architecture decisions, and building systems.',
           ),
         ]),
       ]),
@@ -39,16 +34,20 @@ class JournalPage extends StatelessComponent {
               children: [
                 div([
                   div(classes: 'journal-card__meta', [
+                    span([.text(article.date)]),
+                    span(classes: 'journal-card__dot', [.text('·')]),
                     span(classes: 'journal-card__category', [
                       .text(article.category),
                     ]),
-                    span(classes: 'badge', [.text(article.readTime)]),
+                    span(classes: 'journal-card__dot', [.text('·')]),
+                    span(classes: 'journal-card__time', [
+                      .text(article.readTime),
+                    ]),
                   ]),
-                  h2(classes: 'journal-card__title', [.text(article.title)]),
+                  h3(classes: 'journal-card__title', [.text(article.title)]),
                   p(classes: 'journal-card__summary', [.text(article.summary)]),
                 ]),
                 div(classes: 'journal-card__foot', [
-                  span([.text(article.date)]),
                   span(classes: 'link-action', [.text('Read Article →')]),
                 ]),
               ],
