@@ -3,9 +3,8 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
 import '../data/projects.dart';
-import 'project_schematic.dart';
 
-/// Card for a [Project] — displayed in a 2-column grid on the homepage.
+/// Clean modern project card for the Qouver systems catalogue.
 class ProjectCard extends StatelessComponent {
   const ProjectCard({super.key, required this.project});
 
@@ -13,43 +12,60 @@ class ProjectCard extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
-    final statusClass = switch (project.status) {
-      'Live' => 'project-card__status project-card__status--live',
-      'Archived' => 'project-card__status project-card__status--archived',
-      _ => 'project-card__status',
-    };
+    final isLive = project.status == 'Live';
+    final isBackend = project.status == 'Backend';
+
+    final statusBadgeClass = isLive
+        ? 'badge badge--live project-card__status project-card__status--live'
+        : isBackend
+        ? 'badge badge--bronze project-card__status'
+        : 'badge project-card__status project-card__status--archived';
+
+    final stackItems = project.stack
+        .split('·')
+        .map((item) => item.trim())
+        .where((item) => item.isNotEmpty);
 
     return article(classes: 'project-card', [
       div(classes: 'project-card__head', [
-        span(classes: 'project-card__meta label', [
-          .text('SYS // ${project.index} — ${project.category.toUpperCase()}'),
+        span(classes: 'project-card__category', [
+          .text(project.category.toUpperCase()),
         ]),
-        span(classes: statusClass, [.text(project.status)]),
+        span(classes: statusBadgeClass, [
+          span(
+            [],
+            classes: isLive ? 'status-dot status-dot--live' : 'status-dot',
+          ),
+          .text(project.status),
+        ]),
       ]),
-      ProjectSchematic(slug: project.slug),
-      div(classes: 'project-card__body', [
+      div([
         h3(classes: 'project-card__name', [
-          Link(to: '/projects/${project.slug}', child: .text(project.name)),
-        ]),
-        p(classes: 'project-card__desc', [.text(project.description)]),
-      ]),
-      div(classes: 'project-card__foot', [
-        span(classes: 'project-card__stack label', [.text(project.stack)]),
-        div(classes: 'project-card__actions', [
           Link(
             to: '/projects/${project.slug}',
-            classes: 'link',
-            child: .text('Case Study →'),
+            child: .text('${project.name} →'),
           ),
-          if (project.url != null)
-            a(
-              href: project.url!,
-              target: Target.blank,
-              attributes: {'rel': 'noopener'},
-              classes: 'link link--dim',
-              [.text('${project.urlLabel} ↗')],
-            ),
         ]),
+        p(classes: 'project-card__desc', [.text(project.description)]),
+        div(classes: 'project-card__stack-list', [
+          for (final item in stackItems)
+            span(classes: 'stack-pill', [.text(item)]),
+        ]),
+      ]),
+      div(classes: 'project-card__foot', [
+        Link(
+          to: '/projects/${project.slug}',
+          classes: 'link-action',
+          child: .text('Case Study →'),
+        ),
+        if (project.url != null)
+          a(
+            href: project.url!,
+            target: Target.blank,
+            attributes: {'rel': 'noopener'},
+            classes: 'btn btn--ghost',
+            [.text('${project.urlLabel} ↗')],
+          ),
       ]),
     ]);
   }

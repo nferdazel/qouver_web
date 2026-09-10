@@ -14,7 +14,7 @@ class JournalDetailPage extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     final article = journalArticles.cast<JournalArticle?>().firstWhere(
-      (a) => a?.slug == slug,
+      (art) => art?.slug == slug,
       orElse: () => null,
     );
 
@@ -37,7 +37,7 @@ class JournalDetailPage extends StatelessComponent {
             child: .text('← Back to Journal'),
           ),
           div(classes: 'article-reader__meta mt-3', [
-            span(classes: 'journal-card__tag', [.text(article.category)]),
+            span(classes: 'journal-card__category', [.text(article.category)]),
             span(classes: 'label', [.text(article.date)]),
             span(classes: 'label', [.text('·')]),
             span(classes: 'label', [.text(article.readTime)]),

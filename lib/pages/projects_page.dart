@@ -1,7 +1,7 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
-import 'package:jaspr_router/jaspr_router.dart';
 
+import '../components/project_card.dart';
 import '../data/projects.dart' as data;
 import '../seo.dart';
 
@@ -19,48 +19,19 @@ class ProjectsPage extends StatelessComponent {
       ),
       section(classes: 'page-head container', [
         div(classes: 'page-head__meta', [
-          span(classes: 'label', [.text('Index')]),
+          span(classes: 'badge badge--bronze', [.text('CATALOGUE')]),
         ]),
-        h1(classes: 'page-title', [.text('Projects.')]),
+        h1(classes: 'page-title', [.text('Production Systems')]),
         p(classes: 'lead mt-2', [
           .text(
-            'Live, in production, or archived — each one earned its place. Built to solve real problems, not to demonstrate capability.',
+            'Live, in production, or archived — each one earned its place. Built to solve real problems with disciplined software craft.',
           ),
         ]),
       ]),
       section(classes: 'section container', [
-        for (final project in data.projects)
-          div(classes: 'project-row', [
-            div(classes: 'project-row__head', [
-              h2(classes: 'h3', [
-                .text(project.name),
-                span(classes: 'label', [.text(project.category)]),
-              ]),
-              span(classes: 'label', [.text(project.status)]),
-            ]),
-            p(classes: 'body mt-2', [.text(project.description)]),
-            ul(classes: 'project-row__focus', [
-              for (final f in project.focus) li([.text(f)]),
-            ]),
-            div(classes: 'project-row__foot', [
-              span(classes: 'label', [.text(project.stack)]),
-              div(classes: 'project-row__actions', [
-                Link(
-                  to: '/projects/${project.slug}',
-                  classes: 'link',
-                  child: .text('Case Study →'),
-                ),
-                if (project.url != null)
-                  a(
-                    href: project.url!,
-                    target: Target.blank,
-                    attributes: {'rel': 'noopener'},
-                    classes: 'link',
-                    [.text('${project.urlLabel} →')],
-                  ),
-              ]),
-            ]),
-          ]),
+        div(classes: 'projects-grid', [
+          for (final project in data.projects) ProjectCard(project: project),
+        ]),
       ]),
     ]);
   }

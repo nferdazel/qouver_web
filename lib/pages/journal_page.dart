@@ -19,7 +19,7 @@ class JournalPage extends StatelessComponent {
       ),
       section(classes: 'page-head container', [
         div(classes: 'page-head__meta', [
-          span(classes: 'label', [.text('Journal')]),
+          span(classes: 'badge badge--bronze', [.text('JOURNAL')]),
         ]),
         h1(classes: 'page-title', [
           .text('Notes on software craft, architecture, and systems.'),
@@ -39,20 +39,17 @@ class JournalPage extends StatelessComponent {
               children: [
                 div([
                   div(classes: 'journal-card__meta', [
-                    span(classes: 'journal-card__tag', [
+                    span(classes: 'journal-card__category', [
                       .text(article.category),
                     ]),
+                    span(classes: 'badge', [.text(article.readTime)]),
                   ]),
-                  h2(classes: 'journal-card__title mt-2', [
-                    .text(article.title),
-                  ]),
-                  p(classes: 'journal-card__summary mt-2', [
-                    .text(article.summary),
-                  ]),
+                  h2(classes: 'journal-card__title', [.text(article.title)]),
+                  p(classes: 'journal-card__summary', [.text(article.summary)]),
                 ]),
                 div(classes: 'journal-card__foot', [
                   span([.text(article.date)]),
-                  span([.text(article.readTime)]),
+                  span(classes: 'link-action', [.text('Read Article →')]),
                 ]),
               ],
             ),
