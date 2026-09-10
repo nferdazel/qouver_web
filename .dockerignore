@@ -2,10 +2,12 @@
 .gitignore
 .dart_tool
 .build
-build
+build/*
+!build/jaspr
 .packages
 *.log
 .DS_Store
 DEPLOY_CHECKLIST.md
 deploy/Caddyfile.qouver.com
 deploy/Caddyfile.analytics.qouver.com
+
