@@ -3,6 +3,7 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
 import '../data/projects.dart';
+import 'project_schematic.dart';
 
 /// Card for a [Project] — displayed in a 2-column grid on the homepage.
 class ProjectCard extends StatelessComponent {
@@ -25,6 +26,7 @@ class ProjectCard extends StatelessComponent {
         ]),
         span(classes: statusClass, [.text(project.status)]),
       ]),
+      ProjectSchematic(slug: project.slug),
       div(classes: 'project-card__body', [
         h3(classes: 'project-card__name', [
           Link(to: '/projects/${project.slug}', child: .text(project.name)),

@@ -404,6 +404,22 @@ p.body + p.body { margin-top: 1rem; }
   background: var(--paper-2);
 }
 
+.project-schematic {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  padding: 1rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.6rem 0;
+  min-height: 120px;
+}
+.schematic-svg {
+  width: 100%;
+  height: 110px;
+  max-width: 360px;
+}
+
 .project-card__head {
   display: flex;
   justify-content: space-between;
@@ -532,6 +548,28 @@ p.body + p.body { margin-top: 1rem; }
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--bone-2);
+}
+
+.hero-figure__head,
+.hero-figure__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.hero-figure__info {
+  margin-top: 1.2rem;
+  text-align: center;
+}
+
+.hero-figure__stack {
+  color: var(--bronze-2);
+  margin-top: 0.3rem;
 }
 
 /* ---------- Page header (inner pages) ---------- */

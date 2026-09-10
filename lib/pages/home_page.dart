@@ -5,6 +5,7 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
 import '../components/project_card.dart';
+import '../components/q_mark.dart';
 import '../data/journal.dart';
 import '../data/projects.dart' as data;
 import '../seo.dart';
@@ -49,26 +50,57 @@ class HomePage extends StatelessComponent {
         ]),
       ),
       section(classes: 'hero container', [
-        div(classes: 'hero__meta', [
-          span(classes: 'label', [.text('SPEC // 01.0 — QOUVER.COM')]),
-        ]),
-        h1(classes: 'display', [
-          .text('Built from what others '),
-          em([.text('leave behind.')]),
-        ]),
-        p(classes: 'lead hero__lead', [
-          .text(
-            'Qouver builds systems from what others miss — software, communities, data, process. Each one tested, each one real.',
-          ),
-        ]),
-        div(classes: 'hero__actions', [
-          Link(
-            to: '/projects',
-            classes: 'link',
-            child: .text('See the work →'),
-          ),
-          Link(to: '/journal', classes: 'link', child: .text('Read journal →')),
-          Link(to: '/about', classes: 'link', child: .text('The philosophy →')),
+        div(classes: 'hero-grid', [
+          div(classes: 'hero-copy', [
+            div(classes: 'section-marker', [
+              span([.text('SPEC // 01.0 — QOUVER.COM')]),
+            ]),
+            h1(classes: 'display hero__display', [
+              .text('Built from what others '),
+              em([.text('leave behind.')]),
+            ]),
+            p(classes: 'lead hero__lead', [
+              .text(
+                'Qouver builds systems from what others miss — software, communities, data, process. Each one tested, each one real.',
+              ),
+            ]),
+            div(classes: 'hero__actions', [
+              Link(
+                to: '/projects',
+                classes: 'link',
+                child: .text('See the work →'),
+              ),
+              Link(
+                to: '/journal',
+                classes: 'link',
+                child: .text('Read journal →'),
+              ),
+              Link(
+                to: '/about',
+                classes: 'link',
+                child: .text('The philosophy →'),
+              ),
+            ]),
+          ]),
+          figure(classes: 'hero-figure', [
+            div(classes: 'hero-figure__head', [
+              span([.text('STATUS // 01.0 — OPERATIONAL')]),
+              span([.text('SYS_ID #01')]),
+            ]),
+            div(classes: 'hero-figure__body', [
+              const QMark(size: '64', classes: 'brand__mark'),
+              div(classes: 'hero-figure__info', [
+                div(classes: 'label', [.text('SYSTEMS: 4 ONLINE')]),
+                div(classes: 'label hero-figure__stack', [
+                  .text('STACK: DART / STATIC JASPR'),
+                ]),
+              ]),
+            ]),
+            figcaption(classes: 'hero-figure__foot', [
+              span([.text('STATUS // PRODUCTION READY')]),
+              span([.text('QOUVER.COM')]),
+            ]),
+          ]),
         ]),
       ]),
       section(classes: 'strip section--tight', [
@@ -99,7 +131,9 @@ class HomePage extends StatelessComponent {
       ]),
       section(classes: 'section container', [
         div(classes: 'section-head', [
-          span(classes: 'section-head__index', [.text('SYSTEM INDEX // 01.0')]),
+          span(classes: 'section-head__index', [
+            .text('SYSTEM INDEX // PRODUCTION CATALOGUE'),
+          ]),
           h2(classes: 'h2', [.text('Production Systems')]),
         ]),
         div(classes: 'projects-grid', [
@@ -111,7 +145,9 @@ class HomePage extends StatelessComponent {
       ]),
       section(classes: 'section container', [
         div(classes: 'section-head', [
-          span(classes: 'section-head__index', [.text('DOCS // 02.0')]),
+          span(classes: 'section-head__index', [
+            .text('DOCS // TECHNICAL JOURNAL'),
+          ]),
           h2(classes: 'h2', [.text('Recent Writing')]),
         ]),
         div(classes: 'journal-grid', [
