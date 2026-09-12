@@ -30,7 +30,7 @@ class App extends StatelessComponent {
           Link(
             to: '/',
             classes: 'brand',
-            attributes: {'aria-label': 'Qouver — home'},
+            attributes: {'aria-label': 'Qouver, home'},
             children: [
               const QMark(size: '30', classes: 'brand__mark', accentDot: true),
               span(classes: 'brand__word', [.text('Qouver')]),
@@ -51,80 +51,64 @@ class App extends StatelessComponent {
       main_(id: 'main', [
         Router(
           errorBuilder: (context, state) => const NotFoundPage(),
+          // Titles are owned by each page's `pageHead(...)` call, which renders
+          // the `<title>` during static generation. `Route.title` is not used in
+          // the output, so it is omitted to keep one source of truth.
           routes: [
-            Route(
-              path: '/',
-              title: 'Home',
-              builder: (context, state) => const HomePage(),
-            ),
+            Route(path: '/', builder: (context, state) => const HomePage()),
             Route(
               path: '/projects',
-              title: 'Projects',
               builder: (context, state) => const ProjectsPage(),
             ),
             Route(
               path: '/projects/skyward',
-              title: 'Skyward — Case Study — Qouver',
               builder: (context, state) =>
                   const ProjectDetailPage(slug: 'skyward'),
             ),
             Route(
               path: '/projects/majadu',
-              title: 'Majadu Tools — Case Study — Qouver',
               builder: (context, state) =>
                   const ProjectDetailPage(slug: 'majadu'),
             ),
             Route(
               path: '/projects/sds',
-              title: 'SDS Management — Case Study — Qouver',
               builder: (context, state) => const ProjectDetailPage(slug: 'sds'),
             ),
             Route(
               path: '/projects/mdef',
-              title: 'M-DEF — Case Study — Qouver',
               builder: (context, state) =>
                   const ProjectDetailPage(slug: 'mdef'),
             ),
             Route(
               path: '/journal',
-              title: 'Journal — Qouver',
               builder: (context, state) => const JournalPage(),
             ),
             Route(
               path: '/journal/authoritative-go-simulations',
-              title:
-                  'Authoritative World Tick Simulation Engines in Go — Journal — Qouver',
               builder: (context, state) =>
                   const JournalDetailPage(slug: 'authoritative-go-simulations'),
             ),
             Route(
               path: '/journal/zero-js-static-jaspr',
-              title:
-                  'Zero-JS Static Web: Why We Rebuilt Qouver with Jaspr — Journal — Qouver',
               builder: (context, state) =>
                   const JournalDetailPage(slug: 'zero-js-static-jaspr'),
             ),
             Route(
               path: '/journal/systems-prospector-manifesto',
-              title:
-                  'The Systems Prospector: Finding Latent Value in Latent Problems — Journal — Qouver',
               builder: (context, state) =>
                   const JournalDetailPage(slug: 'systems-prospector-manifesto'),
             ),
             Route(
               path: '/about',
-              title: 'About',
               builder: (context, state) => const AboutPage(),
             ),
             Route(
               path: '/contact',
-              title: 'Contact',
               builder: (context, state) => const ContactPage(),
             ),
             // Generates the static /404.html that Caddy serves for missing paths.
             Route(
               path: '/404.html',
-              title: 'Page not found',
               builder: (context, state) => const NotFoundPage(),
             ),
           ],
@@ -136,7 +120,8 @@ class App extends StatelessComponent {
 }
 
 Component _navLink(String label, String path, String current) {
-  final isActive = current == path || (path != '/' && current.startsWith(path));
+  final isActive =
+      current == path || (path != '/' && current.startsWith('$path/'));
   return Link(
     to: path,
     classes: 'nav__link${isActive ? ' nav__link--active' : ''}',
@@ -156,7 +141,7 @@ class _SiteFooter extends StatelessComponent {
             Link(
               to: '/',
               classes: 'site-footer__brand',
-              attributes: {'aria-label': 'Qouver — home'},
+              attributes: {'aria-label': 'Qouver, home'},
               children: [
                 const QMark(
                   size: '28',
@@ -212,7 +197,7 @@ class _SiteFooter extends StatelessComponent {
         ]),
         div(classes: 'site-footer__bottom', [
           span([.text('© 2026 Qouver')]),
-          span([.text('Set in IBM Plex · Built with Jaspr')]),
+          span([.text('Set in Fraunces & Archivo · Built with Jaspr')]),
           span([.text('qouver.com')]),
         ]),
       ]),

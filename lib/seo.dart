@@ -9,7 +9,7 @@ const ogImageUrl = '$siteUrl/assets/og-image.webp';
 /// Builds the per-page `<head>` metadata: title, meta description, canonical,
 /// OpenGraph and Twitter card tags.
 ///
-/// Rendered server-side into the static HTML — crawlers and social previews
+/// Rendered server-side into the static HTML. Crawlers and social previews
 /// read it without any client-side JavaScript.
 Component pageHead({
   required String title,

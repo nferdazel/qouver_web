@@ -13,10 +13,10 @@ class NotFoundPage extends StatelessComponent {
   Component build(BuildContext context) {
     return Component.fragment([
       pageHead(
-        title: 'Page not found — Qouver',
+        title: 'Page not found · Qouver',
         description:
             'The page you are looking for does not exist. Back to the home of systems and ideas.',
-        path: '/404',
+        path: '/404.html',
       ),
       section(classes: 'page-head container', [
         div(classes: 'page-head__meta', [
@@ -25,12 +25,12 @@ class NotFoundPage extends StatelessComponent {
         h1(classes: 'page-title', [.text('Page not found.')]),
         p(classes: 'lead mt-2', [
           .text(
-            'The page you are looking for does not exist — or was prospected away.',
+            'The page you are looking for does not exist, or was prospected away.',
           ),
         ]),
       ]),
       section(classes: 'section container', [
-        Link(to: '/', classes: 'link', child: .text('Back to home →')),
+        Link(to: '/', classes: 'link', child: .text('Back to home')),
       ]),
     ]);
   }

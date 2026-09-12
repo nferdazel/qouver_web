@@ -32,14 +32,15 @@ class ProjectDetailPage extends StatelessComponent {
 
     final cs = project.caseStudy!;
     final statusClass = switch (project.status) {
-      'Live' => 'project-card__status project-card__status--live',
-      'Archived' => 'project-card__status project-card__status--archived',
-      _ => 'project-card__status',
+      'Live' =>
+        'badge badge--live project-card__status project-card__status--live',
+      'Archived' => 'badge project-card__status project-card__status--archived',
+      _ => 'badge project-card__status',
     };
 
     return Component.fragment([
       pageHead(
-        title: '${project.name} — Technical Case Study — Qouver',
+        title: '${project.name} · Technical Case Study · Qouver',
         description: cs.overview,
         path: '/projects/${project.slug}',
       ),
@@ -73,7 +74,7 @@ class ProjectDetailPage extends StatelessComponent {
                 target: Target.blank,
                 attributes: {'rel': 'noopener'},
                 classes: 'link',
-                [.text('${project.urlLabel} →')],
+                [.text('${project.urlLabel} ↗')],
               ),
             ]),
         ]),
@@ -136,7 +137,7 @@ class ProjectDetailPage extends StatelessComponent {
                 target: Target.blank,
                 attributes: {'rel': 'noopener'},
                 classes: 'link link--dark',
-                [.text('Visit ${project.name} →')],
+                [.text('Visit ${project.name} ↗')],
               ),
           ]),
         ]),

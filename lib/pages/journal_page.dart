@@ -12,7 +12,7 @@ class JournalPage extends StatelessComponent {
   Component build(BuildContext context) {
     return Component.fragment([
       pageHead(
-        title: 'Journal — Qouver',
+        title: 'Journal · Qouver',
         description:
             'Notes on systems, software craft, architecture, and independent building.',
         path: '/journal',
@@ -45,7 +45,7 @@ class JournalPage extends StatelessComponent {
                 h2(classes: 'journal-item__title', [
                   Link(
                     to: '/journal/${articleItem.slug}',
-                    child: .text('${articleItem.title} →'),
+                    child: .text(articleItem.title),
                   ),
                 ]),
               ]),

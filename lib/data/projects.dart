@@ -24,7 +24,7 @@ class CaseStudy {
 /// - MAJADU's Go API live (api.qouver.com/majadu/healthz 200); client app is
 ///   community-maintained (framing per user decision, do not change).
 /// - SDS MANAGEMENT live (sds.qouver.com 200); client (Bayer) not named on site.
-/// - M-DEF retired — mdef.qouver.com no longer resolves (000); superseded by
+/// - M-DEF retired, mdef.qouver.com no longer resolves (000); superseded by
 ///   Majadu's built-in ratings.
 class Project {
   final String index;
@@ -64,7 +64,7 @@ const projects = <Project>[
     category: 'Simulation',
     tagline: 'Airline tycoon simulation.',
     description:
-        'Run your own airline: build a fleet, open routes, and grow an economy that keeps moving while you\'re away. The whole world runs on a server-side simulation engine — your device just plays it — so everything stays fair and consistent. Live now at skyward.qouver.com.',
+        'Run your own airline: build a fleet, open routes, and grow an economy that keeps moving while you\'re away. The whole world runs on a server-side simulation engine, so your device just plays it and everything stays fair and consistent. Live now at skyward.qouver.com.',
     focus: ['Simulation', 'Strategy', 'Systems design'],
     status: 'Live',
     stack: 'Flutter · Go · Postgres',
@@ -102,7 +102,7 @@ const projects = <Project>[
     category: 'Community systems',
     tagline: 'Systems that keep a community running.',
     description:
-        'The backend that keeps a badminton community running: court scheduling, live scoring, tournaments, and skill ratings that carry across seasons. Qouver builds and operates the Go API behind it, in production today — the mobile app is community-maintained.',
+        'The backend that keeps a badminton community running: court scheduling, live scoring, tournaments, and skill ratings that carry across seasons. Qouver builds and operates the Go API behind it, in production today. The mobile app is community-maintained.',
     focus: ['Scheduling', 'Live scoring', 'Ratings', 'Community growth'],
     status: 'Backend',
     stack: 'Go · Postgres · OpenAPI',
@@ -111,7 +111,7 @@ const projects = <Project>[
     caseStudy: CaseStudy(
       title: 'Glicko-1 Rating Engine & Frameworkless Go API',
       overview:
-          'Majadu powers local sports session operations—generating balanced doubles matchups, live court scoring, tournament brackets, and cross-season skill rating tracking.',
+          'Majadu powers local sports session operations: balanced doubles matchups, live court scoring, tournament brackets, and cross-season skill rating tracking.',
       problem:
           'Casual sports sessions suffer from subjective player seeding, manual paper scorekeeping, and network drops during live matches in sports halls with weak cellular coverage.',
       architecture:
@@ -149,7 +149,7 @@ const projects = <Project>[
     caseStudy: CaseStudy(
       title: 'Audit-Ready Document Versioning & Server PDF Pipeline',
       overview:
-          'Workplace compliance management system for chemical Safety Data Sheets (SDS/MSDS)—versioned hazard documentation, pictogram matrix, and automated PDF export pipeline.',
+          'Workplace compliance management system for chemical Safety Data Sheets (SDS/MSDS): versioned hazard documentation, pictogram matrix, and automated PDF export pipeline.',
       problem:
           'Industrial chemical compliance demands immutable document versioning, exact GHS hazard pictogram mapping, and immediate PDF availability for workplace safety audits.',
       architecture:
@@ -179,7 +179,7 @@ const projects = <Project>[
     category: 'Analytics',
     tagline: 'Badminton analytics platform.',
     description:
-        'A leaderboard and analytics platform built for a real badminton community — powered by a custom rating engine that weighed how convincingly you won and kept ratings honest when players went quiet. It ran in production with live rankings and seasonal standings; its ideas now live on inside Majadu.',
+        'A leaderboard and analytics platform built for a real badminton community, powered by a custom rating engine that weighed how convincingly you won and kept ratings honest when players went quiet. It ran in production with live rankings and seasonal standings; its ideas now live on inside Majadu.',
     focus: ['Ranking systems', 'Statistics', 'Community insights'],
     status: 'Archived',
     stack: 'Flutter · Supabase / Postgres',

@@ -12,9 +12,9 @@ class ProjectsPage extends StatelessComponent {
   Component build(BuildContext context) {
     return Component.fragment([
       pageHead(
-        title: 'Projects — Qouver',
+        title: 'Projects · Qouver',
         description:
-            'The systems under the Qouver umbrella: Skyward, Majadu Tools, and SDS Management — simulation, community systems, and compliance tools.',
+            'The systems under the Qouver umbrella: Skyward, Majadu Tools, and SDS Management: simulation, community systems, and compliance tools.',
         path: '/projects',
       ),
       section(classes: 'page-head container', [
@@ -24,7 +24,7 @@ class ProjectsPage extends StatelessComponent {
         h1(classes: 'page-title', [.text('Production Systems')]),
         p(classes: 'lead mt-2', [
           .text(
-            'Live, in production, or archived — each one earned its place. Built to solve real problems with disciplined software craft.',
+            'Live, in production, or archived, each one earned its place. Built to solve real problems with disciplined software craft.',
           ),
         ]),
       ]),

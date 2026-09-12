@@ -11,7 +11,7 @@ class AboutPage extends StatelessComponent {
   Component build(BuildContext context) {
     return Component.fragment([
       pageHead(
-        title: 'About — Qouver',
+        title: 'About · Qouver',
         description:
             'Qouver is a home for systems and ideas. Independent software craft, production principles, and open documentation.',
         path: '/about',
@@ -20,7 +20,7 @@ class AboutPage extends StatelessComponent {
         h1(classes: 'page-title', [.text('About Qouver')]),
         p(classes: 'lead mt-2', [
           .text(
-            'Qouver is an umbrella home for software systems, tools, and technical experiments — designed and maintained with disciplined software craft.',
+            'Qouver is an umbrella home for software systems, tools, and technical experiments, designed and maintained with disciplined software craft.',
           ),
         ]),
       ]),
@@ -32,7 +32,7 @@ class AboutPage extends StatelessComponent {
             p(classes: 'body mt-2', [
               .text('Qouver is built and maintained by '),
               strong([.text('Sachiel')]),
-              .text(' — '),
+              .text(', '),
               a(
                 href: 'https://github.com/nferdazel',
                 target: Target.blank,
@@ -45,7 +45,7 @@ class AboutPage extends StatelessComponent {
             ]),
             p(classes: 'body', [
               .text(
-                'No pitch decks, no corporate bloat — just software designed with high standards of reliability, performance, and maintainability.',
+                'No pitch decks, no corporate bloat. Just software designed with high standards of reliability, performance, and maintainability.',
               ),
             ]),
           ]),
@@ -72,7 +72,7 @@ class AboutPage extends StatelessComponent {
             ]),
             p(classes: 'body mt-2', [
               .text(
-                'Every trade-off, architecture decision, and lesson learned is written down — so the next problem starts with clarity rather than a blank page.',
+                'Every trade-off, architecture decision, and lesson learned is written down, so the next problem starts with clarity rather than a blank page.',
               ),
             ]),
           ]),
@@ -104,7 +104,7 @@ class AboutPage extends StatelessComponent {
             Link(
               to: '/contact',
               classes: 'link-action link-action--light',
-              child: .text('Get in touch →'),
+              child: .text('Get in touch'),
             ),
           ]),
         ]),

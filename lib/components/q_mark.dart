@@ -1,7 +1,7 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
-/// The Qouver Q monogram — an optically balanced geometric ring holding a single
+/// The Qouver Q monogram: an optically balanced geometric ring holding a single
 /// focal dot (the find, brought home), its sweeping arc tail tracing the prospector's sweep.
 class QMark extends StatelessComponent {
   const QMark({
@@ -50,12 +50,14 @@ class QMark extends StatelessComponent {
         ),
         circle(
           [],
-          classes: 'q-mark__dot',
+          classes: accentDot
+              ? 'q-mark__dot q-mark__dot--accent'
+              : 'q-mark__dot',
           attributes: {
             'cx': '27',
             'cy': '27',
             'r': '4.2',
-            'fill': accentDot ? 'var(--bronze, #A07030)' : 'currentColor',
+            'fill': 'currentColor',
           },
         ),
       ],

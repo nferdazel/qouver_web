@@ -24,7 +24,7 @@ class JournalDetailPage extends StatelessComponent {
 
     return Component.fragment([
       pageHead(
-        title: '${article.title} — Journal — Qouver',
+        title: '${article.title} · Journal · Qouver',
         description: article.summary,
         path: '/journal/$slug',
         ogType: 'article',

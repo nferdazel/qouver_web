@@ -27,24 +27,22 @@ class ProjectCard extends StatelessComponent {
         .where((item) => item.isNotEmpty);
 
     return article(classes: 'project-card', [
-      div(classes: 'project-card__head', [
-        span(classes: 'project-card__category', [
-          .text(project.category.toUpperCase()),
+      span(classes: 'project-card__index', [.text(project.index)]),
+      div(classes: 'project-card__body', [
+        div(classes: 'project-card__head', [
+          span(classes: 'project-card__category', [
+            .text(project.category.toUpperCase()),
+          ]),
+          span(classes: statusBadgeClass, [
+            span(
+              [],
+              classes: isLive ? 'status-dot status-dot--live' : 'status-dot',
+            ),
+            .text(project.status),
+          ]),
         ]),
-        span(classes: statusBadgeClass, [
-          span(
-            [],
-            classes: isLive ? 'status-dot status-dot--live' : 'status-dot',
-          ),
-          .text(project.status),
-        ]),
-      ]),
-      div([
         h3(classes: 'project-card__name', [
-          Link(
-            to: '/projects/${project.slug}',
-            child: .text('${project.name} →'),
-          ),
+          Link(to: '/projects/${project.slug}', child: .text(project.name)),
         ]),
         p(classes: 'project-card__desc', [.text(project.description)]),
         div(classes: 'project-card__stack-list', [
@@ -56,7 +54,7 @@ class ProjectCard extends StatelessComponent {
         Link(
           to: '/projects/${project.slug}',
           classes: 'link-action',
-          child: .text('Case Study →'),
+          child: .text('Case Study'),
         ),
         if (project.url != null)
           a(

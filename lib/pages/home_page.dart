@@ -15,7 +15,7 @@ class HomePage extends StatelessComponent {
   Component build(BuildContext context) {
     return Component.fragment([
       pageHead(
-        title: 'Qouver — A home for systems and ideas',
+        title: 'Qouver · A home for systems and ideas',
         description:
             'Qouver finds overlooked opportunities, turns them into useful systems, and shares what it learns. A home for systems and ideas.',
         path: '/',
@@ -70,7 +70,7 @@ class HomePage extends StatelessComponent {
             (
               '01',
               'Find value in plain sight.',
-              'Valuable things often sit unindexed or overlooked — the gap in a community, the pattern in a dataset, the tool nobody bothered to build.',
+              'Valuable things often sit unindexed or overlooked: the gap in a community, the pattern in a dataset, the tool nobody bothered to build.',
             ),
             (
               '02',
@@ -80,7 +80,7 @@ class HomePage extends StatelessComponent {
             (
               '03',
               'Document every lesson.',
-              'What is built gets documented — architecture post-mortems and open technical essays so the next problem starts with context.',
+              'What is built gets documented. Architecture post-mortems and open technical essays mean the next problem starts with context.',
             ),
           ])
             div(classes: 'strip__item', [
@@ -106,7 +106,7 @@ class HomePage extends StatelessComponent {
           Link(
             to: '/projects',
             classes: 'btn btn--secondary',
-            child: .text('All Systems →'),
+            child: .text('All Systems'),
           ),
         ]),
       ]),
@@ -124,7 +124,7 @@ class HomePage extends StatelessComponent {
             Link(
               to: '/about',
               classes: 'link-action link-action--light',
-              child: .text('Read the story →'),
+              child: .text('Read the story'),
             ),
           ]),
         ]),
