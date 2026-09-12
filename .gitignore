@@ -13,3 +13,9 @@ DEPLOY_CHECKLIST.md
 # not appropriate for a public repo; keep locally
 HANDOFF.md
 MIGRATION.md
+
+# internal review/action list
+TASKS.md
+
+# local design direction (kept out of the public repo for now)
+DESIGN.md
