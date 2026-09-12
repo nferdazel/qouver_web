@@ -3,6 +3,7 @@ import 'package:jaspr_test/server_test.dart';
 import 'package:qouver_web/components/project_card.dart';
 import 'package:qouver_web/components/q_mark.dart';
 import 'package:qouver_web/data/projects.dart';
+import 'package:qouver_web/pages/project_detail_page.dart';
 
 void main() {
   testServer('ProjectCard renders an internal case study link', (tester) async {
@@ -12,7 +13,7 @@ void main() {
 
     expect(res.body, contains('<a'));
     expect(res.body, contains('href="/projects/skyward"'));
-    expect(res.body, contains('Case Study →'));
+    expect(res.body, contains('Case Study'));
     expect(res.body, contains('project-card__status'));
   });
 
@@ -37,7 +38,7 @@ void main() {
       final res = await tester.request('/');
 
       expect(res.body, contains('href="/projects/taug"'));
-      expect(res.body, contains('Case Study →'));
+      expect(res.body, contains('Case Study'));
     },
   );
 
@@ -56,5 +57,15 @@ void main() {
     expect(res.body, contains('cy="27"'));
     expect(res.body, contains('class="hero__mark"'));
     expect(res.body, contains('aria-hidden="true"'));
+  });
+
+  testServer('ProjectDetailPage falls back for an unknown slug', (
+    tester,
+  ) async {
+    tester.pumpComponent(const ProjectDetailPage(slug: 'does-not-exist'));
+
+    final res = await tester.request('/');
+
+    expect(res.body, contains('Case study not found'));
   });
 }

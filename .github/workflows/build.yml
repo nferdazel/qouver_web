@@ -5,12 +5,18 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Least privilege by default. `build-push` widens only what it needs.
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: dart-lang/setup-dart@v1
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d # v1
         with:
           sdk: 3.13.1
           cache: true
@@ -30,9 +36,9 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
-      - uses: dart-lang/setup-dart@v1
+      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d # v1
         with:
           sdk: 3.13.1
           cache: true
@@ -44,10 +50,10 @@ jobs:
         run: bash scripts/build.sh
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
 
       - name: Login to GHCR
-        uses: docker/login-action@v3
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -55,7 +61,7 @@ jobs:
 
       - name: Image metadata
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@c299e40c65443455700f0fdfc63efafe5b349051 # v5
         with:
           images: ghcr.io/${{ github.repository }}
           tags: |
@@ -63,7 +69,7 @@ jobs:
             type=sha,prefix=
 
       - name: Build & push
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
         with:
           context: .
           push: true
@@ -73,13 +79,18 @@ jobs:
           cache-to: type=gha,mode=max
 
   # Deploy otomatis ke VPS via podman (seragam majadu-api).
-  # Secrets sudah di-set di GitHub: VPS_HOST, VPS_USER, VPS_SSH_KEY — job jalan tanpa guard.
+  # Secrets sudah di-set di GitHub: VPS_HOST, VPS_USER, VPS_SSH_KEY. Job jalan tanpa guard.
+  # Keputusan sadar: auto-deploy tanpa approval gate (solo, deploy = push ke main).
+  # Kalau nanti ingin gate manual: tambah GitHub Environment `production` dengan
+  # required reviewers dan set `environment: production` di job ini.
   deploy:
     needs: build-push
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Deploy to VPS (podman quadlet)
-        uses: appleboy/ssh-action@v1
+        uses: appleboy/ssh-action@0ff4204d59e8e51228ff73bce53f80d53301dee2 # v1
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
@@ -88,7 +99,7 @@ jobs:
             podman pull ghcr.io/${{ github.repository }}:main
             # Restart if quadlet sudah terpasang, otherwise info (setup manual di VPS sekali)
             systemctl --user daemon-reload
-            systemctl --user restart qouver-web || echo "qouver-web.service not found — run manual setup: scp deploy/qouver-web.container → ~/.config/containers/systemd/ && systemctl --user enable --now qouver-web"
+            systemctl --user restart qouver-web || echo "qouver-web.service not found. Run manual setup: scp deploy/qouver-web.container → ~/.config/containers/systemd/ && systemctl --user enable --now qouver-web"
             sleep 2
             systemctl --user --no-pager status qouver-web | head -20 || true
             podman ps --format 'table {{.Names}}\t{{.Image}}\t{{.Status}}\t{{.Ports}}' | grep qouver-web || podman ps

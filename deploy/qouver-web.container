@@ -1,7 +1,7 @@
-# Quadlet unit untuk qouver-web — podman + systemd user (seragam majadu-api)
+# Quadlet unit untuk qouver-web: podman + systemd user (seragam majadu-api)
 # Pasang di VPS: ~/.config/containers/systemd/qouver-web.container
 # lalu: systemctl --user daemon-reload && systemctl --user enable --now qouver-web
-# (pastikan: loginctl enable-linger sachiel — sudah yes di VPS)
+# (pastikan: loginctl enable-linger sachiel, sudah yes di VPS)
 [Unit]
 Description=Qouver Web (qouver.com, static)
 After=network-online.target

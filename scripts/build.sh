@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Build script for qouver_web (Jaspr).
 #
-# Produces build/jaspr/ — a fully static, self-contained site:
+# Produces build/jaspr/ (a fully static, self-contained site):
 #   - prerendered static HTML for every route (SEO: title + meta per page)
 #   - sitemap.xml (auto-generated from the route list)
 #   - static assets (styles.css, q-mark.svg, robots.txt)
@@ -65,7 +65,7 @@ cp web/llms.txt build/jaspr/llms.txt
 # Stamp the deployed version (see VERSION + git tags after repo init).
 cp VERSION build/jaspr/VERSION
 
-# build_runner leaves dev residue in the output — strip it.
+# build_runner leaves dev residue in the output. Strip it.
 echo "→ Cleaning build residue..."
 rm -rf build/jaspr/packages build/jaspr/.dart_tool build/jaspr/.build.manifest
 

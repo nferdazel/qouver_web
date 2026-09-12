@@ -1,4 +1,4 @@
-# Caddyfile for analytics.qouver.com — self-hosted Umami
+# Caddyfile for analytics.qouver.com: self-hosted Umami
 #
 # Umami runs as a podman container on the VPS, published on port 3000
 # (see UMAMI_DEPLOY.md). DNS: analytics.qouver.com → VPS IP.
