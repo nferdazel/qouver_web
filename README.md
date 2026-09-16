@@ -68,6 +68,7 @@ lib/
 test/                    # 23 tests: route smoke, components, data invariants, route paths
 scripts/build.sh         # Release build and static site generation
 scripts/gen-icons.sh     # Rasterises the app icons from q-mark.svg (dev-only, needs Chrome)
+scripts/gen-og-image.sh  # Composes the Open Graph card (dev-only, needs Chrome + cwebp)
 deploy/                  # Caddyfile and Podman container specs
 .github/workflows/       # GitHub Actions CI/CD
 ```
@@ -108,6 +109,16 @@ dart test      # unit and component smoke tests
 ```
 
 This is a dev-only tool. It drives headless Google Chrome (override the binary with `CHROME=/path/to/chrome`), writes `icon-192.png`, `icon-512.png`, `apple-touch-icon.png`, and `maskable-512.png`, and is never invoked by `scripts/build.sh`, which has no browser dependency.
+
+### Regenerating the Open Graph card
+
+`web/assets/og-image.webp` (1200x630) is composed from the same palette and type as the site, so share previews match the page they link to:
+
+```bash
+./scripts/gen-og-image.sh
+```
+
+Also dev-only. It builds the card as HTML, rasterises it with headless Chrome, and encodes it with `cwebp` (install `libwebp` first). The card inlines `web/assets/q-mark.svg` and embeds both variable fonts, so it renders in brand type even on a crawler with no fonts installed. The card text (`Qouver`, `A home for systems and ideas`) is duplicated inside the script on purpose, since a raster cannot read Dart constants; keep it in sync with `lib/site.dart`.
 
 ---
 

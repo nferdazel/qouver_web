@@ -5,17 +5,13 @@ build/
 .DS_Store
 *.log
 
-# local deploy checklist (gitignored, generated dari analisis kesiapan)
+# Internal working notes (intentionally not published).
+# None of these files currently exist on disk; the patterns are kept so the
+# names stay out of the repo if they are recreated. Keep them local only.
 DEPLOY_CHECKLIST.md
-.graphify/
-
-# internal session notes: SSH targets, VPS paths, migration context
-# not appropriate for a public repo; keep locally
 HANDOFF.md
 MIGRATION.md
-
-# internal review/action list
 TASKS.md
-
-# local design direction (kept out of the public repo for now)
 DESIGN.md
+
+.graphify/

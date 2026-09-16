@@ -1,6 +1,6 @@
 # STANDARDS. qouver_web
 
-> **Diperbarui:** 2026-09-12 (revisi besar: kondisi nyata setelah revamp visual "Workshop Broadsheet").
+> **Diperbarui:** 2026-09-16 (sweep: jumlah test, verifikasi header VPS, kepemilikan header).
 > **Konteks standar:** situs statis personal-brand, zero client JS, infra self-hosted
 > (VPS Rocky Linux + Caddy + podman), tim = 1 orang (user), framework Jaspr static mode.
 > **Skala:** ✅ pass · 🟡 partial · ❌ missing · ➖ tidak relevan
@@ -14,9 +14,9 @@
 | Version control | ✅ | Repo publik `nferdazel/qouver_web`, branch `main`. History pernah ditulis ulang untuk scrub IP VPS (lihat §10) |
 | CI/CD | ✅ | `.github/workflows/build.yml`: test → build statis → push GHCR → deploy VPS. Actions di-pin ke commit SHA |
 | Code quality | ✅ | `dart analyze` 0 issue, `dart format` ditegakkan CI, `.editorconfig` ada |
-| Testing | ✅ | 15 test: smoke rute, komponen, invariant data |
+| Testing | ✅ | 23 test: smoke rute, komponen, invariant data, path rute |
 | Build & release | ✅ | Reproducible (`pubspec.lock`), 284K total, zero `.js`, versi `1.0.0` |
-| Deployment & infra | 🟡 | Caddyfile + headers + cache + 404 ada di repo; belum diverifikasi ulang di VPS |
+| Deployment & infra | ✅ | Caddyfile + headers + cache + 404 ada di repo; host edge satu-satunya pemilik header; diverifikasi di VPS 2026-09-16 |
 | Performance | ✅ | Tanpa JS render-blocking, font self-hosted + preload, HTML dominan |
 | Accessibility | ✅ | Skip-link, `:focus-visible`, kontras AA terukur, nav mobile 44px |
 | SEO & analytics | ✅ | SEO lengkap, `llms.txt`, Umami env-gated dan diizinkan CSP (analytics belum di-deploy; allowance inert) |
@@ -69,14 +69,14 @@ Pipeline: `.github/workflows/build.yml`, tiga job.
 
 ## 4. Testing (P1)
 
-15 test, semua hijau.
+23 test, semua hijau.
 
 | Kriteria | Status |
 |---|---|
-| Smoke rute + judul + nav + katalog | ✅ `test/smoke_test.dart` (6) |
-| Komponen (`ProjectCard`, `QMark`, `ProjectDetailPage` fallback) | ✅ `test/component_test.dart` (4) |
-| Invariant data proyek | ✅ `test/projects_data_test.dart` (5) |
-| Rute tak dikenal menampilkan 404 | ✅ |
+| Smoke rute + judul + nav + katalog + 404 | ✅ `test/smoke_test.dart` |
+| Komponen (`ProjectCard`, `QMark`, `ProjectStatusBadge`, `ProjectDetailPage` fallback) | ✅ `test/component_test.dart` |
+| Invariant data proyek (`ProjectStatus`, `stackItems`) | ✅ `test/projects_data_test.dart` |
+| Path rute terpusat | ✅ `test/routes_test.dart` |
 | Test di CI | ✅ |
 
 ## 5. Build & release (P1)
@@ -98,7 +98,7 @@ Pipeline: `.github/workflows/build.yml`, tiga job.
 | Cache policy (HTML `no-cache`, aset `immutable`) | ✅ |
 | Halaman 404 kustom | ✅ `handle_errors` → `/404.html` |
 | Unit podman | ✅ `deploy/qouver-web.container` |
-| Verifikasi header di VPS | 🟡 belum dilakukan dari sesi ini (`curl -I` saat deploy) |
+| Verifikasi header di VPS | ✅ diverifikasi 2026-09-16: tiap header muncul tepat satu kali di `/` dan `/styles.css`; 12/12 URL sitemap 200; 404 benar; gzip aktif (styles.css 25513b → 5023b) |
 | Skrip deploy terpisah | ➖ tidak ada; deploy lewat CI |
 
 ## 7. Performance (P1)
@@ -146,9 +146,9 @@ Pipeline: `.github/workflows/build.yml`, tiga job.
 
 ## 12. Docs & maintenance (✅)
 
-- ✅ Tracked di repo: `README.md`, `STANDARDS.md`, `LICENSE`, `web/llms.txt`, `VERSION`, `deploy/`, `scripts/build.sh`.
-- ➖ `HANDOFF.md` dan `MIGRATION.md` **lokal saja** (gitignored), tidak ada di repo publik. Dokumen ini tidak lagi merujuk keduanya sebagai sumber publik.
-- ✅ Gotcha teknis tercatat di README (PATH SDK, build statis, catatan `jaspr serve`).
+- ✅ Tracked di repo: `README.md`, `STANDARDS.md`, `LICENSE`, `web/llms.txt`, `VERSION`, `deploy/`, `scripts/build.sh`, `scripts/gen-icons.sh`, `scripts/gen-og-image.sh`.
+- ➖ Tidak ada dokumen internal tambahan di repo. `HANDOFF.md`/`MIGRATION.md`/`TASKS.md`/`DESIGN.md` disebut di `.gitignore` tetapi **tidak ada di disk**; `.gitignore` sengaja tidak diubah agar nama itu tetap tidak ikut ter-commit kalau dibuat lagi.
+- ✅ Gotcha teknis tercatat di README (PATH SDK, build statis, catatan `jaspr serve`, cara regenerate ikon + OG).
 
 ## 13. CMS readiness (✅)
 
@@ -161,11 +161,12 @@ Pipeline: `.github/workflows/build.yml`, tiga job.
 
 | Prio | Gap | Aksi | Status |
 |---|---|---|---|
-| P0 | Exposur IP VPS | Kirim permintaan GC ke GitHub Support; aktifkan Cloudflare proxy atau ganti IP | 🔜 butuh aksi user |
-| P0 | Kredensial plaintext server | Rotasi sudo/Telegram/Kuma; simpan di password manager | 🔜 butuh aksi user |
-| P1 | Verifikasi header di VPS | `curl -I https://qouver.com` setelah deploy | 🟡 |
-| P1 | Klik-through browser | Cek keyboard, fokus, dan 360px di browser | 🟡 |
+| P0 | Exposur IP VPS | Kirim permintaan GC ke GitHub Support; aktifkan Cloudflare proxy atau ganti IP | ⏸️ ditunda sengaja 2026-09-16 (pernah bikin situs down; urutan aman ada di catatan lokal) |
+| P0 | Kredensial plaintext server | Rotasi sudo/Telegram/Kuma; simpan di password manager | ⏸️ ditunda |
+| P1 | Klik-through browser | Cek keyboard, fokus, dan 360px di browser | 🟡 butuh aksi user |
+| P1 | Verifikasi header di VPS | `curl -I https://qouver.com` setelah deploy | ✅ 2026-09-16 |
 | P1 | Rute journal/404 belum diuji penuh | Sudah ditambah di smoke test | ✅ |
+| P1 | Duplikasi security header | Host jadi owner tunggal; container tidak memasang header | ✅ 2026-09-16 |
 | P2 | Tag rilis git | Tag semver saat rilis bermakna | ❌ |
 | P2 | Lighthouse CI / budget performa | Opsional | ❌ |
 | P2 | Runbook monitoring | Dokumentasikan monitor uptime + SSL | ❌ |
