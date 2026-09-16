@@ -35,24 +35,8 @@ void main() {
     Document(
       title: '$siteName · $siteTagline',
       lang: 'en',
-      meta: {'description': siteDescription},
+      meta: {'description': siteDescription, 'theme-color': '#EDEAE3'},
       head: [
-        // Address bar tint, matching the page surface in each mode. Two tags
-        // with a `media` attribute, which is plain HTML and needs no script.
-        meta(
-          attributes: {
-            'name': 'theme-color',
-            'content': '#EDEAE3',
-            'media': '(prefers-color-scheme: light)',
-          },
-        ),
-        meta(
-          attributes: {
-            'name': 'theme-color',
-            'content': '#141311',
-            'media': '(prefers-color-scheme: dark)',
-          },
-        ),
         link(rel: 'icon', type: 'image/svg+xml', href: 'assets/q-mark.svg'),
         link(
           rel: 'apple-touch-icon',

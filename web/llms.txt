@@ -22,5 +22,4 @@ zero client-side JavaScript.
 - Fully static site built with the Jaspr framework (Dart), prerendered at build time.
 - Every page ships title + meta description + canonical + OpenGraph tags, server-side.
 - No client-side JavaScript: content is readable by any crawler without rendering.
-- Supports light and dark mode through the CSS `prefers-color-scheme` media query. There is no theme toggle, because a toggle would require JavaScript and storage.
 - sitemap.xml is generated at build time from the route list.

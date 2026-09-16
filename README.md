@@ -143,7 +143,6 @@ The `Content-Security-Policy` shipped in `deploy/` already allows `analytics.qou
 - **Palette:** bone paper (`#EDEAE3`), ink (`#141311`), oxide accent (`#B23A1A`).
 - **Typography:** Fraunces for display, Archivo for structure and body, self-hosted as variable `.woff2` (latin subset).
 - **Design language:** "Workshop Broadsheet", an industrial spec sheet with an editorial voice: hard 2px rules, square corners, oversized index numerals, and full-bleed ink sections.
-- **Dark mode:** follows the OS setting via `prefers-color-scheme`, with no toggle and no JavaScript. The palette is the light one inverted, so contrast carries over (ink on paper is 15.45:1 in both modes) and the oxide accent improves in dark (4.98:1 to 6.05:1). A toggle would need script and storage, which would break the zero-JS property, so it is deliberately absent.
 - **Icon set:** every surface (browser tab, bookmark, install prompt, home screen) renders the same mark. `web/assets/q-mark.svg` is the source of truth; the raster icons in `web/assets/icons/` are generated from it, not drawn separately, so they cannot drift out of sync.
 
 ---

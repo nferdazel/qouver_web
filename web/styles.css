@@ -53,71 +53,6 @@
 }
 
 /* --------------------------------------------------------------------------
-   1b. Dark mode
-
-   Follows the OS setting. Deliberately has no toggle: a toggle needs
-   JavaScript and storage, and this site ships zero client JS, so a control
-   would break the one property the project is built to advertise.
-
-   Every value below was contrast-checked against the surface it sits on. The
-   palette is the light one inverted rather than a separate invention, which
-   is why the ratios come out almost identical: ink on paper is 15.45:1 in
-   both modes, and the accent actually improves in dark (4.98:1 to 6.05:1).
-   -------------------------------------------------------------------------- */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Surfaces & text, inverted. The page surface is the old ink, so the
-       warm near-black stays on-brand instead of a neutral grey. */
-    --paper: #141311;
-    --paper-2: #1c1a17;
-    --ink: #edeae3;
-    --ink-2: #b8b3a8;
-    --ink-3: #948e82;
-    --rule: #3a3733;
-
-    /* The oxide accent is lightened for text on the dark page: #b23a1a only
-       reaches 2.55:1 against the dark surface, whereas this reaches 6.05:1
-       and still reads as the same oxide. */
-    --accent: #e8704a;
-
-    /* "on-dark" tokens are used *inside* the deep sections. In dark mode those
-       sections invert to a light plate, so these must be dark to stay legible.
-       Applying the light-mode values here would give 1:1, i.e. invisible. */
-    --on-dark: #141311;
-    --on-dark-2: #4a4843;
-
-    /* The bright signal orange is tuned for a dark background. The only two
-       uses are inside `.manifesto`, which is the deep section and therefore a
-       light plate in this mode, where it measures 2.36:1 and fails. The
-       overrides below put the darker oxide back inside that section. */
-    --signal: #ff6b35;
-
-    /* Native controls and scrollbars follow the surface. */
-    color-scheme: dark;
-  }
-
-  /* The deep sections keep their ink fill, which now reads as a bright plate.
-     Hover text must therefore darken, not go to white: #fff against the light
-     plate is 1.20:1 and disappears. */
-  .link--dark:hover,
-  .link-action--light:hover,
-  .footer__col a:hover {
-    color: var(--ink);
-  }
-
-  .link-action--light:hover {
-    border-color: var(--ink);
-  }
-
-  /* The oxide dot and accent details sit on the light plate in dark mode, so
-     they need the darker oxide to stay visible (4.98:1 against it). */
-  .link--dark,
-  .link-action--light {
-    color: var(--on-dark);
-  }
-}
-
-/* --------------------------------------------------------------------------
    2. Reset & base
    -------------------------------------------------------------------------- */
 *,
@@ -1390,28 +1325,4 @@ h3,
 
 .q-mark__dot--accent {
   fill: var(--accent);
-}
-
-/* --------------------------------------------------------------------------
-   99. Dark mode overrides that depend on source order
-
-   These must come after the rules they override, not with the rest of the
-   dark-mode block near the top. `.manifesto__quote em` sets `--signal` at
-   line ~1279, so a `prefers-color-scheme` override placed before it loses on
-   order despite matching. Keeping them last makes that impossible to get
-   wrong by accident.
-   -------------------------------------------------------------------------- */
-@media (prefers-color-scheme: dark) {
-  /* The deep section is a light plate in this mode, so the accent inside it
-     must be the darker oxide. The bright signal orange measures 2.36:1 there
-     and fails the 3:1 large-text floor; this reaches 4.98:1. */
-  .manifesto__quote em {
-    color: #b23a1a;
-  }
-
-  .manifesto .contact-row__value a:hover,
-  .manifesto .contact-row__value a:focus-visible {
-    color: #b23a1a;
-    border-color: #b23a1a;
-  }
 }
