@@ -18,7 +18,7 @@
 | Build & release | ✅ | Reproducible (`pubspec.lock`), 284K total, zero `.js`, versi `1.0.0` |
 | Deployment & infra | ✅ | Caddyfile + headers + cache + 404 ada di repo; host edge satu-satunya pemilik header; diverifikasi di VPS 2026-09-16 |
 | Performance | ✅ | Tanpa JS render-blocking, font self-hosted + preload, HTML dominan |
-| Accessibility | ✅ | Skip-link, `:focus-visible`, kontras AA terukur, nav mobile 44px |
+| Accessibility | ✅ | Skip-link, `:focus-visible`, kontras AA terukur, nav mobile 44px, dark mode mengikuti OS (700 pemeriksaan kontras bersih) |
 | SEO & analytics | ✅ | SEO lengkap, `llms.txt`, Umami env-gated dan diizinkan CSP (analytics belum di-deploy; allowance inert) |
 | Security | 🟡 | Tidak ada secret di repo; origin IP masih publik via DNS, rotasi kredensial pending |
 | Observability | 🟡 | Situs statis; monitoring manual/eksternal, belum ada runbook di repo |
@@ -117,8 +117,9 @@ Pipeline: `.github/workflows/build.yml`, tiga job.
 | Skip-link "Skip to content" | ✅ |
 | `:focus-visible` global | ✅ |
 | `aria-hidden` pada dekorasi (Q mark) | ✅ |
-| Kontras AA terukur | ✅ ink 15.45, ink-2 7.60, ink-3 5.55, accent 4.98 (paper); on-dark 10.67, on-dark-2 5.40, signal 4.72 large (ink) |
-| Nav mobile + tap target 44px | ✅ (header bertumpuk di bawah 640px) |
+| Kontras AA terukur | ✅ ink 15.45, ink-2 7.60, ink-3 5.55, accent 4.98 (paper); on-dark 10.67, on-dark-2 5.40, signal 4.72 large (ink). Dark mode: 350 elemen berteks × 2 mode = 700 pemeriksaan, 0 gagal |
+| Nav mobile + tap target 44px | ✅ (header bertumpuk di bawah 640px). ⚠️ Link di footer dan `Back to home` masih <44px; bukan regresi dark mode, sudah ada sebelumnya, belum diperbaiki |
+| Dark mode | ✅ `prefers-color-scheme`, tanpa JS dan tanpa toggle. 32 kombinasi (8 halaman × 4 lebar) tanpa overflow horizontal |
 | `prefers-reduced-motion` | ✅ |
 | Klik-through browser (keyboard + 360px) | 🟡 belum dilakukan |
 

@@ -55,10 +55,14 @@ class JournalDetailPage extends StatelessComponent {
               code([.text(article.codeSnippet!)]),
             ]),
         ]),
-        div(classes: 'mt-3 pt-3 divider', [
+        // The rule is its own element. It used to be a wrapper around the link
+        // below, but .divider sets a 2px ink background, so putting a child in
+        // it painted ink-on-ink and the link measured 1:1, i.e. invisible.
+        div(classes: 'divider mt-3', []),
+        div(classes: 'pt-3', [
           Link(
             to: Routes.journal,
-            classes: 'link',
+            classes: 'link link--dim',
             child: .text('← Back to all articles'),
           ),
         ]),
