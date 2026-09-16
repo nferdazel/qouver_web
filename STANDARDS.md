@@ -19,7 +19,7 @@
 | Deployment & infra | 🟡 | Caddyfile + headers + cache + 404 ada di repo; belum diverifikasi ulang di VPS |
 | Performance | ✅ | Tanpa JS render-blocking, font self-hosted + preload, HTML dominan |
 | Accessibility | ✅ | Skip-link, `:focus-visible`, kontras AA terukur, nav mobile 44px |
-| SEO & analytics | ✅ | SEO lengkap, `llms.txt`, Umami env-gated dan kini diizinkan CSP |
+| SEO & analytics | ✅ | SEO lengkap, `llms.txt`, Umami env-gated dan diizinkan CSP (analytics belum di-deploy; allowance inert) |
 | Security | 🟡 | Tidak ada secret di repo; origin IP masih publik via DNS, rotasi kredensial pending |
 | Observability | 🟡 | Situs statis; monitoring manual/eksternal, belum ada runbook di repo |
 | Docs & maintenance | ✅ | README, STANDARDS, LICENSE, `llms.txt`, VERSION (tracked). HANDOFF/MIGRATION lokal saja |
@@ -132,7 +132,7 @@ Pipeline: `.github/workflows/build.yml`, tiga job.
 
 - ✅ Tidak ada secret di tracked files maupun di history (diverifikasi).
 - ✅ Dependency ter-pin (`pubspec.lock`).
-- ✅ Security headers + CSP di Caddyfile.
+- ✅ Security headers + CSP di Caddyfile. ⚠️ Header yang sama dikirim dua kali (container + host); identik dan tidak merusak, tapi browser menegakkan irisan sehingga salinan basi bisa menang diam-diam. Satu owner harus dipilih.
 - ✅ Actions CI di-pin ke SHA.
 - ⚠️ **Exposure IP VPS.** IP pernah ada di history dan sudah di-scrub, tetapi origin masih dapat ditemukan lewat DNS (`dig qouver.com`). Scrub history bersifat kosmetik sampai origin disembunyikan (Cloudflare proxy) atau IP diganti. GitHub masih dapat menyajikan blob lama lewat API sampai di-GC oleh Support.
 - ⚠️ **Kredensial server.** Ada kredensial plaintext di dokumen server di luar repo (`~/Projects/SERVER_STATE.md`) dan salinannya ikut backup. Rotasi (sudo, token Telegram, password Kuma) belum dilakukan.

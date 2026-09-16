@@ -121,7 +121,7 @@ UMAMI_WEBSITE_ID="<your-website-id>" \
 ./scripts/build.sh
 ```
 
-The `Content-Security-Policy` shipped in `deploy/` already allows `analytics.qouver.com` in `script-src` and `connect-src`, so no further edge change is needed; when analytics is not enabled the allowance is inert.
+The `Content-Security-Policy` shipped in `deploy/` already allows `analytics.qouver.com` in `script-src` and `connect-src`, so enabling the snippet needs no CSP edit; when analytics is not enabled the allowance is inert. Note that the host edge in `deploy/Caddyfile.qouver.com` and the container edge in `deploy/Caddyfile.qouver-web.docker` both set the security headers. They must stay identical, because a browser enforces the intersection of duplicate headers, so the stricter copy wins silently. Prefer dropping one set: the host edge is the natural owner, since it already terminates TLS and sets caching.
 
 ---
 
