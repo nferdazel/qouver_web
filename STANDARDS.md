@@ -132,7 +132,7 @@ Pipeline: `.github/workflows/build.yml`, tiga job.
 
 - ✅ Tidak ada secret di tracked files maupun di history (diverifikasi).
 - ✅ Dependency ter-pin (`pubspec.lock`).
-- ✅ Security headers + CSP di Caddyfile. ⚠️ Header yang sama dikirim dua kali (container + host); identik dan tidak merusak, tapi browser menegakkan irisan sehingga salinan basi bisa menang diam-diam. Satu owner harus dipilih.
+- ✅ Security headers + CSP di Caddyfile. Satu owner: host edge. Container tidak memasang header lagi (dulu dobel, dan karena browser menegakkan irisan, salinan basi bisa menang diam-diam).
 - ✅ Actions CI di-pin ke SHA.
 - ⚠️ **Exposure IP VPS.** IP pernah ada di history dan sudah di-scrub, tetapi origin masih dapat ditemukan lewat DNS (`dig qouver.com`). Scrub history bersifat kosmetik sampai origin disembunyikan (Cloudflare proxy) atau IP diganti. GitHub masih dapat menyajikan blob lama lewat API sampai di-GC oleh Support.
 - ⚠️ **Kredensial server.** Ada kredensial plaintext di dokumen server di luar repo (`~/Projects/SERVER_STATE.md`) dan salinannya ikut backup. Rotasi (sudo, token Telegram, password Kuma) belum dilakukan.
