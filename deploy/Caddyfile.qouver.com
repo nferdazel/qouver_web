@@ -10,6 +10,12 @@ qouver.com {
     reverse_proxy 127.0.0.1:3002
 
     # --- Security headers ---------------------------------------------------
+    # The host is the single owner of these headers. The container does not set
+    # any: two headers with the same name are enforced as an intersection, not
+    # merged, so a stale copy silently overrides the correct one. That is
+    # exactly what happened when this file was updated but the running host
+    # config was not, and the old CSP kept blocking analytics while the
+    # container's policy was already correct.
     header {
         Strict-Transport-Security "max-age=31536000; includeSubDomains"
         X-Content-Type-Options "nosniff"
