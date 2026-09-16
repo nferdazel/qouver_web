@@ -42,7 +42,7 @@ Quality standards and audit history live in [`STANDARDS.md`](STANDARDS.md).
 ## Stack & Infrastructure
 
 - **Framework:** `jaspr` 0.23.x with `jaspr_router` 0.8.x (static multi-page routing)
-- **Rendering:** static mode; `jaspr build` pre-renders all 13 routes, plus `sitemap.xml`, `robots.txt`, and `llms.txt`
+- **Rendering:** static mode; `jaspr build` pre-renders every route to HTML (12 public pages listed in `sitemap.xml`, plus a `404.html`), along with `sitemap.xml`, `robots.txt`, and `llms.txt`
 - **Typography:** self-hosted Fraunces (display) and Archivo (structure, body, labels) variable fonts, latin subset; no third-party font requests
 - **Design system:** "Workshop Broadsheet": bone paper (`#EDEAE3`), ink (`#141311`), oxide accent (`#B23A1A`); square corners, hard rules, hover-only motion
 - **Deployment:** containerized `qouver-web` (Podman) on a Linux VPS behind a Caddy TLS reverse proxy
@@ -92,7 +92,7 @@ dart run jaspr_cli:jaspr serve
 # Output: build/jaspr/ (HTML routes, sitemap.xml, robots.txt, styles.css)
 ```
 
-The build compiles all 13 routes in-process with no headless-browser dependency, generates the sitemap, copies static assets, and cleans dev artifacts.
+The build compiles every route in-process with no headless-browser dependency, generates the sitemap from the route list, copies static assets, and cleans dev artifacts.
 
 ### Testing and analysis
 
