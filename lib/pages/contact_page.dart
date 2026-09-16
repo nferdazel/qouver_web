@@ -2,6 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
 import '../seo.dart';
+import '../site.dart';
 
 class ContactPage extends StatelessComponent {
   const ContactPage({super.key});
@@ -28,11 +29,9 @@ class ContactPage extends StatelessComponent {
           div(classes: 'contact-list', [
             div(classes: 'contact-row', [
               span(classes: 'contact-row__label', [.text('Email')]),
-              a(
-                classes: 'contact-row__value',
-                href: 'mailto:hello@qouver.com',
-                [.text('hello@qouver.com')],
-              ),
+              a(classes: 'contact-row__value', href: 'mailto:$contactEmail', [
+                .text(contactEmail),
+              ]),
               span(classes: 'contact-row__note', [
                 .text('Replies within a day or two'),
               ]),
@@ -41,7 +40,7 @@ class ContactPage extends StatelessComponent {
               span(classes: 'contact-row__label', [.text('GitHub (org)')]),
               a(
                 classes: 'contact-row__value',
-                href: 'https://github.com/qouver',
+                href: githubOrgUrl,
                 target: Target.blank,
                 attributes: {'rel': 'noopener'},
                 [.text('github.com/qouver')],
@@ -53,7 +52,7 @@ class ContactPage extends StatelessComponent {
               ]),
               a(
                 classes: 'contact-row__value',
-                href: 'https://github.com/nferdazel',
+                href: githubMaintainerUrl,
                 target: Target.blank,
                 attributes: {'rel': 'noopener'},
                 [.text('github.com/nferdazel')],

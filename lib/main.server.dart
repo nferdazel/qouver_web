@@ -14,6 +14,7 @@ import 'app.dart';
 // This file is generated automatically by Jaspr, do not remove or edit.
 // ignore: uri_has_not_been_generated
 import 'main.server.options.dart';
+import 'site.dart';
 
 /// The Umami tracking script URL, from the `UMAMI_SCRIPT_URL` env var.
 ///
@@ -32,13 +33,9 @@ void main() {
   // with the provided parameters and components.
   runApp(
     Document(
-      title: 'Qouver · A home for systems and ideas',
+      title: '$siteName · $siteTagline',
       lang: 'en',
-      meta: {
-        'description':
-            'Qouver finds overlooked opportunities, turns them into useful systems, and shares what it learns. A home for systems and ideas.',
-        'theme-color': '#EDEAE3',
-      },
+      meta: {'description': siteDescription, 'theme-color': '#EDEAE3'},
       head: [
         link(rel: 'icon', type: 'image/svg+xml', href: 'assets/q-mark.svg'),
         link(

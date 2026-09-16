@@ -6,7 +6,9 @@ import 'package:jaspr_router/jaspr_router.dart';
 
 import '../components/project_card.dart';
 import '../data/projects.dart' as data;
+import '../routes.dart';
 import '../seo.dart';
+import '../site.dart';
 
 class HomePage extends StatelessComponent {
   const HomePage({super.key});
@@ -15,9 +17,8 @@ class HomePage extends StatelessComponent {
   Component build(BuildContext context) {
     return Component.fragment([
       pageHead(
-        title: 'Qouver · A home for systems and ideas',
-        description:
-            'Qouver finds overlooked opportunities, turns them into useful systems, and shares what it learns. A home for systems and ideas.',
+        title: '$siteName · $siteTagline',
+        description: siteDescription,
         path: '/',
       ),
       script(
@@ -29,9 +30,8 @@ class HomePage extends StatelessComponent {
             'name': 'Qouver',
             'url': siteUrl,
             'logo': '$siteUrl/assets/q-mark.svg',
-            'email': 'hello@qouver.com',
-            'description':
-                'Qouver finds overlooked opportunities, turns them into useful systems, and shares what it learns. A home for systems and ideas.',
+            'email': contactEmail,
+            'description': siteDescription,
             'sameAs': [
               'https://github.com/qouver',
               'https://github.com/nferdazel',
@@ -55,11 +55,7 @@ class HomePage extends StatelessComponent {
             .text('Built from what others '),
             em([.text('leave behind.')]),
           ]),
-          p(classes: 'lead hero__lead', [
-            .text(
-              'Qouver finds overlooked opportunities, turns them into useful systems, and shares what it learns. A home for systems and ideas.',
-            ),
-          ]),
+          p(classes: 'lead hero__lead', [.text(siteDescription)]),
         ]),
       ]),
 
@@ -104,7 +100,7 @@ class HomePage extends StatelessComponent {
         ]),
         div(classes: 'mt-2', [
           Link(
-            to: '/projects',
+            to: Routes.projects,
             classes: 'btn btn--secondary',
             child: .text('All Systems'),
           ),
@@ -122,7 +118,7 @@ class HomePage extends StatelessComponent {
           div(classes: 'manifesto__row', [
             span(classes: 'manifesto__lbl', [.text('Operational Manifesto')]),
             Link(
-              to: '/about',
+              to: Routes.about,
               classes: 'link-action link-action--light',
               child: .text('Read the story'),
             ),

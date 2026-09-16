@@ -1,6 +1,5 @@
-import 'package:test/test.dart';
-
 import 'package:qouver_web/data/projects.dart';
+import 'package:test/test.dart';
 
 void main() {
   test('project indexes are unique and sequential', () {
@@ -33,5 +32,18 @@ void main() {
         expect(p.urlLabel, isNotEmpty, reason: '${p.name} urlLabel');
       }
     }
+  });
+
+  test('every project carries a labelled ProjectStatus', () {
+    for (final p in projects) {
+      expect(ProjectStatus.values, contains(p.status), reason: p.name);
+      expect(p.status.label, isNotEmpty, reason: '${p.name} status label');
+    }
+  });
+
+  test('stackItems splits the middot-separated stack string', () {
+    final skyward = projects.firstWhere((p) => p.slug == 'skyward');
+
+    expect(skyward.stackItems, ['Flutter', 'Go', 'Postgres']);
   });
 }

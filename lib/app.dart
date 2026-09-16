@@ -11,6 +11,8 @@ import 'pages/journal_page.dart';
 import 'pages/not_found_page.dart';
 import 'pages/project_detail_page.dart';
 import 'pages/projects_page.dart';
+import 'routes.dart';
+import 'site.dart';
 
 /// The main component of the application.
 ///
@@ -28,7 +30,7 @@ class App extends StatelessComponent {
       header(classes: 'site-header', [
         div(classes: 'container site-header__inner', [
           Link(
-            to: '/',
+            to: Routes.home,
             classes: 'brand',
             attributes: {'aria-label': 'Qouver, home'},
             children: [
@@ -40,10 +42,10 @@ class App extends StatelessComponent {
             classes: 'nav',
             attributes: {'aria-label': 'Primary'},
             [
-              _navLink('Projects', '/projects', path),
-              _navLink('Journal', '/journal', path),
-              _navLink('About', '/about', path),
-              _navLink('Contact', '/contact', path),
+              _navLink('Projects', Routes.projects, path),
+              _navLink('Journal', Routes.journal, path),
+              _navLink('About', Routes.about, path),
+              _navLink('Contact', Routes.contact, path),
             ],
           ),
         ]),
@@ -55,60 +57,63 @@ class App extends StatelessComponent {
           // the `<title>` during static generation. `Route.title` is not used in
           // the output, so it is omitted to keep one source of truth.
           routes: [
-            Route(path: '/', builder: (context, state) => const HomePage()),
             Route(
-              path: '/projects',
+              path: Routes.home,
+              builder: (context, state) => const HomePage(),
+            ),
+            Route(
+              path: Routes.projects,
               builder: (context, state) => const ProjectsPage(),
             ),
             Route(
-              path: '/projects/skyward',
+              path: Routes.project('skyward'),
               builder: (context, state) =>
                   const ProjectDetailPage(slug: 'skyward'),
             ),
             Route(
-              path: '/projects/majadu',
+              path: Routes.project('majadu'),
               builder: (context, state) =>
                   const ProjectDetailPage(slug: 'majadu'),
             ),
             Route(
-              path: '/projects/sds',
+              path: Routes.project('sds'),
               builder: (context, state) => const ProjectDetailPage(slug: 'sds'),
             ),
             Route(
-              path: '/projects/mdef',
+              path: Routes.project('mdef'),
               builder: (context, state) =>
                   const ProjectDetailPage(slug: 'mdef'),
             ),
             Route(
-              path: '/journal',
+              path: Routes.journal,
               builder: (context, state) => const JournalPage(),
             ),
             Route(
-              path: '/journal/authoritative-go-simulations',
+              path: Routes.article('authoritative-go-simulations'),
               builder: (context, state) =>
                   const JournalDetailPage(slug: 'authoritative-go-simulations'),
             ),
             Route(
-              path: '/journal/zero-js-static-jaspr',
+              path: Routes.article('zero-js-static-jaspr'),
               builder: (context, state) =>
                   const JournalDetailPage(slug: 'zero-js-static-jaspr'),
             ),
             Route(
-              path: '/journal/systems-prospector-manifesto',
+              path: Routes.article('systems-prospector-manifesto'),
               builder: (context, state) =>
                   const JournalDetailPage(slug: 'systems-prospector-manifesto'),
             ),
             Route(
-              path: '/about',
+              path: Routes.about,
               builder: (context, state) => const AboutPage(),
             ),
             Route(
-              path: '/contact',
+              path: Routes.contact,
               builder: (context, state) => const ContactPage(),
             ),
             // Generates the static /404.html that Caddy serves for missing paths.
             Route(
-              path: '/404.html',
+              path: Routes.notFound,
               builder: (context, state) => const NotFoundPage(),
             ),
           ],
@@ -139,7 +144,7 @@ class _SiteFooter extends StatelessComponent {
         div(classes: 'site-footer__top', [
           div([
             Link(
-              to: '/',
+              to: Routes.home,
               classes: 'site-footer__brand',
               attributes: {'aria-label': 'Qouver, home'},
               children: [
@@ -148,7 +153,7 @@ class _SiteFooter extends StatelessComponent {
                   classes: 'brand__mark',
                   accentDot: true,
                 ),
-                span(classes: 'brand__word', [.text('Qouver')]),
+                span(classes: 'brand__word', [.text(siteName)]),
               ],
             ),
             p(classes: 'footer__tagline', [
@@ -161,23 +166,21 @@ class _SiteFooter extends StatelessComponent {
             div(classes: 'footer__col', [
               h4([.text('Index')]),
               ul([
-                li([Link(to: '/projects', child: .text('Projects'))]),
-                li([Link(to: '/journal', child: .text('Journal'))]),
-                li([Link(to: '/about', child: .text('About'))]),
-                li([Link(to: '/contact', child: .text('Contact'))]),
+                li([Link(to: Routes.projects, child: .text('Projects'))]),
+                li([Link(to: Routes.journal, child: .text('Journal'))]),
+                li([Link(to: Routes.about, child: .text('About'))]),
+                li([Link(to: Routes.contact, child: .text('Contact'))]),
               ]),
             ]),
             div(classes: 'footer__col', [
               h4([.text('Contact')]),
               ul([
                 li([
-                  a(href: 'mailto:hello@qouver.com', [
-                    .text('hello@qouver.com'),
-                  ]),
+                  a(href: 'mailto:$contactEmail', [.text(contactEmail)]),
                 ]),
                 li([
                   a(
-                    href: 'https://github.com/qouver',
+                    href: githubOrgUrl,
                     target: Target.blank,
                     attributes: {'rel': 'noopener'},
                     [.text('github.com/qouver')],
@@ -185,7 +188,7 @@ class _SiteFooter extends StatelessComponent {
                 ]),
                 li([
                   a(
-                    href: 'https://github.com/nferdazel',
+                    href: githubMaintainerUrl,
                     target: Target.blank,
                     attributes: {'rel': 'noopener'},
                     [.text('github.com/nferdazel')],

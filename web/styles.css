@@ -145,9 +145,6 @@ a {
   background: var(--ink);
 }
 
-.mt-1 {
-  margin-top: var(--s-3);
-}
 .mt-2 {
   margin-top: var(--s-6);
 }
@@ -776,10 +773,18 @@ h3,
   border-bottom: 1px solid var(--rule);
 }
 
+/* Meta rail: one aligned row on phone, a stacked rail from 640px up. */
 .journal-item__side {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: baseline;
+  column-gap: var(--s-3);
+  row-gap: var(--s-1);
+}
+
+.journal-item__tag {
+  display: inline-flex;
+  align-items: baseline;
   gap: var(--s-2);
 }
 
@@ -830,7 +835,18 @@ h3,
   .journal-item__side {
     flex-direction: column;
     align-items: flex-start;
+    gap: var(--s-2);
+  }
+
+  .journal-item__tag {
+    flex-direction: column;
+    align-items: flex-start;
     gap: var(--s-1);
+  }
+
+  /* The middot is a single-row separator, so it is dropped in the stacked rail. */
+  .journal-item__dot {
+    display: none;
   }
 }
 
@@ -1060,6 +1076,17 @@ h3,
   padding: 0.1em 0.3em;
   background: var(--paper-2);
   border: 1px solid var(--rule);
+}
+
+/* On phones the widest code lines cannot fit, so wrap them instead of
+   trapping the reader in a nested horizontal scroll. */
+@media (max-width: 480px) {
+  .article-reader__body pre {
+    padding: var(--s-4);
+    font-size: 0.75rem;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
 }
 
 /* --------------------------------------------------------------------------

@@ -17,6 +17,17 @@ class CaseStudy {
   });
 }
 
+/// Publication state of a project, with the label shown in the status stamp.
+enum ProjectStatus {
+  live('Live'),
+  backend('Backend'),
+  archived('Archived');
+
+  const ProjectStatus(this.label);
+
+  final String label;
+}
+
 /// Project catalogue for the Qouver umbrella.
 ///
 /// Facts verified 2026-09-03 from ~/Projects/* + live endpoints:
@@ -34,7 +45,7 @@ class Project {
   final String tagline;
   final String description;
   final List<String> focus;
-  final String status;
+  final ProjectStatus status;
   final String stack;
   final String? url;
   final String urlLabel;
@@ -54,6 +65,14 @@ class Project {
     this.urlLabel = 'VISIT',
     this.caseStudy,
   });
+
+  /// Stack entries for compact display, split from the middot-separated
+  /// [stack] string.
+  List<String> get stackItems => stack
+      .split('·')
+      .map((item) => item.trim())
+      .where((item) => item.isNotEmpty)
+      .toList(growable: false);
 }
 
 const projects = <Project>[
@@ -66,7 +85,7 @@ const projects = <Project>[
     description:
         'Run your own airline: build a fleet, open routes, and grow an economy that keeps moving while you\'re away. The whole world runs on a server-side simulation engine, so your device just plays it and everything stays fair and consistent. Live now at skyward.qouver.com.',
     focus: ['Simulation', 'Strategy', 'Systems design'],
-    status: 'Live',
+    status: ProjectStatus.live,
     stack: 'Flutter · Go · Postgres',
     url: 'https://skyward.qouver.com',
     caseStudy: CaseStudy(
@@ -104,7 +123,7 @@ const projects = <Project>[
     description:
         'The backend that keeps a badminton community running: court scheduling, live scoring, tournaments, and skill ratings that carry across seasons. Qouver builds and operates the Go API behind it, in production today. The mobile app is community-maintained.',
     focus: ['Scheduling', 'Live scoring', 'Ratings', 'Community growth'],
-    status: 'Backend',
+    status: ProjectStatus.backend,
     stack: 'Go · Postgres · OpenAPI',
     url: 'https://api.qouver.com/majadu',
     urlLabel: 'API',
@@ -143,7 +162,7 @@ const projects = <Project>[
     description:
         'A compliance tool that keeps chemical safety data sheets current and auditable: versioned documents, hazard pictograms, and clean PDF exports. In production for a real workplace.',
     focus: ['Compliance', 'Documentation', 'Workflow'],
-    status: 'Live',
+    status: ProjectStatus.live,
     stack: 'Vue · Go · Postgres',
     url: 'https://sds.qouver.com',
     caseStudy: CaseStudy(
@@ -181,7 +200,7 @@ const projects = <Project>[
     description:
         'A leaderboard and analytics platform built for a real badminton community, powered by a custom rating engine that weighed how convincingly you won and kept ratings honest when players went quiet. It ran in production with live rankings and seasonal standings; its ideas now live on inside Majadu.',
     focus: ['Ranking systems', 'Statistics', 'Community insights'],
-    status: 'Archived',
+    status: ProjectStatus.archived,
     stack: 'Flutter · Supabase / Postgres',
     caseStudy: CaseStudy(
       title: 'Lessons from an Early Badminton Analytics Engine',

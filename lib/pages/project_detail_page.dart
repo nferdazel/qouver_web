@@ -2,7 +2,9 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
+import '../components/project_status_badge.dart';
 import '../data/projects.dart' as data;
+import '../routes.dart';
 import '../seo.dart';
 
 /// Renders a static technical case study page for a specific project.
@@ -22,7 +24,7 @@ class ProjectDetailPage extends StatelessComponent {
         h1(classes: 'page-title', [.text('Case study not found.')]),
         div(classes: 'mt-3', [
           Link(
-            to: '/projects',
+            to: Routes.projects,
             classes: 'link',
             child: .text('← All projects'),
           ),
@@ -31,22 +33,20 @@ class ProjectDetailPage extends StatelessComponent {
     }
 
     final cs = project.caseStudy!;
-    final statusClass = switch (project.status) {
-      'Live' =>
-        'badge badge--live project-card__status project-card__status--live',
-      'Archived' => 'badge project-card__status project-card__status--archived',
-      _ => 'badge project-card__status',
-    };
 
     return Component.fragment([
       pageHead(
         title: '${project.name} · Technical Case Study · Qouver',
         description: cs.overview,
-        path: '/projects/${project.slug}',
+        path: Routes.project(project.slug),
       ),
       section(classes: 'page-head container', [
         div(classes: 'page-head__meta', [
-          Link(to: '/projects', classes: 'link', child: .text('← Projects')),
+          Link(
+            to: Routes.projects,
+            classes: 'link',
+            child: .text('← Projects'),
+          ),
           span(classes: 'label', [.text('Case Study')]),
         ]),
         h1(classes: 'page-title', [.text(project.name)]),
@@ -60,7 +60,7 @@ class ProjectDetailPage extends StatelessComponent {
           ]),
           div(classes: 'project-detail__meta-item', [
             span(classes: 'label', [.text('Status')]),
-            span(classes: statusClass, [.text(project.status)]),
+            ProjectStatusBadge(status: project.status),
           ]),
           div(classes: 'project-detail__meta-item', [
             span(classes: 'label', [.text('Stack')]),
@@ -127,7 +127,7 @@ class ProjectDetailPage extends StatelessComponent {
           ]),
           div(classes: 'manifesto__row', [
             Link(
-              to: '/projects',
+              to: Routes.projects,
               classes: 'link link--dark',
               child: .text('← Back to all projects'),
             ),

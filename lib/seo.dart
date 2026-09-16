@@ -1,10 +1,7 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 
-/// Site-wide SEO constants.
-const siteName = 'Qouver';
-const siteUrl = 'https://qouver.com';
-const ogImageUrl = '$siteUrl/assets/og-image.webp';
+import 'site.dart';
 
 /// Builds the per-page `<head>` metadata: title, meta description, canonical,
 /// OpenGraph and Twitter card tags.

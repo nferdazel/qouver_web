@@ -15,7 +15,7 @@
 | CI/CD | ✅ | `.github/workflows/build.yml`: test → build statis → push GHCR → deploy VPS. Actions di-pin ke commit SHA |
 | Code quality | ✅ | `dart analyze` 0 issue, `dart format` ditegakkan CI, `.editorconfig` ada |
 | Testing | ✅ | 15 test: smoke rute, komponen, invariant data |
-| Build & release | ✅ | Reproducible (`pubspec.lock`), 328K total, zero `.js`, versi `1.0.0` |
+| Build & release | ✅ | Reproducible (`pubspec.lock`), 284K total, zero `.js`, versi `1.0.0` |
 | Deployment & infra | 🟡 | Caddyfile + headers + cache + 404 ada di repo; belum diverifikasi ulang di VPS |
 | Performance | ✅ | Tanpa JS render-blocking, font self-hosted + preload, HTML dominan |
 | Accessibility | ✅ | Skip-link, `:focus-visible`, kontras AA terukur, nav mobile 44px |
@@ -85,7 +85,7 @@ Pipeline: `.github/workflows/build.yml`, tiga job.
 |---|---|
 | Reproducible dari lock file | ✅ |
 | Zero client JS | ✅ 0 file `.js` di output |
-| Ukuran terukur | ✅ 328K total: 13 HTML 108K, font 100K, gambar 93K, CSS 24K |
+| Ukuran terukur | ✅ 284K total: 13 HTML 108K, font 100K, ikon + OG 48K, CSS 25K |
 | Versi di-stamp ke output | ✅ `VERSION` |
 | Tag rilis | 🟡 belum |
 
@@ -105,7 +105,7 @@ Pipeline: `.github/workflows/build.yml`, tiga job.
 
 - ✅ SSG murni, tanpa render-blocking JS; HTML 108K untuk 13 halaman.
 - ✅ Font self-hosted (Fraunces 66K + Archivo 34K, variable latin), preload Fraunces saja.
-- ✅ Gambar `webp`; total aset gambar 93K.
+- ✅ Gambar `webp` untuk OG; total aset gambar (ikon + OG) 48K, tanpa file yatim.
 - 🟡 Belum ada Lighthouse CI atau performance budget.
 
 ## 8. Accessibility (P1)

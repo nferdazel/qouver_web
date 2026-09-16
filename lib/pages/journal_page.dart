@@ -3,6 +3,7 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
 import '../data/journal.dart';
+import '../routes.dart';
 import '../seo.dart';
 
 class JournalPage extends StatelessComponent {
@@ -31,7 +32,7 @@ class JournalPage extends StatelessComponent {
             article(classes: 'journal-item', [
               div(classes: 'journal-item__side', [
                 div(classes: 'journal-item__date', [.text(articleItem.date)]),
-                div(classes: 'journal-item__tag mt-1', [
+                div(classes: 'journal-item__tag', [
                   span(classes: 'journal-item__category', [
                     .text(articleItem.category),
                   ]),
@@ -44,7 +45,7 @@ class JournalPage extends StatelessComponent {
               div(classes: 'journal-item__main', [
                 h2(classes: 'journal-item__title', [
                   Link(
-                    to: '/journal/${articleItem.slug}',
+                    to: Routes.article(articleItem.slug),
                     child: .text(articleItem.title),
                   ),
                 ]),

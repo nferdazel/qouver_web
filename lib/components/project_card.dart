@@ -3,8 +3,11 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
 import '../data/projects.dart';
+import '../routes.dart';
+import 'project_status_badge.dart';
 
-/// Clean modern project card for the Qouver systems catalogue.
+/// One project in the catalogue, rendered as a full-width dossier row:
+/// index numeral, name, meta, description, stack, and links.
 class ProjectCard extends StatelessComponent {
   const ProjectCard({super.key, required this.project});
 
@@ -12,20 +15,6 @@ class ProjectCard extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
-    final isLive = project.status == 'Live';
-    final isBackend = project.status == 'Backend';
-
-    final statusBadgeClass = isLive
-        ? 'badge badge--live project-card__status project-card__status--live'
-        : isBackend
-        ? 'badge badge--bronze project-card__status'
-        : 'badge project-card__status project-card__status--archived';
-
-    final stackItems = project.stack
-        .split('·')
-        .map((item) => item.trim())
-        .where((item) => item.isNotEmpty);
-
     return article(classes: 'project-card', [
       span(classes: 'project-card__index', [.text(project.index)]),
       div(classes: 'project-card__body', [
@@ -33,26 +22,20 @@ class ProjectCard extends StatelessComponent {
           span(classes: 'project-card__category', [
             .text(project.category.toUpperCase()),
           ]),
-          span(classes: statusBadgeClass, [
-            span(
-              [],
-              classes: isLive ? 'status-dot status-dot--live' : 'status-dot',
-            ),
-            .text(project.status),
-          ]),
+          ProjectStatusBadge(status: project.status),
         ]),
         h3(classes: 'project-card__name', [
-          Link(to: '/projects/${project.slug}', child: .text(project.name)),
+          Link(to: Routes.project(project.slug), child: .text(project.name)),
         ]),
         p(classes: 'project-card__desc', [.text(project.description)]),
         div(classes: 'project-card__stack-list', [
-          for (final item in stackItems)
+          for (final item in project.stackItems)
             span(classes: 'stack-pill', [.text(item)]),
         ]),
       ]),
       div(classes: 'project-card__foot', [
         Link(
-          to: '/projects/${project.slug}',
+          to: Routes.project(project.slug),
           classes: 'link-action',
           child: .text('Case Study'),
         ),

@@ -5,3 +5,16 @@ analyzer:
     - legacy/**
   errors:
     uri_has_not_been_generated: ignore
+  language:
+    strict-casts: true
+    strict-raw-types: true
+
+linter:
+  rules:
+    - always_declare_return_types
+    - avoid_print
+    - directives_ordering
+    - prefer_final_locals
+    - prefer_single_quotes
+    - unnecessary_late
+    - unawaited_futures

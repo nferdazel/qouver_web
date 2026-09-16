@@ -1,6 +1,7 @@
 import 'package:jaspr_test/server_test.dart';
 
 import 'package:qouver_web/components/project_card.dart';
+import 'package:qouver_web/components/project_status_badge.dart';
 import 'package:qouver_web/components/q_mark.dart';
 import 'package:qouver_web/data/projects.dart';
 import 'package:qouver_web/pages/project_detail_page.dart';
@@ -29,7 +30,7 @@ void main() {
         tagline: 'Research workspace.',
         description: 'Archived.',
         focus: ['Research'],
-        status: 'Archived',
+        status: ProjectStatus.archived,
         stack: 'TBD',
       );
 
@@ -67,5 +68,37 @@ void main() {
     final res = await tester.request('/');
 
     expect(res.body, contains('Case study not found'));
+  });
+
+  testServer('ProjectStatusBadge stamps a live project', (tester) async {
+    tester.pumpComponent(const ProjectStatusBadge(status: ProjectStatus.live));
+
+    final res = await tester.request('/');
+
+    expect(res.body, contains('badge--live project-card__status--live'));
+    expect(res.body, contains('status-dot status-dot--live'));
+    expect(res.body, contains('Live'));
+  });
+
+  testServer('ProjectStatusBadge stamps a backend project', (tester) async {
+    tester.pumpComponent(
+      const ProjectStatusBadge(status: ProjectStatus.backend),
+    );
+
+    final res = await tester.request('/');
+
+    expect(res.body, contains('badge--bronze'));
+    expect(res.body, contains('Backend'));
+  });
+
+  testServer('ProjectStatusBadge stamps an archived project', (tester) async {
+    tester.pumpComponent(
+      const ProjectStatusBadge(status: ProjectStatus.archived),
+    );
+
+    final res = await tester.request('/');
+
+    expect(res.body, contains('project-card__status--archived'));
+    expect(res.body, contains('Archived'));
   });
 }

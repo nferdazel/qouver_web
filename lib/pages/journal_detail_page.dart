@@ -3,6 +3,7 @@ import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
 import '../data/journal.dart';
+import '../routes.dart';
 import '../seo.dart';
 import 'not_found_page.dart';
 
@@ -13,10 +14,9 @@ class JournalDetailPage extends StatelessComponent {
 
   @override
   Component build(BuildContext context) {
-    final article = journalArticles.cast<JournalArticle?>().firstWhere(
-      (art) => art?.slug == slug,
-      orElse: () => null,
-    );
+    final article = journalArticles
+        .where((art) => art.slug == slug)
+        .firstOrNull;
 
     if (article == null) {
       return const NotFoundPage();
@@ -26,13 +26,13 @@ class JournalDetailPage extends StatelessComponent {
       pageHead(
         title: '${article.title} · Journal · Qouver',
         description: article.summary,
-        path: '/journal/$slug',
+        path: Routes.article(slug),
         ogType: 'article',
       ),
       section(classes: 'container article-reader', [
         div(classes: 'article-reader__header', [
           Link(
-            to: '/journal',
+            to: Routes.journal,
             classes: 'link link--dim',
             child: .text('← Back to Journal'),
           ),
@@ -57,7 +57,7 @@ class JournalDetailPage extends StatelessComponent {
         ]),
         div(classes: 'mt-3 pt-3 divider', [
           Link(
-            to: '/journal',
+            to: Routes.journal,
             classes: 'link',
             child: .text('← Back to all articles'),
           ),

@@ -2,6 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
+import '../routes.dart';
 import '../seo.dart';
 
 class AboutPage extends StatelessComponent {
@@ -102,7 +103,7 @@ class AboutPage extends StatelessComponent {
           div(classes: 'manifesto__row', [
             span(classes: 'manifesto__lbl', [.text('Guiding principle')]),
             Link(
-              to: '/contact',
+              to: Routes.contact,
               classes: 'link-action link-action--light',
               child: .text('Get in touch'),
             ),

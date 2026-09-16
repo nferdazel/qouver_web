@@ -2,6 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
+import '../routes.dart';
 import '../seo.dart';
 
 /// Rendered for unmatched routes (Router errorBuilder) and as the static
@@ -30,7 +31,7 @@ class NotFoundPage extends StatelessComponent {
         ]),
       ]),
       section(classes: 'section container', [
-        Link(to: '/', classes: 'link', child: .text('Back to home')),
+        Link(to: Routes.home, classes: 'link', child: .text('Back to home')),
       ]),
     ]);
   }
