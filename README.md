@@ -46,6 +46,7 @@ Quality standards and audit history live in [`STANDARDS.md`](STANDARDS.md).
 - **Typography:** self-hosted Fraunces (display) and Archivo (structure, body, labels) variable fonts, latin subset; no third-party font requests
 - **Design system:** "Workshop Broadsheet": bone paper (`#EDEAE3`), ink (`#141311`), oxide accent (`#B23A1A`); square corners, hard rules, hover-only motion
 - **Deployment:** containerized `qouver-web` (Podman) on a Linux VPS behind a Caddy TLS reverse proxy
+- **Caching:** every path is served `no-cache` and revalidated with the ETag from the container, so an unchanged asset costs one conditional request and a bodyless 304. Hashed filenames would allow a longer `max-age`, but with stable names like `styles.css` a long cache would strand returning visitors on an old deploy
 - **CI/CD:** GitHub Actions runs format, analyze, and test, builds the static site, pushes an image to GHCR, then deploys to the VPS
 
 ---

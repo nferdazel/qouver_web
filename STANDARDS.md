@@ -95,7 +95,7 @@ Pipeline: `.github/workflows/build.yml`, tiga job.
 |---|---|
 | Konfigurasi Caddy di repo | ✅ `deploy/Caddyfile.qouver.com`, `deploy/Caddyfile.qouver-web.docker`, `deploy/Caddyfile.analytics.qouver.com` |
 | Security headers (HSTS, nosniff, X-Frame-Options, Referrer-Policy, Permissions-Policy, CSP) | ✅ |
-| Cache policy (HTML `no-cache`, aset `immutable`) | ✅ |
+| Cache policy | ✅ `no-cache` di semua jalur; ETag dari container bikin revalidasi jadi 304 tanpa body (terukur 0 byte) |
 | Halaman 404 kustom | ✅ `handle_errors` → `/404.html` |
 | Unit podman | ✅ `deploy/qouver-web.container` |
 | Verifikasi header di VPS | ✅ diverifikasi 2026-09-16: tiap header muncul tepat satu kali di `/` dan `/styles.css`; 12/12 URL sitemap 200; 404 benar; gzip aktif (styles.css 25513b → 5023b) |
@@ -104,6 +104,7 @@ Pipeline: `.github/workflows/build.yml`, tiga job.
 ## 7. Performance (P1)
 
 - ✅ SSG murni, tanpa render-blocking JS; HTML 108K untuk 13 halaman.
+- ✅ Semua jalur `no-cache` + ETag: browser menyimpan file tapi selalu revalidasi, server balas 304 tanpa body. Dulu aset ditandai `immutable` setahun padahal nama filenya tetap (`styles.css`), sehingga pengunjung lama tidak pernah menerima CSS baru; diperbaiki 2026-09-16.
 - ✅ Font self-hosted (Fraunces 66K + Archivo 34K, variable latin), preload Fraunces saja.
 - ✅ Gambar `webp` untuk OG; total aset gambar (ikon + OG) 48K, tanpa file yatim.
 - 🟡 Belum ada Lighthouse CI atau performance budget.

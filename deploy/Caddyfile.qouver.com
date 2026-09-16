@@ -30,10 +30,23 @@ qouver.com {
     }
 
     # --- Caching ------------------------------------------------------------
-    # HTML: short cache (content changes on every build); assets: long cache.
-    @static path /assets/* /fonts/* /fonts.css /styles.css /favicon.*
-    header @static Cache-Control "public, max-age=31536000, immutable"
-    header / Cache-Control "no-cache"
+    # `no-cache` everywhere, deliberately. It does not mean "do not cache": the
+    # browser keeps the file but revalidates before use, and Caddy answers with
+    # a bodyless 304 when the ETag still matches, so an unchanged asset costs
+    # one conditional request and zero bytes.
+    #
+    # The previous policy marked /assets/*, /fonts/*, /styles.css and
+    # /favicon.* as `immutable` for a year. That is only safe when the filename
+    # changes with the content, and ours do not (styles.css is always
+    # styles.css, and its contents change on every deploy). An immutable
+    # stylesheet with a stable name means a returning visitor never sees the
+    # new design until the cache expires, which is exactly what happened: a
+    # normal Firefox tab kept the old site while incognito showed the current
+    # one.
+    #
+    # If hashed filenames are ever introduced, the hashed paths can go back to
+    # `immutable` and only the unhashed entry points should stay `no-cache`.
+    header Cache-Control "no-cache"
 
     # 404 ditangani di container (Caddyfile.qouver-web.docker handle_errors), host cukup proxy
 }
